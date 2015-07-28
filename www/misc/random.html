@@ -1,0 +1,19 @@
+document.addEventListener("deviceready", onDeviceReady, false);
+var ref = null;
+var CustomHeader = {
+    html: function() {
+      var code = 'var btn = document.createElement("button"); \
+      var t = document.createTextNode("CLICK ME"); btn.appendChild(t);\
+      if (document.body.firstChild){ document.body.insertBefore(btn, document.body.firstChild); } \
+      else { document.body.appendChild(btn); }';
+      return code;
+    }
+};
+       }
+
+function onDeviceReady() {
+    ref = window.open('lucky.html', '_blank');
+    ref.addEventListener('loadstop', function (event) {
+        code = CustomHeader.html();
+        ref.executeScript({ code: code });
+});

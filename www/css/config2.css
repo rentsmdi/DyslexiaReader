@@ -1,0 +1,18 @@
+@font-face {
+    font-family: OpenDyslexic;
+    src: url(OpenDyslexic-Regular.otf);
+}
+
+body {
+    font-family: OpenDyslexic;
+    font-size: 14px;
+    line-height: 140%;
+    margin:0px;
+    padding:12vh;
+    background-color: azure;
+    text-align:center;
+    text-transform: lowercase;
+}
+ h1{
+    font-size: 30px;    
+ }
