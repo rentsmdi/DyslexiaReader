@@ -19,10 +19,12 @@
 * {
     -webkit-tap-highlight-color: rgba(0,0,0,0); /* make transparent link selection, adjust last value opacity 0 to 1.0 */
 }
+
 @font-face {
     font-family: OpenDyslexic;
     src: url(OpenDyslexic-Regular.otf);
 }
+
 body {
     
     -webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
@@ -43,6 +45,8 @@ body {
 @media screen and (min-aspect-ratio: 1/1) and (min-width:400px) {
 
 }
+
+
 
 h1 {
 /*    font-size:14px;*/

@@ -1,6 +1,7 @@
+@import url(http://fonts.googleapis.com/css?family=Andika);
+
 @font-face {
-    font-family: OpenDyslexic;
-    src: url(OpenDyslexic-Regular.otf);
+    font-family: 'Andika', sans-serif;
 }
 
 body {
