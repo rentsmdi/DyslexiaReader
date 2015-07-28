@@ -56,6 +56,7 @@
                 var filecss;
                 var ref = null;
                 var url;
+                var css;
                 requestCSS('css/config.css');
                 set();
                 init();
@@ -82,6 +83,7 @@
                 }
                 function init(){
                     window.resolveLocalFileSystemURL(cordova.file.applicationDirectory + "www/abc.txt", gotFile, fail);
+                    window.resolveLocalFileSystemURL(cordova.file.applicationDirectory + "www/css/config2.css", win, fail);
                 };
                 function fail(e) {
                     alert("FileSystem Error");
@@ -94,18 +96,26 @@
 
                         reader.onloadend = function(e) {
                             url = this.result;
-//                            alert("Text is: "+this.result);
                         }
-
                         reader.readAsText(file);
                     });
+                }
+                function win(fileEntry) {
 
+                    fileEntry.file(function(file) {
+                        var reader = new FileReader();
+
+                        reader.onloadend = function(e) {
+                            css = this.result;
+                        }
+                        reader.readAsText(file);
+                    });
                 }
                 function setting1(){
                     requestCSS('css/config1.css');
                 }
                 function setting2(){
-                    requestCSS('css/config2.css');
+                    filecss = css;
                 }
                 function avanz(){
                     window.location="configavanz.html";
@@ -114,9 +124,9 @@
                     window.location="index.html";     
                 }
                 function open(){
-                    alert(url);
+                    alert(url.length);
                     var f = url;
-                    ref = window.open(f, '_blank','location=yes');
+                    ref = window.open('http://www.google.it', '_blank','location=yes');
                     ref.addEventListener('loadstop', function() {
                         ref.insertCSS({code: filecss});
                     }); 

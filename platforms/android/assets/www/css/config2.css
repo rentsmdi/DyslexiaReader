@@ -1,6 +1,6 @@
 @font-face {
     font-family: OpenDyslexic;
-    src: url(OpenDyslexic-Regular.otf);
+    src: url(file:///android_asset/www/css/OpenDyslexic-Regular.otf);
 }
 
 body {
