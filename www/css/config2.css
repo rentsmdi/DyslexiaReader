@@ -1,16 +1,11 @@
 @import url(http://fonts.googleapis.com/css?family=Andika);
 
 @font-face {
-<<<<<<< HEAD
     font-family: 'Andika', sans-serif;
-=======
-    font-family: OpenDyslexic;
-    src: url(file:///android_asset/www/css/OpenDyslexic-Regular.otf);
->>>>>>> origin/master
 }
 
 body {
-    font-family: OpenDyslexic;
+    font-family: 'Andika';
     font-size: 14px;
     line-height: 140%;
     margin:0px;
