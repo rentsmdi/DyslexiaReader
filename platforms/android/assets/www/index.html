@@ -27,16 +27,48 @@
         <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
         <link rel="stylesheet" type="text/css" href="css/index.css" />
+        <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+        <link href='http://fonts.googleapis.com/css?family=Chelsea+Market' rel='stylesheet' type='text/css'>
+
         <title>Dyslexia</title>
     </head>
     <body>
-        <h1>Benvenuti in Dyslexia</h1>
-        <p>Lo scopo dell'applicazione è di migliorare l'esperienza di navigazione per utenti affetti da dislessia.</p>
-        <h2>Configurare l'applicazione /disabled/</h2>
-        <button type="button" id="btncon">Configura App</button>
-        <h2>Selezionare la configurazione per la navigazione!</h2>
-        <button type="button" id="btnstyle">Seleziona Stile</button>  
-    
+        <div class="container">
+            
+            <div class="row">
+                <div class="col-2" style="background-color: #f7f7f7;">
+                    <br>
+                    <h1>Benvenuti in Dyslexia</h1>
+                    <p>Lo scopo dell'applicazione è di migliorare l'esperienza di navigazione per utenti affetti da dislessia.</p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div id="btncon" class="col-1-left" style="background-color: #7C98B3;">
+                    <h3>Configurare l'applicazione /disabled/</h3>
+                    <!-- <button type="button" id="btncon">Configura App</button> -->
+                    <br><i class="fa fa-gear fa-4x"></i>
+                </div>
+                <div id="btnstyle" class="col-1-right" style="background-color: #A1CDF4;">
+                    <h3>Selezionare la configurazione per la navigazione!</h3>
+                    <!-- <button type="button" id="btnstyle">Seleziona Stile</button>  -->
+                    <br><i class="fa fa-paint-brush fa-4x"></i>
+                </div>
+            </div>
+                
+            <div class="row">
+                <div class="col-1-left" style="background-color: #fae17a;">
+                    <h2>About</h2>
+                    <i class="fa fa-users fa-4x"></i>
+                </div>
+                <div class="col-1-right" style="background-color: #ffeb9b;">
+                    <h2>Links</h2>
+                    <i class="fa fa-list-ul fa-4x"></i>
+                </div>
+            </div>
+            
+        </div>
+        
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
         <script type="text/javascript">
@@ -57,7 +89,7 @@
                     window.location="configApp.html";
                 }
                 function configStyle(){
-                    window.location="config.html";
+                    window.location="configNav.html";
                 }
             };
         </script>

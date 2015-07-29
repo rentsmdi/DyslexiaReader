@@ -38,66 +38,16 @@
         <p>Selezionare i formati interessati:</p>
         <form>
             Pagina Iniziale:<br>
-            <input type="text" id="initpage">
+            <input type="text" id="initpage" value="http://www.google.it">
             <input type="button" id="submit" value="Imposta" >
         <br>
         <h2>Torna alla home</h2>
         <button type="button" id="btnhome">Home</button>  
     
         <script type="text/javascript" src="cordova.js"></script>
-        <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript" src="js/configApp.js"></script>
         <script type="text/javascript">
             document.addEventListener("deviceready", onDeviceReady, false);
-            var ref = null;
-            
-            function onDeviceReady() {
-                var filecss;
-                set();
-                
-                function set(){
-                    var btnhome = document.getElementById("btnhome");
-                    btnhome.addEventListener("click", home);
-                    var imp = document.getElementById("submit");
-                    submit.addEventListener("click", imposta);
-                    init();
-                } 
-                function home(){
-                    window.location="index.html";
-                }
-                function imposta(){
-                    window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, fail);
-                }
-                function gotFS(fileSystem) {
-                    fileSystem.root.getFile("readme.txt", {create: true, exclusive: false}, gotFileEntry, fail);
-                }
-                function gotFileEntry(fileEntry) {
-                    fileEntry.createWriter(gotFileWriter, fail);
-                }
-                function gotFileWriter(writer) {
-                    writer.onwriteend = function(evt) {
-                        window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFile, fail);
-                    };
-                    writer.write("http://apache.org");
-                }
-                function gotFile(fileSystem) {
-                    fileSystem.root.getFile("readme.txt", null, setValue, fail);
-                }
-                function init(){
-                    window.resolveLocalFileSystemURL(cordova.file.applicationDirectory + "www/settings.txt", setValue, fail);
-                }
-                function fail(e) {
-                    alert("FileSystem Error");
-                }
-                function setValue(fileEntry) {
-                    fileEntry.file(function(file) {
-                        var reader = new FileReader();
-                        reader.onloadend = function(e) {
-                            document.getElementById("initpage").value = this.result;
-                        }
-                        reader.readAsText(file);
-                    });
-                }
-            };
         </script>
     </body>
 </html>

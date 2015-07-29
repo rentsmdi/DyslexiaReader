@@ -45,7 +45,7 @@
 
             <div class="row">
                 <div id="btncon" class="col-1-left" style="background-color: #7C98B3;">
-                    <h3>Configurare l'applicazione /disabled/</h3>
+                    <h3>Configurare l'applicazione</h3>
                     <!-- <button type="button" id="btncon">Configura App</button> -->
                     <br><i class="fa fa-gear fa-4x"></i>
                 </div>
@@ -73,10 +73,11 @@
         <script type="text/javascript" src="js/index.js"></script>
         <script type="text/javascript">
             document.addEventListener("deviceready", onDeviceReady, false);
-            var ref = null;
             
             function onDeviceReady() {
+                var ref = null;
                 var filecss;
+                set();
                 
                 function set(){
                     var btncon = document.getElementById("btncon");
@@ -84,12 +85,11 @@
                     btncon.addEventListener("click", config);
                     btnstyle.addEventListener("click", configStyle);
                 }
-                set();
                 function config(){
                     window.location="configApp.html";
                 }
                 function configStyle(){
-                    window.location="config.html";
+                    window.location="configNav.html";
                 }
             };
         </script>
