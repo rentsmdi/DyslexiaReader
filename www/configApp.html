@@ -37,9 +37,17 @@
         <h1>Configurazione Applicazione</h1>
         <p>Selezionare i formati interessati:</p>
         <form>
-            Pagina Iniziale:<br>
-            <input type="text" id="initpage" value="http://www.google.it">
-            <input type="button" id="submit" value="Imposta" >
+            <fieldset>
+            <legend>Pagina Iniziale:</legend>
+                <input type="text" id="initpage" placeholder="http://www.google.it" value="http://www.google.it">
+                <input type="button" id="submit" value="Imposta" >
+            </fieldset>
+            <fieldset>
+            <legend>Configura App:</legend>
+                <button type="button" id="backcol">Azure</button>
+                <button type="button" id="font">Arial</button>
+            </fieldset>
+        </form>
         <br>
         <h2>Torna alla home</h2>
         <button type="button" id="btnhome">Home</button>  
