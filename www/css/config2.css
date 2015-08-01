@@ -1,19 +1,32 @@
-@import url(http://fonts.googleapis.com/css?family=Andika);
+@import url(http://fonts.googleapis.com/css?family=Chelsea+Market);
 
 @font-face {
-    font-family: 'Andika', sans-serif;
+    font-family: 'Chelsea Market', cursive;
 }
 
 body {
-    font-family: 'Andika';
-    font-size: 14px;
-    line-height: 140%;
-    margin:0px;
-    padding:12vh;
-    background-color: azure;
-    text-align:center;
+    font-family: 'Chelsea Market', cursive;
+    font-size: 12px;
+    line-height: 150%;
+    margin:2px;
+    padding:5px;
+    background-color: #FAFAC8;
+    text-align:left;
     text-transform: lowercase;
+    text-decoration: none;
+    letter-spacing: 2px;
+    word-spacing: 3px;
+    font-style: normal;
+    column-count: 1;
+    
 }
- h1{
-    font-size: 30px;    
+ h1 {
+     font-size: 24px; 
+     font-weight: bold;
+     letter-spacing: 2px;
+     word-spacing: 3px;
+     
  }
+div, section, article {
+    border: 1px solid black;
+}

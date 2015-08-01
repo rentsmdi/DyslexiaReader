@@ -62,7 +62,7 @@
     } 
 
     function fail(e) {
-        alert("Errore!");
+//        alert("Errore!");
     }
 //    function setBack(){
 //        c = 1;
