@@ -29,10 +29,12 @@
         <link rel="stylesheet" type="text/css" href="css/index.css" />
         <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
         <link href='http://fonts.googleapis.com/css?family=Chelsea+Market' rel='stylesheet' type='text/css'>
-
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.2/modernizr.js"></script>
         <title>Dyslexia</title>
     </head>
     <body>
+        <div class="se-pre-con"></div>
         <div class="container">
             
             <div class="row">
@@ -127,6 +129,15 @@
                 } 
                 
             };
+            
+             
+        //paste this code under head tag or in a seperate js file.
+            // Wait for window load
+            $(window).load(function() {
+                // Animate loader off screen
+                $(".se-pre-con").fadeOut("slow");;
+            });
+
         </script>
     </body>
 </html>
