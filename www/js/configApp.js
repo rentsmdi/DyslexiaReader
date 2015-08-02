@@ -29,7 +29,7 @@ function set(){
     var btnhome = document.getElementById("btnhome");
     btnhome.addEventListener("click", home);
     var imp = document.getElementById("submit");
-    submit.addEventListener("click", write);
+    imp.addEventListener("click", write);
     var col = document.getElementById("palette");
     col.addEventListener("change", list);
     var testo = document.getElementById("testo");

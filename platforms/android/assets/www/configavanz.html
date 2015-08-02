@@ -26,56 +26,130 @@
         <meta name="msapplication-tap-highlight" content="no" />
         <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
-        <link rel="stylesheet" type="text/css" href="css/personalNav.css" />
+        <link rel="stylesheet" type="text/css" href="css/personalApp.css" />
         <title>Dyslexia</title>
     </head>
     <body>
         <div id="breadcrumb">
             <a href="index.html">Home</a> <span>></span>
-            <a href="config.html">Configurazione</a> <span>></span>
+            <a href="index.html">Configurazione Navigazione</a> <span>></span>
             <em>Configurazione Avanzata</em>
         </div>
         <h1>Configurazione Avanzata</h1>
+        <h2>Torna alla home</h2>
+        <button type="button" id="btnhome">Home</button>
+        <br>
         <p>Selezionare i formati interessati:</p>
-            <button type="button" id="blue">Blu</button>  
-        <h2>Inizia la navigazione</h2>
-        <button type="button" id="btngo">Go!</button>
-        <h2>Torna Indietro</h2>
-            <button type="button" id="btncon">Indietro</button>
+        <form>
+            <fieldset>
+            <legend>Configura Background:</legend>
+                <select id="palette">
+                    <option>Seleziona</option>
+                    <option>Bianco</option>
+                    <option>Crema</option>
+                    <option>Giallo</option>
+                </select>
+            </fieldset>
+            <fieldset>
+            <legend>Configura Font Size:</legend>
+                <select id="fontsize">
+                    <option>Seleziona</option>
+                    <option>12px</option>
+                    <option>13px</option>
+                    <option>44px</option>
+                </select>
+            </fieldset>
+        </form>
+        <h3>Inizia la navigazione</h3>  
+        <button type="button" id="btngo">Go!</button> 
     
         <script type="text/javascript" src="cordova.js"></script>
-        <script type="text/javascript" src="js/index.js"></script>
+<!--        <script type="text/javascript" src="js/configAvanz.js"></script>-->
         <script type="text/javascript">
             document.addEventListener("deviceready", onDeviceReady, false);
-            var ref = null;
             
             function onDeviceReady() {
-                var body = null;
+//                var ref = null;
+                var conn = 'http://www.google.it';
                 var filecss;
+                set();
+                initConn();
                 
                 function set(){
-                    var btncon = document.getElementById("btncon");
-                    var blue = document.getElementById("blue");
-                    var btngo = document.getElementById("btngo");
-                    btncon.addEventListener("click", back);
-                    blue.addEventListener("click", change);
-                    btngo.addEventListener("click", open);
-                }
-                set();
-                function change(){
-                    body = 'blue';
-                    var el = document.querySelector("body");
-                    el.style.backgroundColor = 'blue';
-                }
+                    document.getElementById("btnhome").addEventListener("click", home);
+                    document.getElementById("palette").addEventListener("change", background);
+                    document.getElementById("fontsize").addEventListener("change", fontsize);
+                    document.getElementById("btngo").addEventListener("click", open);
+    //                    document.getElementById("testo").addEventListener("change", text);
+    //                    document.getElementById("fontsize").addEventListener("change", size);
+                };
                 function open(){
-                    ref = window.open('http://apache.org', '_blank','location=yes');
+                    var ref = window.open(conn, '_blank','location=yes');
                     ref.addEventListener('loadstop', function() {
-                        ref.insertCSS({code: "body { background-color: "+body+"; }"});
+                        ref.insertCSS({code: filecss});
                     }); 
-                }
-                function back(){
-                    window.location="config.html";
-                }
+                };
+                function home(){
+                    window.location="index.html";     
+                };
+                function fontsize(event){
+                    var font = event.target.value;
+//                    var pos = str.indexOf();
+                    filecss = filecss.replace("{","{font-size:"+font+"; ");
+    //                window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
+    //                    fileSystem.root.getFile("personalizedCSS.txt", {create: true, exclusive: false}, function(fileEntry){
+    //                        fileEntry.createWriter(function(writer){
+    //                            writer.write("body{background-color:"+back+"};");
+    //                            readCSS();
+    //                        });
+    //                    });
+    //                });
+                };
+                function background(event){
+                    var back = event.target.value;
+                    if (back == 'Bianco')
+                        back = '#f7f7f7';
+                    if (back == 'Crema')
+                        back = '#FAFAC8';
+                    if (back == 'Giallo')
+                        back = '#FFFF00';
+                    filecss = "body,div{background-color:"+back+";};"
+    //                window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
+    //                    fileSystem.root.getFile("personalizedCSS.txt", {create: true, exclusive: false}, function(fileEntry){
+    //                        fileEntry.createWriter(function(writer){
+    //                            writer.write("body{background-color:"+back+"};");
+    //                            readCSS();
+    //                        });
+    //                    });
+    //                });
+                };
+    //            function readCSS(){
+    //                window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
+    //                    fileSystem.root.getFile("personalizedCSS.txt", null, function(fileEntry){
+    //                        fileEntry.file(function(file) {
+    //                            var reader = new FileReader();
+    //                            reader.onloadend = function(e) {
+    //                                    filecss = this.result;
+    //                            }
+    //                            reader.readAsText(file);
+    //                        });
+    //                    });
+    //                });    
+    //            };
+                function initConn(){
+                    window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
+                        fileSystem.root.getFile("readme.txt", null, function(fileEntry){
+                            fileEntry.file(function(file) {
+                                var reader = new FileReader();
+                                reader.onloadend = function(e) {
+                                    conn = this.result;
+                                }
+                                reader.readAsText(file);
+                            });
+                        });
+                    });
+                };
+                
             };
         </script>
     </body>

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<!--
+    Copyright (c) 2012-2014 Adobe Systems Incorporated. All rights reserved.
+
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="msapplication-tap-highlight" content="no" />
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+        <link rel="stylesheet" type="text/css" href="css/index.css" />
+        <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+        <title>Dyslexia</title>
+    </head>
+    <body>   
+        <div class="container">
+            
+            <div class="row">
+                <div id="btnhome" class="col-2" style="background-color: #f7f7f7;">
+                    <div id="breadcrumb" style="font-size: 10px;">
+                        <a href="index.html">Home</a> <span>></span><em>Configurazione</em>
+                    </div>
+                    <h2>Selezionare la configurazione per la navigazione!</h2>
+                        <p>Nota: se non è stato selezionato uno stile verrà utilizzato lo stile predefinito.</p>
+                        <button type="button" id="btnhome1">Home</button> 
+                </div>
+            </div>
+
+            <div class="row">
+                <div id="btn1" class="col-1-left" style="background-color: #7C98B3;">
+                    <h3>Config1</h3>
+                     <!-- <button type="button" id="btn1">Config. 1</button> -->
+                    <br><i class="fa fa-toggle-off fa-4x"></i>
+                </div>
+                <div id="btn2" class="col-1-right" style="background-color: #A1CDF4;">
+                    <h3>Config2</h3>
+                     <!-- <button type="button" id="btn2">Config. 2</button> -->
+                    <br><i class="fa fa-toggle-off fa-4x"></i>
+                </div>
+            </div>
+                
+            <div class="row">
+                <div id="btnavz" class="col-1-left" style="background-color: #fae17a;">
+                    <h3>Configurazione avanzata</h3>
+                     <!-- <button type="button" id="btnavz">Avanzata</button> -->
+                    <i class="fa fa-sliders fa-4x"></i>
+                </div>
+                <div id="btngo" class="col-1-right" style="background-color: #ffeb9b;">
+                    <h3>Inizia la navigazione</h3>  
+                     <!-- <button type="button" id="btngo">Go!</button> -->
+                    <i class="fa fa-share-square-o  fa-4x"></i>
+                </div>
+            </div>
+        </div>   
+        
+        <script type="text/javascript" src="cordova.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js"></script> 
+        <script type="text/javascript">
+            document.addEventListener("deviceready", onDeviceReady, false);
+            function onDeviceReady() {
+                var filecss;
+                var ref = null;
+                var urlCSS;
+                var conn = 'http://www.google.it';
+                requestCSS('css/config.css');
+                set();
+                readBack();
+                readFont();
+                readSize();
+                initConn();
+
+                function set(){
+                    var but1 = document.getElementById("btn1");
+                    var but2 = document.getElementById("btn2");
+                    var btngo = document.getElementById("btngo");
+                    var btnavz = document.getElementById("btnavz");
+                    var btnhome = document.getElementById("btnhome1");
+                    but1.addEventListener("click", setting1); 
+                    but2.addEventListener("click", setting2);
+                    btngo.addEventListener("click", open);
+                    btnavz.addEventListener("click", avanz);
+                    btnhome.addEventListener("click", home);
+                }
+                function requestCSS(css){
+                    var urlCSS = css;
+                    var req = new XMLHttpRequest();
+                    req.open("GET", urlCSS, false);
+                    req.send();
+                    filecss = req.responseText;
+                }
+                function initConn(){
+    //                    window.resolveLocalFileSystemURL(cordova.file.applicationDirectory + "www/settings.txt", setValue, fail);
+                    window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
+                        fileSystem.root.getFile("readme.txt", null, function(fileEntry){
+                            fileEntry.file(function(file) {
+                                var reader = new FileReader();
+                                reader.onloadend = function(e) {
+                                    conn = this.result;
+                                }
+                                reader.readAsText(file);
+                            });
+                        });
+                    });
+                };
+                function setting1(){
+                    requestCSS('css/config1.css');
+                };
+                function setting2(){
+                    requestCSS('css/config2.css');
+                };
+                function avanz(){
+                    window.location="configAvanz.html";
+                };
+                function home(){
+                    window.location="index.html";     
+                };
+                function readBack(){
+                    window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
+                        fileSystem.root.getFile("backCSS.txt", null, setValue);
+                    });    
+                }
+                function readFont(){
+                    window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
+                        fileSystem.root.getFile("fontCSS.txt", null, setFF);
+                    });    
+                }
+                function readSize(){
+                    window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
+                        fileSystem.root.getFile("fontsizeCSS.txt", null, setFontSize);
+                    });    
+                }
+                function setFF(fileEntry) {
+                    fileEntry.file(function(file) {
+                        var reader = new FileReader();
+                        reader.onloadend = function(e) {
+                            var str = this.result;
+    //                            if (str.charAt(0)==1)
+                                document.body.style.fontFamily = str;
+                        }
+                        reader.readAsText(file);
+                    });
+                } 
+                function setValue(fileEntry) {
+                    fileEntry.file(function(file) {
+                        var reader = new FileReader();
+                        reader.onloadend = function(e) {
+                            var str = this.result;
+    //                            if (str.charAt(0)==1)
+                                document.getElementsByClassName("col-2")[0] = str;
+                        }
+                        reader.readAsText(file);
+                    });
+                }
+                function setFontSize(fileEntry) {
+                    fileEntry.file(function(file) {
+                        var reader = new FileReader();
+                        reader.onloadend = function(e) {
+                                document.body.style.fontSize = this.result;
+                        }
+                        reader.readAsText(file);
+                    });
+                }
+                function open(){
+                    ref = window.open(conn, '_blank','location=yes');
+                    ref.addEventListener('loadstop', function() {
+                        ref.insertCSS({code: filecss});
+                    }); 
+                };
+            };
+        </script>
+    </body>
+</html>
