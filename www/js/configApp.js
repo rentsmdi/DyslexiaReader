@@ -12,6 +12,7 @@ function onDeviceReady() {
     set();  
     readBack()
     readFont();
+    readSize();
     readURL();
 
 };
