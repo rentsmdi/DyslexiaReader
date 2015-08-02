@@ -26,56 +26,59 @@
         <meta name="msapplication-tap-highlight" content="no" />
         <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
-        <link rel="stylesheet" type="text/css" href="css/personalNav.css" />
+        <link rel="stylesheet" type="text/css" href="css/personalApp.css" />
         <title>Dyslexia</title>
     </head>
     <body>
         <div id="breadcrumb">
             <a href="index.html">Home</a> <span>></span>
-            <a href="config.html">Configurazione</a> <span>></span>
-            <em>Configurazione Avanzata</em>
+            <em>Configurazione App</em>
         </div>
-        <h1>Configurazione Avanzata</h1>
+        <h1>Configurazione Navigazione</h1>
         <p>Selezionare i formati interessati:</p>
-            <button type="button" id="blue">Blu</button>  
-        <h2>Inizia la navigazione</h2>
-        <button type="button" id="btngo">Go!</button>
-        <h2>Torna Indietro</h2>
-            <button type="button" id="btncon">Indietro</button>
+        <form>
+            <fieldset>
+            <legend>Configura Background:</legend>
+                <select id="palette">
+                    <option>Seleziona</option>
+                    <option>Bianco</option>
+                    <option>Crema</option>
+                    <option>Giallo</option>
+                </select>
+            </fieldset>
+            <fieldset>
+            <legend>Configura Font:</legend>
+                <select id="testo">
+                    <option>Seleziona</option>
+                    <option>Standard</option>
+                    <option>Open Dyslexic</option>
+                </select>
+            </fieldset>
+            <fieldset>
+            <legend>Configura Font Size:</legend>
+                <select id="fontsize">
+                    <option>Seleziona</option>
+                    <option>12px</option>
+                    <option>13px</option>
+                    <option>14px</option>
+                    <option>20px</option>
+                </select>
+            </fieldset>
+        </form>
+        
+        <br>
+        <h2>Torna alla home</h2>
+        <button type="button" id="btnhome">Home</button>  
     
         <script type="text/javascript" src="cordova.js"></script>
-        <script type="text/javascript" src="js/index.js"></script>
+<!--        <script type="text/javascript" src="js/configAvanz.js"></script>-->
         <script type="text/javascript">
             document.addEventListener("deviceready", onDeviceReady, false);
-            var ref = null;
-            
             function onDeviceReady() {
-                var body = null;
-                var filecss;
+                set();  
                 
-                function set(){
-                    var btncon = document.getElementById("btncon");
-                    var blue = document.getElementById("blue");
-                    var btngo = document.getElementById("btngo");
-                    btncon.addEventListener("click", back);
-                    blue.addEventListener("click", change);
-                    btngo.addEventListener("click", open);
-                }
-                set();
-                function change(){
-                    body = 'blue';
-                    var el = document.querySelector("body");
-                    el.style.backgroundColor = 'blue';
-                }
-                function open(){
-                    ref = window.open('http://apache.org', '_blank','location=yes');
-                    ref.addEventListener('loadstop', function() {
-                        ref.insertCSS({code: "body { background-color: "+body+"; }"});
-                    }); 
-                }
-                function back(){
-                    window.location="config.html";
-                }
+                
+
             };
         </script>
     </body>
