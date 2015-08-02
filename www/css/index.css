@@ -101,15 +101,39 @@ h3{
 	background: url(../img/Preloader_11.gif) center no-repeat #fff;
 }
 
-/* Landscape layout (with min-width) */
-@media screen and (min-aspect-ratio: 1/1) and (min-width:400px) {
+/*Landscape layout (with min-width) */
+@media screen and (min-aspect-ratio: 1/1) and (min-width:400px) and (max-width:767px) {
 
     h3{
         font-size: 180%;
     }
+    body{
+        background-color: green;
 
+    }
 }
 
+/*Tablet Portrait layout (with min-width) */
+@media screen and (min-aspect-ratio: 1/1) and (min-width:768px) and (max-width:1023px)  {
+
+    h3{
+        font-size: 200%;
+    }
+    body{
+        background-color: red;
+    }
+}
+    
+/*Tablet Landscape layout (with min-width) */
+@media screen and (min-aspect-ratio: 1/1) and (min-width:1024px){
+
+    h3{
+        font-size: 300%;
+    }
+    body{
+        background-color: blue;
+    }
+}
 
 
 
