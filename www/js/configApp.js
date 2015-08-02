@@ -4,6 +4,8 @@
 //    var f = 0;
 //    var font = null;
 
+    var SelValue;
+
     function onDeviceReady() {
         set();  
         readBack()
@@ -29,6 +31,13 @@
         backcol.addEventListener("click", setcolor);
         var fontApp = document.getElementById("font");
         fontApp.addEventListener("click", setfont);
+        var col = document.getElementById("colors");
+        col.addEventListener("change", list);
+    }
+
+    function list(event){
+        SelValue = event.target.value;
+        setcolor();
     }
     function home(){
         window.location="index.html";
@@ -92,11 +101,12 @@
         }, fail);
     }
     function setcolor(){  
-        document.body.style.backgroundColor = 'darksalmon';
+        document.body.style.backgroundColor = setValue;
         window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
             fileSystem.root.getFile("backCSS.txt", {create: true, exclusive: false}, function(fileEntry){
                 fileEntry.createWriter(function(writer){
-                    writer.write('darksalmon');
+                    writer.write(SelValue);
+                    readBack();
                 }, fail);
             }, fail);
         }, fail);
@@ -119,9 +129,7 @@
         fileEntry.file(function(file) {
             var reader = new FileReader();
             reader.onloadend = function(e) {
-                var str = this.result;
-//                            if (str.charAt(0)==1)
-                    document.body.style.fontFamily = str;
+                    document.body.style.fontFamily = this.result;
             }
             reader.readAsText(file);
         });
@@ -130,9 +138,7 @@
         fileEntry.file(function(file) {
             var reader = new FileReader();
             reader.onloadend = function(e) {
-                var str = this.result;
-//                            if (str.charAt(0)==1)
-                    document.body.style.backgroundColor = str;
+                    document.body.style.backgroundColor = this.result;
             }
             reader.readAsText(file);
         });
