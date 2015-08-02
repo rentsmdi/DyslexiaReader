@@ -6,6 +6,10 @@
 
     function onDeviceReady() {
         set();  
+        readBack()
+        readFont();
+        readURL();
+        
     };
     function set(){
 //        if (num!=0) {
@@ -17,7 +21,6 @@
 //        if (f==0){
 //            setFCSS();    
 //        }
-        read();
         var btnhome = document.getElementById("btnhome");
         btnhome.addEventListener("click", home);
         var imp = document.getElementById("submit");
@@ -45,13 +48,13 @@
         }, fail);
     }
 
-    function read(){
+    function readURL(){
         window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
-            fileSystem.root.getFile("readme.txt", null, setValue, fail);
+            fileSystem.root.getFile("readme.txt", null, setURL, fail);
         }, fail);    
     }
 
-    function setValue(fileEntry) {
+    function setURL(fileEntry) {
         fileEntry.file(function(file) {
             var reader = new FileReader();
             reader.onloadend = function(e) {
@@ -64,6 +67,8 @@
     function fail(e) {
 //        alert("Errore!");
     }
+    
+
 //    function setBack(){
 //        c = 1;
 //        color = 'azure'
@@ -95,4 +100,40 @@
                 }, fail);
             }, fail);
         }, fail);
+    }
+
+
+
+
+    function readBack(){
+        window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
+            fileSystem.root.getFile("backCSS.txt", null, setValue);
+        });    
+    }
+    function readFont(){
+        window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
+            fileSystem.root.getFile("fontCSS.txt", null, setFF);
+        });    
+    }
+    function setFF(fileEntry) {
+        fileEntry.file(function(file) {
+            var reader = new FileReader();
+            reader.onloadend = function(e) {
+                var str = this.result;
+//                            if (str.charAt(0)==1)
+                    document.body.style.fontFamily = str;
+            }
+            reader.readAsText(file);
+        });
+    } 
+    function setValue(fileEntry) {
+        fileEntry.file(function(file) {
+            var reader = new FileReader();
+            reader.onloadend = function(e) {
+                var str = this.result;
+//                            if (str.charAt(0)==1)
+                    document.body.style.backgroundColor = str;
+            }
+            reader.readAsText(file);
+        });
     }
