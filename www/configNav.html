@@ -38,9 +38,8 @@
                         <a href="index.html">Home</a> <span>></span><em>Configurazione</em>
                     </div>
                     <h2>Selezionare la configurazione per la navigazione!</h2>
-                    <p>Nota: se non è stato selezionato uno stile verrà utilizzato lo stile predefinito.</p>
-                    <h2>Torna alla home</h2>
-                    <!-- <button type="button" id="btnhome">Home</button> -->
+                        <p>Nota: se non è stato selezionato uno stile verrà utilizzato lo stile predefinito.</p>
+                        <button type="button" id="btnhome1">Home</button> 
                 </div>
             </div>
 
@@ -92,7 +91,7 @@
                     var but2 = document.getElementById("btn2");
                     var btngo = document.getElementById("btngo");
                     var btnavz = document.getElementById("btnavz");
-                    var btnhome = document.getElementById("btnhome");
+                    var btnhome = document.getElementById("btnhome1");
                     but1.addEventListener("click", setting1); 
                     but2.addEventListener("click", setting2);
                     btngo.addEventListener("click", open);
@@ -164,7 +163,7 @@
                         reader.onloadend = function(e) {
                             var str = this.result;
     //                            if (str.charAt(0)==1)
-                                document.body.style.backgroundColor = str;
+                                document.getElementsByClassName("col-2")[0] = str;
                         }
                         reader.readAsText(file);
                     });

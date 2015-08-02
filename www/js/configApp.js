@@ -38,15 +38,16 @@ function set(){
 }
 
 function list(event){
-    sizeValue = event.target.value;
+    selValue = event.target.value;
     if (selValue == 'Bianco')
-        selValue = '#FFFFFF';
+        selValue = '#f7f7f7';
     if (selValue == 'Crema')
         selValue = '#FAFAC8';
     if (selValue == 'Giallo')
         selValue = '#FFFF00';
     setcolor();
 }
+
 // versione web-safe, non dovrebbe essere necessaria
 
 function text(event){

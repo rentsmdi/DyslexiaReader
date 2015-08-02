@@ -27,8 +27,8 @@ body {
     column-count: 1;
     
 }
-div{
-    padding:5px;
+div, section, button {
+    background-color: #FAFAC8;
 }
 h1 {
      font-size: 24px; 
@@ -36,4 +36,7 @@ h1 {
      letter-spacing: 2px;
      word-spacing: 3px;
      
- }
+}
+img {
+    display: none;
+}

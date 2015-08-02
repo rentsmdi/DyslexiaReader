@@ -1,9 +1,10 @@
-body {
+body{
+    background-color: darksalmon;
+}
+div {
     font-family: "Verdana", sans-serif;
-    font-size: 13px;
+    font-size: 12px;
     line-height: 150%;
-    margin:0px;
-    padding:8vh;
     background-color: darksalmon;
     text-align:left;
     text-transform: lowercase;
