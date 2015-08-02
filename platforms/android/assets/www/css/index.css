@@ -19,7 +19,10 @@
 * {
     -webkit-tap-highlight-color: rgba(0,0,0,0); /* make transparent link selection, adjust last value opacity 0 to 1.0 */
 }
-
+@font-face {
+    font-family: OpenDyslexic;
+    src: url(OpenDyslexic-Regular.otf);
+}
 
 body {
     
@@ -27,7 +30,7 @@ body {
     -webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
     -webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
     background-color: #FAFAC8;
-    font-family: Helvetica;
+    font-family: 'Helvetica', sans-serif;
     height:100vh;
     margin:0px;
     padding:0px;
@@ -101,15 +104,39 @@ h3{
 	background: url(../img/Preloader_11.gif) center no-repeat #fff;
 }
 
-/* Landscape layout (with min-width) */
-@media screen and (min-aspect-ratio: 1/1) and (min-width:400px) {
+/*Landscape layout (with min-width) */
+@media screen and (min-aspect-ratio: 1/1) and (min-width:400px) and (max-width:767px) {
 
     h3{
         font-size: 180%;
     }
+    body{
+        background-color: green;
 
+    }
 }
 
+/*Tablet Portrait layout (with min-width) */
+@media screen and (min-aspect-ratio: 1/1) and (min-width:768px) and (max-width:1023px)  {
+
+    h3{
+        font-size: 200%;
+    }
+    body{
+        background-color: red;
+    }
+}
+    
+/*Tablet Landscape layout (with min-width) */
+@media screen and (min-aspect-ratio: 1/1) and (min-width:1024px){
+
+    h3{
+        font-size: 300%;
+    }
+    body{
+        background-color: blue;
+    }
+}
 
 
 

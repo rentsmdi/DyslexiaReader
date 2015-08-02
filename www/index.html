@@ -80,8 +80,9 @@
                 var ref = null;
                 var filecss;
                 set();
-                read()
+                readBack()
                 readFont();
+                readSize();
                 
                 function set(){
                     var btncon = document.getElementById("btncon");
@@ -95,7 +96,7 @@
                 function configStyle(){
                     window.location="configNav.html";
                 }
-                function read(){
+                function readBack(){
                     window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
                         fileSystem.root.getFile("backCSS.txt", null, setValue);
                     });    
@@ -105,13 +106,18 @@
                         fileSystem.root.getFile("fontCSS.txt", null, setFF);
                     });    
                 }
+                function readSize(){
+                    window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
+                        fileSystem.root.getFile("fontsizeCSS.txt", null, setFontSize);
+                    });    
+                }
                 function setFF(fileEntry) {
                     fileEntry.file(function(file) {
                         var reader = new FileReader();
                         reader.onloadend = function(e) {
                             var str = this.result;
 //                            if (str.charAt(0)==1)
-                                document.getElementsByClassName("col-2")[0].style.fontFamily = str;
+                            document.body.style.fontFamily = str;
                         }
                         reader.readAsText(file);
                     });
@@ -126,8 +132,16 @@
                         }
                         reader.readAsText(file);
                     });
-                } 
-                
+                }
+                function setFontSize(fileEntry) {
+                    fileEntry.file(function(file) {
+                        var reader = new FileReader();
+                        reader.onloadend = function(e) {
+                                document.body.style.fontSize = this.result;
+                        }
+                        reader.readAsText(file);
+                    });
+                }
             };
             
              

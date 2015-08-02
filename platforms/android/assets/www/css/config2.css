@@ -3,13 +3,19 @@
 @font-face {
     font-family: 'Chelsea Market', cursive;
 }
-
+@font-face {
+    font-family: 'OpenDyslexic';
+    src: url(OpenDyslexic-Regular.otf);
+}
 body {
-    font-family: 'Chelsea Market', cursive;
+/*    font-family: 'Chelsea Market', cursive;*/
+    font-family: 'OpenDyslexic';
     font-size: 12px;
     line-height: 150%;
+/*
     margin:2px;
     padding:5px;
+*/
     background-color: #FAFAC8;
     text-align:left;
     text-transform: lowercase;
@@ -21,6 +27,9 @@ body {
     column-count: 1;
     
 }
+div{
+    padding:5px;
+}
 h1 {
      font-size: 24px; 
      font-weight: bold;
@@ -28,9 +37,3 @@ h1 {
      word-spacing: 3px;
      
  }
-div, section, article {
-    border: 1px solid black;
-}
-li{
-    display: 
-}
