@@ -17,6 +17,8 @@ body {
 
 /* Portrait layout (default) */
 
+/* Portrait layout (default) */
+
 h1 {
 /*    font-size:14px;*/
     font-weight:bold;
@@ -30,3 +32,108 @@ h1 {
 h3{
     font-size: 120%;
 }
+
+.container {
+    height: 100vh;
+    text-align: center;
+}
+
+/*.row:after {
+    content: "";
+    clear: both;
+    display: block;
+}*/
+
+.row{
+    margin-bottom: 0px;
+    margin-top: 0px;
+}
+
+.col-2 {
+    width: 100vw;
+    height: 34vh;
+    position: relative;
+}
+
+.col-1-left {
+    width: 50vw;
+    height: 33vh;
+    float: left;
+    position: relative;
+}
+
+.col-1-right {
+    width: 50vw;
+    height: 33vh;
+    float: right;
+    position: relative;
+}
+
+.fa {
+    position: absolute;
+    bottom: 5vh;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+}
+
+.bottom{
+    float: bottom;
+}
+
+.media{
+    height: 15vh;
+}
+
+.mediax2{
+    height: 70vh;
+}
+
+.no-js #loader { display: none;  }
+.js #loader { display: block; position: absolute; left: 100px; top: 0; }
+.se-pre-con {
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	z-index: 9999;
+	background: url(../img/Preloader_11.gif) center no-repeat #fff;
+}
+
+/*Landscape layout (with min-width) */
+@media screen and (min-aspect-ratio: 1/1) and (min-width:400px) and (max-width:767px) {
+
+    h3{
+        font-size: 180%;
+    }
+    body{
+        background-color: green;
+
+    }
+}
+
+/*Tablet Portrait layout (with min-width) */
+@media screen and (min-aspect-ratio: 1/1) and (min-width:768px) and (max-width:1023px)  {
+
+    h3{
+        font-size: 200%;
+    }
+    body{
+        background-color: red;
+    }
+}
+    
+/*Tablet Landscape layout (with min-width) */
+@media screen and (min-aspect-ratio: 1/1) and (min-width:1024px){
+
+    h3{
+        font-size: 300%;
+    }
+    body{
+        background-color: blue;
+    }
+}
+
+
+
