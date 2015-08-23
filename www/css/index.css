@@ -39,32 +39,12 @@ body {
     font-size: 12px;
 }
 
-/* Portrait layout (default) */
-
-h1 {
-/*    font-size:14px;*/
-    font-weight:bold;
-    letter-spacing: 2px;
-    margin: 0px;
-/*    overflow:visible;*/
-    padding:0px;
-    text-align:center;
-}
-
-h3{
-    font-size: 120%;
-}
+/* (default) */
 
 .container {
     height: 100vh;
     text-align: center;
 }
-
-/*.row:after {
-    content: "";
-    clear: both;
-    display: block;
-}*/
 
 .row{
     margin-bottom: 0px;
@@ -91,18 +71,6 @@ h3{
     position: relative;
 }
 
-.fa {
-    position: absolute;
-    bottom: 5vh;
-    left: 0;
-    right: 0;
-    margin: 0 auto;
-}
-
-.bottom{
-    float: bottom;
-}
-
 .media{
     height: 15vh;
 }
@@ -123,11 +91,18 @@ h3{
 	background: url(../img/Preloader_11.gif) center no-repeat #fff;
 }
 
-/*Landscape layout (with min-width) */
-@media screen and (min-aspect-ratio: 1/1) and (min-width:400px) and (max-width:767px) {
+.imgicon{
+    margin-left: auto;
+    margin-right: auto;
+    height: 10vh;
+}
 
-    h3{
-        font-size: 180%;
+
+/* small screen portrait */
+@media (min-width:320px){
+
+    body{
+        font-size: 60%;
     }
     body{
         background-color: green;
@@ -135,22 +110,45 @@ h3{
     }
 }
 
-/*Tablet Portrait layout (with min-width) */
-@media screen and (min-aspect-ratio: 1/1) and (min-width:768px) and (max-width:1023px)  {
+/* small screen landscape */
+@media (min-width:480px){
 
-    h3{
-        font-size: 200%;
+    body{
+        font-size: 60%;
     }
     body{
         background-color: red;
     }
 }
     
-/*Tablet Landscape layout (with min-width) */
-@media screen and (min-aspect-ratio: 1/1) and (min-width:1024px){
 
-    h3{
-        font-size: 300%;
+/* small tablet portrait */
+@media (min-width:600px){
+
+    body{
+        font-size: 80%;
+    }
+    body{
+        background-color: blue;
+    }
+}
+
+/* tablet portrait*/
+@media (min-width:768px){
+
+    body{
+        font-size: 100%;
+    }
+    body{
+        background-color: blue;
+    }
+}
+
+/* tablet landscape */
+@media (min-width:1024px){
+
+    body{
+        font-size: 120%;
     }
     body{
         background-color: blue;
