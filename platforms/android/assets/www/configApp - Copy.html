@@ -24,9 +24,9 @@
         <meta charset="utf-8" />
         <meta name="format-detection" content="telephone=no" />
         <meta name="msapplication-tap-highlight" content="no" />
-        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
         <link rel="stylesheet" type="text/css" href="css/personalApp.css" />
+        <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
         <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
         <title>Dyslexia</title>
     </head>
@@ -44,48 +44,47 @@
             </div>
 
             <div class="row">
-                <div class="col-2 mediax2" style="background-color: #A1CDF4;">
+                <div id="btncon" class="col-2 mediax2" style="background-color: #A1CDF4;">
                     <div>Selezionare i formati interessati:</div>
                     <form>
-                        
-                        <div>Pagina Iniziale:</div>
+                        <fieldset>
+                        <legend>Pagina Iniziale:</legend>
                             <input type="text" id="initpage" placeholder="http://www.google.it" value="http://www.google.it">
                             <input type="button" id="submit" value="Imposta" >
-                        <br>
-                        
-                        <div style="background-color: #A1CDF4;">Configura Palette Colori:</div>
+                        </fieldset>
+                        <fieldset>
+                        <legend>Configura Palette Colori:</legend>
                             <select id="palette">
                                 <option>Seleziona</option>
                                 <option>Bianco</option>
                                 <option>Crema</option>
                                 <option>Giallo</option>
                             </select>
-                        <br>
-                    
-                        <div>Configura Font:</div>
+                        </fieldset>
+                        <fieldset>
+                        <legend>Configura Font:</legend>
                             <select id="testo">
                                 <option>Seleziona</option>
                                 <option>Normal</option>
                                 <option>Open Dyslexic</option>
                             </select>
-                        <br>
-                    
-                        <div style="background-color: #A1CDF4;">Configura Font Size:</div>
+                        </fieldset>
+                        <fieldset>
+                        <legend>Configura Font Size:</legend>
                             <select id="fontsize">
                                 <option>Seleziona</option>
                                 <option>12px</option>
                                 <option>18px</option>
                                 <option>24px</option>
                             </select>
-                        <br>
-                    
+                        </fieldset>
                     </form>
                 </div>
             </div>
                 
             <div class="row">
                 <div class="col-2 bottom media" style="background-color: #fae17a;">
-                    <div id="btnhome"><br><h1>Torna alla home</h1></div>
+                    <div><a href="index.html"><h1>Fatto! Torna alla home</h1></a></div>
                 </div>
             </div>       
         </div>

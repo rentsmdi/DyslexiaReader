@@ -27,57 +27,45 @@
         <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
         <link rel="stylesheet" type="text/css" href="css/index.css" />
-        <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-        <link href='http://fonts.googleapis.com/css?family=Chelsea+Market' rel='stylesheet' type='text/css'>
-        <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
-        <script src="http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.2/modernizr.js"></script>
         <title>Dyslexia</title>
     </head>
     <body>
-        <div class="se-pre-con"></div>
+    <div class="se-pre-con"></div>
         <div class="container">
-            
             <div class="row">
-                <div class="col-2" style="background-color: #f7f7f7;">
-                    <br>
-                    <h1>Benvenuti in Dyslexia</h1>
-                    <p>Lo scopo dell'applicazione è di migliorare l'esperienza di navigazione per utenti affetti da dislessia.</p>
+                <div class="col-2 media" style="background-color: #f7f7f7;">
+                     <div id="breadcrumb">
+                         <a href="index.html">Home</a> <span>></span>
+                         <em>Offline Reader</em>
+                    </div>
+                    <h1>Offline Reader</h1>
                 </div>
             </div>
 
             <div class="row">
-                <div id="btncon" class="col-1-left" style="background-color: #7C98B3;">
-                    <h3>Configurare l'applicazione</h3>
-                    <!-- <button type="button" id="btncon">Configura App</button> -->
-                    <br><i class="fa fa-gear fa-4x"></i>
+                <div class="col-2 mediax2" style="background-color: #A1CDF4;">
+                    <div id="btnhome"><br><h1>Incolla il link nel form</h1></div>
+                    <input type="text" id="link" value="http://apache.org">
+                    <input type="button" id="submit" value="Scarica" >
+                    <div id="prova"></div>
                 </div>
-                <div id="btnstyle" class="col-1-right" style="background-color: #A1CDF4;">
-                    <h3>Selezionare la configurazione per la navigazione!</h3>
-                    <!-- <button type="button" id="btnstyle">Seleziona Stile</button>  -->
-                    <br><i class="fa fa-paint-brush fa-4x"></i>
-                </div>
-            </div>
+            </div>           
                 
             <div class="row">
-                <div class="col-1-left" style="background-color: #fae17a;">
-                    <h3>About</h3>
-                    <i class="fa fa-users fa-4x"></i>
+                <div class="col-2 bottom media" style="background-color: #fae17a;">
+                    <div id="btnhome"><br><h1>Torna alla home</h1></div>
                 </div>
-                <div id="btnreader" class="col-1-right" style="background-color: #ffeb9b;">
-                    <h3>Links</h3>
-                    <i class="fa fa-list-ul fa-4x"></i>
-                </div>
-            </div>
-            
+            </div>       
         </div>
-        
+    
         <script type="text/javascript" src="cordova.js"></script>
-        <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
         <script type="text/javascript">
             document.addEventListener("deviceready", onDeviceReady, false);
             
             function onDeviceReady() {
                 var ref = null;
+                var w;
                 var filecss;
                 set();
                 readBack()
@@ -85,21 +73,32 @@
                 readSize();
                 
                 function set(){
-                    var btncon = document.getElementById("btncon");
-                    var btnstyle = document.getElementById("btnstyle");
-                    var btnreader = document.getElementById("btnreader");
-                    btncon.addEventListener("click", config);
-                    btnstyle.addEventListener("click", configStyle);
-                    btnreader.addEventListener("click", reader);
+                    document.getElementById("submit").addEventListener("click", saveLink);
                 }
-                function config(){
-                    window.location="configApp.html";
-                }
-                function configStyle(){
-                    window.location="configNav.html";
-                }
-                function reader(){
-                    window.location="offlineReader.html";
+                function saveLink(){
+                    var ll = document.getElementById("link").value; 
+//                    document.getElementById("prova").innerHTML = ll; 
+//                    var xmlhttp = new XMLHttpRequest();
+//                    xmlhttp.open("GET",ll,false);
+//                    xmlhttp.send();
+//                    var t = xmlhttp.responseText;
+//                    alert(t);
+                    
+                    $.get(ll, function(responseText) {
+                        w = responseText;
+                        alert(responseText);
+                    });
+//                    
+                    window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
+                        fileSystem.root.getFile("link1.txt", {create: true, exclusive: false}, function(fileEntry){
+                            fileEntry.createWriter(function(writer){
+                                writer.onwriteend = function(evt) {
+//                                    readURL();
+                                };
+                                writer.write(w);
+                            });
+                        });
+                    });      
                 }
                 function readBack(){
                     window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
@@ -116,6 +115,17 @@
                         fileSystem.root.getFile("fontsizeCSS.txt", null, setFontSize);
                     });    
                 }
+                function setValue(fileEntry) {
+                    fileEntry.file(function(file) {
+                    var reader = new FileReader();
+                    reader.onloadend = function(e) {
+                        var str = this.result;
+                    //                            if (str.charAt(0)==1)
+                            document.getElementsByClassName("col-2")[0].style.backgroundColor = str;
+                    }
+                    reader.readAsText(file);
+                    });
+                }
                 function setFF(fileEntry) {
                     fileEntry.file(function(file) {
                         var reader = new FileReader();
@@ -127,17 +137,6 @@
                         reader.readAsText(file);
                     });
                 } 
-                function setValue(fileEntry) {
-                    fileEntry.file(function(file) {
-                        var reader = new FileReader();
-                        reader.onloadend = function(e) {
-                            var str = this.result;
-//                            if (str.charAt(0)==1)
-                                document.getElementsByClassName("col-2")[0].style.backgroundColor = str;
-                        }
-                        reader.readAsText(file);
-                    });
-                }
                 function setFontSize(fileEntry) {
                     fileEntry.file(function(file) {
                         var reader = new FileReader();
@@ -149,13 +148,12 @@
                 }
             };
             
-             
-        //paste this code under head tag or in a seperate js file.
+            //paste this code under head tag or in a seperate js file.
             // Wait for window load
-            $(window).load(function() {
-                // Animate loader off screen
-                $(".se-pre-con").fadeOut("slow");;
-            });
+                $(window).load(function() {
+                    // Animate loader off screen
+                    $(".se-pre-con").fadeOut("slow");;
+                });
         </script>
     </body>
 </html>

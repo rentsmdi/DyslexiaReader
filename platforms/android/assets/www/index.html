@@ -60,11 +60,11 @@
                 
             <div class="row">
                 <div class="col-1-left" style="background-color: #fae17a;">
-                    <h2>About</h2>
+                    <h3>About</h3>
                     <i class="fa fa-users fa-4x"></i>
                 </div>
-                <div class="col-1-right" style="background-color: #ffeb9b;">
-                    <h2>Links</h2>
+                <div id="btnreader" class="col-1-right" style="background-color: #ffeb9b;">
+                    <h3>Links</h3>
                     <i class="fa fa-list-ul fa-4x"></i>
                 </div>
             </div>
@@ -87,14 +87,19 @@
                 function set(){
                     var btncon = document.getElementById("btncon");
                     var btnstyle = document.getElementById("btnstyle");
+                    var btnreader = document.getElementById("btnreader");
                     btncon.addEventListener("click", config);
                     btnstyle.addEventListener("click", configStyle);
+                    btnreader.addEventListener("click", reader);
                 }
                 function config(){
                     window.location="configApp.html";
                 }
                 function configStyle(){
                     window.location="configNav.html";
+                }
+                function reader(){
+                    window.location="offlineReader.html";
                 }
                 function readBack(){
                     window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){

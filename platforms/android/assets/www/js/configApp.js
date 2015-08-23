@@ -53,7 +53,7 @@ function list(event){
 
 function text(event){
     textValue = event.target.value;
-    if (textValue == 'Arial')
+    if (textValue == 'Normal')
         textValue = 'Arial, Helvetica, sans-serif';
     if (textValue == 'Open Dyslexic')
         textValue = '"OpenDyslexic"';

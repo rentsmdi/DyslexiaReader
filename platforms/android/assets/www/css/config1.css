@@ -1,8 +1,13 @@
+@import url(http://fonts.googleapis.com/css?family=Chelsea+Market);
+
+@font-face {
+    font-family: 'Chelsea Market', cursive;
+}
 body{
     background-color: darksalmon;
 }
 div {
-    font-family: "Verdana", sans-serif;
+    font-family: 'Chelsea Market', cursive;
     font-size: 12px;
     line-height: 150%;
     background-color: darksalmon;
