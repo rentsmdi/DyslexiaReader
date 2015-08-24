@@ -70,22 +70,14 @@ body {
     float: right;
     position: relative;
 }
-.col-2, .col-1-left, .col-1-right{
+.col-1-left, .col-1-right{
     opacity: 1;
     transition: opacity .15s ease-in-out;
     -moz-transition: opacity .15s ease-in-out;
     -webkit-transition: opacity .15s ease-in-out;
 }
-.col-2:hover, .col-1-left:hover, .col-1-right:hover{
+.col-1-left:hover, .col-1-right:hover{
   opacity: 0.5;
-}
-
-.media{
-    height: 15vh;
-}
-
-.mediax2{
-    height: 70vh;
 }
 
 /*jquery gif loading */
