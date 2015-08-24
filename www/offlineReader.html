@@ -48,6 +48,7 @@
                     <input type="text" id="link" value="http://apache.org">
                     <input type="button" id="submit" value="Scarica" >
                     <div id="prova"></div>
+                    <button id='link1'>Link</button>
                 </div>
             </div>           
                 
@@ -65,6 +66,8 @@
             
             function onDeviceReady() {
                 var ref = null;
+                var i = 0;
+                var path;
                 var filecss;
                 set();
                 readBack()
@@ -73,40 +76,52 @@
                 
                 function set(){
                     document.getElementById("submit").addEventListener("click", saveLink);
+                    requestCSS('css/config2.css');
+                }
+                function requestCSS(css){  
+                    $.get(css, function(responseText) {
+                        filecss = responseText;
+                    });  
                 }
                 function saveLink(){
-                    var ll = document.getElementById("link").value; 
-//                    var xmlhttp = new XMLHttpRequest();
-//                    xmlhttp.open("GET",ll,false);
-//                    xmlhttp.send();
-//                    var t = xmlhttp.responseText;    
+                    var ll = document.getElementById("link").value;    
                     window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
-                        fileSystem.root.getFile("link1.txt", {create: true, exclusive: false}, function(fileEntry){
+                        fileSystem.root.getFile("link0.html", {create: true, exclusive: false}, function(fileEntry){
                             fileEntry.createWriter(function(writer){
                                 writer.onwriteend = function(evt) {
-                                    readFile();
+//                                    readFile();
+                                    path = fileEntry.toURL();
+                                    addLink();
                                 };
                                 $.get(ll, function(responseText) {
                                     writer.write(responseText);
-                            });
-                                
+                                }); 
                             });
                         });
                     });      
                 }
-                function readFile(){
-                    window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
-                        fileSystem.root.getFile("link1.txt", null, function(fileEntry){
-                            fileEntry.file(function(file) {
-                            var reader = new FileReader();
-                            reader.onloadend = function(e) {
-                                document.getElementById("prova").innerHTML = this.result;
-                            }
-                        reader.readAsText(file);
+                function addLink(){
+                    document.getElementById("link1").addEventListener("click", function(){
+                        ref = window.open(path, '_blank','location=no');
+                        ref.addEventListener('loadstop', function() {
+                            ref.insertCSS({code: filecss});
+                        }); 
                     });
-                        });
-                    });    
-                }
+                }    
+                
+//                function readFile(){
+//                    window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
+//                        fileSystem.root.getFile("link1.txt", null, function(fileEntry){
+//                            fileEntry.file(function(file) {
+//                            var reader = new FileReader();
+//                            reader.onloadend = function(e) {
+//                                document.getElementById("prova").innerHTML = this.result;
+//                            }
+//                        reader.readAsText(file);
+//                    });
+//                        });
+//                    });    
+//                }
                 function readBack(){
                     window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
                         fileSystem.root.getFile("backCSS.txt", null, setValue);
