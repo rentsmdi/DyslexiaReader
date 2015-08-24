@@ -80,6 +80,14 @@ body {
   opacity: 0.5;
 }
 
+.media{
+    height: 15vh;
+}
+
+.mediax2{
+    height: 70vh;
+}
+
 /*jquery gif loading */
 
 .no-js #loader { display: none;  }
