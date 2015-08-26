@@ -4,13 +4,13 @@
     font-family: 'Chelsea Market', cursive;
 }
 body{
-    background-color: darksalmon;
+    background-color: yellow;
 }
 div {
     font-family: 'Chelsea Market', cursive;
     font-size: 12px;
     line-height: 150%;
-    background-color: darksalmon;
+    background-color: yellow;
     text-align:left;
     text-transform: lowercase;
 }

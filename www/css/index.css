@@ -81,11 +81,11 @@ body {
 }
 
 .media{
-    height: 15vh;
+    height: 25vh;
 }
 
 .mediax2{
-    height: 70vh;
+    height: 75vh;
 }
 
 /*jquery gif loading */
@@ -154,3 +154,7 @@ body {
 
 
 
+
+#prova {
+    text-align: left;
+}

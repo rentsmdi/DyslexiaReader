@@ -39,70 +39,61 @@
             <div class="row">
                 <div class="col-2" style="background-color: #f7f7f7;">
                     <br>
-                    <h1>Benvenuti in Dyslexia</h1>
+                    <h1>Dislessia - Web Browser</h1>
                     <p>Lo scopo dell'applicazione è di migliorare l'esperienza di navigazione per utenti affetti da dislessia.</p>
                 </div>
             </div>
 
             <div class="row">
-                <div id="btncon" class="col-1-left" style="background-color: #7C98B3;">
-                    <h2>Configura l'applicazione</h2>
-                    <!-- <button type="button" id="btncon">Configura App</button> -->
+                <div id="btnnav" class="col-1-left" style="background-color: #7C98B3;">
+                    <h2>Navigazione</h2>
+                    <br><img class="imgicon" src="img/mobile-phone23.png"/>
+                </div>
+                <div id="btnreader" class="col-1-right" style="background-color: #A1CDF4;">
+                    <h2>Offline Reader</h2>
+                    <br><img class="imgicon" src="img/laptop-computer42.png"/>    
+                </div>
+            </div>
+            <div class="row">
+                <div id="btnimp" class="col-1-left" style="background-color: #fae17a;">
+                    <h2>Impostazioni</h2>
                     <br><img class="imgicon" src="img/gear91.png"/>
                 </div>
-                <div id="btnstyle" class="col-1-right" style="background-color: #A1CDF4;">
-                    <h2>Configura la navigazione</h2>
-                    <!-- <button type="button" id="btnstyle">Seleziona Stile</button>  -->
-                    <br><img class="imgicon" src="img/mobile-phone23.png"/>
-
-                </div>
-            </div>
-                
-            <div class="row">
-                <div class="col-1-left" style="background-color: #fae17a;">
+                <div class="col-1-right" style="background-color: #ffeb9b;">
                     <h2>About</h2>
                     <br><img class="imgicon" src="img/id-card10.png"/>
-
-                </div>
-
-                <div id="btnreader" class="col-1-right" style="background-color: #ffeb9b;">
-                    <h2>Links</h2>
-                    <br><img class="imgicon" src="img/laptop-computer42.png"/>
                 </div>
             </div>
-            
         </div>
         
         <script type="text/javascript" src="cordova.js"></script>
-        <script type="text/javascript" src="js/index.js"></script>
         <script type="text/javascript">
             document.addEventListener("deviceready", onDeviceReady, false);
             
             function onDeviceReady() {
                 var ref = null;
                 var filecss;
-                set();
                 readBack()
                 readFont();
                 readSize();
+                set();
                 
                 function set(){
-                    var btncon = document.getElementById("btncon");
-                    var btnstyle = document.getElementById("btnstyle");
-                    var btnreader = document.getElementById("btnreader");
-                    btncon.addEventListener("click", config);
-                    btnstyle.addEventListener("click", configStyle);
-                    btnreader.addEventListener("click", reader);
+                    document.getElementById("btnnav").addEventListener("touchend", function(event){
+                        event.preventDefault();
+                        window.location="navigazione.html";
+                    }, false);
+                    document.getElementById("btnreader").addEventListener("touchend", function(event){
+                        event.preventDefault();
+                        window.location="offlineReader.html";
+                    }, false);
+                    document.getElementById("btnimp").addEventListener("touchend", function(event){
+                        event.preventDefault();
+                        window.location="impostazioni.html";
+                    }, false);  
                 }
-                function config(){
-                    window.location="configApp.html";
-                }
-                function configStyle(){
-                    window.location="configNav.html";
-                }
-                function reader(){
-                    window.location="offlineReader.html";
-                }
+                
+// LETTURA IMPOSTAZIONI APP
                 function readBack(){
                     window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
                         fileSystem.root.getFile("backCSS.txt", null, setValue);
@@ -123,7 +114,6 @@
                         var reader = new FileReader();
                         reader.onloadend = function(e) {
                             var str = this.result;
-//                            if (str.charAt(0)==1)
                             document.body.style.fontFamily = str;
                         }
                         reader.readAsText(file);
@@ -134,7 +124,6 @@
                         var reader = new FileReader();
                         reader.onloadend = function(e) {
                             var str = this.result;
-//                            if (str.charAt(0)==1)
                                 document.getElementsByClassName("col-2")[0].style.backgroundColor = str;
                         }
                         reader.readAsText(file);
@@ -150,10 +139,6 @@
                     });
                 }
             };
-            
-             
-        //paste this code under head tag or in a seperate js file.
-            // Wait for window load
             $(window).load(function() {
                 // Animate loader off screen
                 $(".se-pre-con").fadeOut("slow");;
