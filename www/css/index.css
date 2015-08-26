@@ -90,21 +90,30 @@ body {
 
 /*backgrounds*/
 .bg1{
-    background-color:#f9f9f9;
+    background-color:#fffff9;
 }
 .bg2{
-    background-color:#f7f188;
+    background-color:#fffa8f;
 }
 .bg3{
-    background-color:#85f2bb;
+    background-color:#8cffc7;
 }
 .bg4{
-    background-color:#f4d2a6;
+    background-color:#ffdeb0;
 }
 .bg5{
-    background-color:#b7dee8;
+    background-color:#c9f5ff;
 }
 /*end backgrounds*/
+
+.vh15{
+    height: 15vh;
+}
+
+.vh30{
+    height: 30vh;
+}
+    
 
 /*jquery gif loading */
 
