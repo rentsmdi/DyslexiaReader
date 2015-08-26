@@ -41,7 +41,7 @@
 
             <div class="row">
                 <div class="col-2 mediax2" style="background-color: #A1CDF4;">
-                    <div id="btnhome"><br><h1>Incolla il link nel form</h1></div>
+                    <div id="btnhome"><br><h2>Incolla il link nel form</h2></div>
                     <input type="text" id="link" value="http://apache.org">
                     <input type="button" id="submit" value="Scarica" >
                     <div id="prova"></div>
@@ -89,27 +89,37 @@
                     fileSystem.root.getFile(conn, {create: true, exclusive: false}, function(fileEntry){
                         fileEntry.createWriter(function(writer){
                             writer.onwriteend = function(evt) {
-//                                    readFile();
                                 path = fileEntry.toURL();
-                                addLink();
+                                document.getElementById("prova").innerHTML += url+" "+i+" <button id='btn"+i+"'>Apri</button><button>Rimuovi</button><br>";
+                                var uu = document.getElementById("btn"+i);
+                                uu.onclick = function(){
+                                    alert(i+" "+path);
+                                    ref = window.open(path, '_blank','location=no');
+                                    ref.addEventListener('loadstop', function() {
+                                        ref.insertCSS({code: filecss});
+                                    });     
+                                };
                                 i++
                             };
-                            $.get(url, function(responseText) {
-                                alert(responseText);
+                            $.get(url, function(responseText, status) {
+                                alert(status);
                                 writer.write(responseText);
                             }); 
                         });
                     });
                 });      
             }
-            function addLink(){
-                document.getElementById("link1").addEventListener("click", function(){
-                    ref = window.open(path, '_blank','location=no');
-                    ref.addEventListener('loadstop', function() {
-                        ref.insertCSS({code: filecss});
-                    }); 
-                });
-            }    
+            function setButtons(){
+                
+            }
+//            function addLink(){
+//                document.getElementById("link1").addEventListener("click", function(){
+//                    ref = window.open(path, '_blank','location=no');
+//                    ref.addEventListener('loadstop', function() {
+//                        ref.insertCSS({code: filecss});
+//                    }); 
+//                });
+//            }    
 
 //                function readFile(){
 //                    window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
