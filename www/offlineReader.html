@@ -45,13 +45,7 @@
                     <input type="text" id="link" value="http://apache.org">
                     <input type="button" id="submit" value="Scarica" >
                     <div id="prova"></div>
-                    <button id='link1'>Link</button>
-                </div>
-            </div>           
-                
-            <div class="row">
-                <div class="col-2 bottom media" style="background-color: #fae17a;">
-                    <div id="btnhome"><br><h1>Torna alla home</h1></div>
+                    <button id='btnset'>Set Buttons</button>
                 </div>
             </div>       
         </div>
@@ -65,7 +59,9 @@
             var ref = null;
             var url;
             var i = 0;
-            var path;
+            var uu;
+            var j;
+            var paths = new Array();
             var filecss;
             set();
             readBack()
@@ -74,6 +70,7 @@
 
             function set(){
                 document.getElementById("submit").addEventListener("click", saveLink);
+                document.getElementById("btnset").addEventListener("click", setButtons);
                 requestCSS('css/config2.css');
             }
             function requestCSS(css){  
@@ -89,17 +86,9 @@
                     fileSystem.root.getFile(conn, {create: true, exclusive: false}, function(fileEntry){
                         fileEntry.createWriter(function(writer){
                             writer.onwriteend = function(evt) {
-                                path = fileEntry.toURL();
-                                document.getElementById("prova").innerHTML += url+" "+i+" <button id='btn"+i+"'>Apri</button><button>Rimuovi</button><br>";
-                                var uu = document.getElementById("btn"+i);
-                                uu.onclick = function(){
-                                    alert(i+" "+path);
-                                    ref = window.open(path, '_blank','location=no');
-                                    ref.addEventListener('loadstop', function() {
-                                        ref.insertCSS({code: filecss});
-                                    });     
-                                };
-                                i++
+                                paths[i] = fileEntry.toURL();
+                                document.getElementById("prova").innerHTML += url+" "+i+" <button id='link"+i+"'>Apri</button><button>Rimuovi</button><br>";
+                                i++;
                             };
                             $.get(url, function(responseText, status) {
                                 alert(status);
@@ -110,30 +99,22 @@
                 });      
             }
             function setButtons(){
-                
+                for (j=0; j<i; j++){
+                    $('#prova').on('click', '#link'+j, function(evt){
+                        var c = evt.target.id+'.html'; 
+                        window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
+                            fileSystem.root.getFile(c, null, function(fileEntry){
+                                ref = window.open(fileEntry.toURL(), '_blank','location=no');
+                                ref.addEventListener('loadstop', function() {
+                            ref.insertCSS({code: filecss});
+                        });
+                            })
+                        });
+                    });
+                }
             }
-//            function addLink(){
-//                document.getElementById("link1").addEventListener("click", function(){
-//                    ref = window.open(path, '_blank','location=no');
-//                    ref.addEventListener('loadstop', function() {
-//                        ref.insertCSS({code: filecss});
-//                    }); 
-//                });
-//            }    
-
-//                function readFile(){
-//                    window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
-//                        fileSystem.root.getFile("link1.txt", null, function(fileEntry){
-//                            fileEntry.file(function(file) {
-//                            var reader = new FileReader();
-//                            reader.onloadend = function(e) {
-//                                document.getElementById("prova").innerHTML = this.result;
-//                            }
-//                        reader.readAsText(file);
-//                    });
-//                        });
-//                    });    
-//                }
+            
+// LETTURA IMPOSTAZIONI APP
             function readBack(){
                 window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
                     fileSystem.root.getFile("backCSS.txt", null, setValue);
@@ -165,7 +146,6 @@
                     var reader = new FileReader();
                     reader.onloadend = function(e) {
                         var str = this.result;
-//                            if (str.charAt(0)==1)
                         document.body.style.fontFamily = str;
                     }
                     reader.readAsText(file);
