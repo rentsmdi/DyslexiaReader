@@ -88,6 +88,24 @@ body {
     height: 75vh;
 }
 
+/*backgrounds*/
+.bg1{
+    background-color:#f9f9f9;
+}
+.bg2{
+    background-color:#f7f188;
+}
+.bg3{
+    background-color:#85f2bb;
+}
+.bg4{
+    background-color:#f4d2a6;
+}
+.bg5{
+    background-color:#b7dee8;
+}
+/*end backgrounds*/
+
 /*jquery gif loading */
 
 .no-js #loader { display: none;  }
