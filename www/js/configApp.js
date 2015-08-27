@@ -154,7 +154,10 @@ function setValue(fileEntry) {
     fileEntry.file(function(file) {
         var reader = new FileReader();
         reader.onloadend = function(e) {
-                document.body.style.backgroundColor = this.result;
+            if (this.result=='Palette 1')
+                document.body.style.backgroundColor = ;
+            if (this.result=='Palette 2')
+                document.body.style.backgroundColor = ;
         }
         reader.readAsText(file);
     });
