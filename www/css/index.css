@@ -204,6 +204,13 @@ body {
     height: 10vh;
 }
 
+#results {
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
+    text-align: left;
+    white-space:nowrap;
+}
 
 /* small screen portrait */
 @media (min-width:320px){
@@ -248,9 +255,3 @@ body {
 
 
 
-
-#prova {
-    text-align: left;
-    margin-left: 5vw;
-    font-size: 18px;
-}
