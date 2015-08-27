@@ -1,9 +1,3 @@
-//    var num = 0;
-//    var c = 0;
-//    var color = null;
-//    var f = 0;
-//    var font = null;
-
 var selValue;
 var textValue;
 var sizeValue;
@@ -17,16 +11,6 @@ function onDeviceReady() {
 
 };
 function set(){
-//        if (num!=0) {
-//            read();
-//        }
-//        if (c==0){
-//            setcol();    
-//        }
-//        if (f==0){
-//            setFCSS();    
-//        }
-    document.getElementById("btnhome").addEventListener("click", home);
     document.getElementById("submit").addEventListener("click", write);
     document.getElementById("palette").addEventListener("change", list);
     document.getElementById("testo").addEventListener("change", text);
@@ -35,31 +19,14 @@ function set(){
 
 function list(event){
     selValue = event.target.value;
-    if (selValue == 'Bianco')
-        selValue = '#f7f7f7';
-    if (selValue == 'Crema')
-        selValue = '#FAFAC8';
-    if (selValue == 'Giallo')
-        selValue = '#FFFF00';
     setcolor();
 }
-
-// versione web-safe, non dovrebbe essere necessaria
-
 function text(event){
     textValue = event.target.value;
     if (textValue == 'Normal')
         textValue = 'Arial, Helvetica, sans-serif';
     if (textValue == 'Open Dyslexic')
         textValue = '"OpenDyslexic"';
-//        if (textValue == 'Verdana')
-//            textValue = 'Verdana, Geneva, sans-serif';
-//        if (textValue == 'Tahoma')
-//            textValue = 'Tahoma, Geneva, sans-serif';
-//        if (textValue == 'Trebuchet')
-//            textValue = '"Trebuchet MS", Helvetica, sans-serif';
-//        if (textValue == 'Helvetica Neue')
-//            textValue = '"Helvetica Neue", Helvetica, Arial, sans-serif';
     setfont();
 }
 function size(event){
@@ -69,7 +36,8 @@ function size(event){
 function home(){
     window.location="index.html";
 }
-//Funzioni per leggere e impostare l'URL di connessione
+
+//IMPOSTAZIONI URL CONNESSIONE
 function readURL(){
     window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
         fileSystem.root.getFile("readme.txt", null, setURL, fail);
@@ -99,7 +67,7 @@ function write(){
  
 function fail(e) { };
 
-//Funzioni per scrivere le impostazioni nei file di configurazione
+//IMPOSTAZIONE CONFIGURAZIONE BACKGROUND FONT E FONT-SIZE
 
 function setfont(){  
     window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
@@ -132,7 +100,7 @@ function setsize(){
     }, fail);
 }
 
-//Funzioni per leggere i file di configurazioni e impostarli nel css della pagina
+//LETTURA CONFIGURAZIONI PER QUESTA PAGINA
 
 function readBack(){
     window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
@@ -149,6 +117,26 @@ function readSize(){
         fileSystem.root.getFile("fontsizeCSS.txt", null, setFontSize);
     });    
 }
+function setValue(fileEntry) {
+    fileEntry.file(function(file) {
+        var reader = new FileReader();
+        reader.onloadend = function(e) {
+            if(this.result=='Standard'){
+                document.getElementsByClassName("bg1")[0].style.backgroundColor = '#fffff9';  
+                document.getElementsByClassName("bg2")[0].style.backgroundColor = '#fffa8f';  
+            }
+            else if(this.result=='Greyscale'){
+                document.getElementsByClassName("bg1")[0].style.backgroundColor = '#ffffff';
+                document.getElementsByClassName("bg2")[0].style.backgroundColor = '#f2f2f2'; 
+            }
+            else if(this.result=='Lavender'){
+                document.getElementsByClassName("bg1")[0].style.backgroundColor = '#d3f8e2';
+                document.getElementsByClassName("bg2")[0].style.backgroundColor = '#e4c1f9';
+            }
+        }
+        reader.readAsText(file);
+    });
+}
 function setFF(fileEntry) {
     fileEntry.file(function(file) {
         var reader = new FileReader();
@@ -158,15 +146,6 @@ function setFF(fileEntry) {
         reader.readAsText(file);
     });
 } 
-function setValue(fileEntry) {
-    fileEntry.file(function(file) {
-        var reader = new FileReader();
-        reader.onloadend = function(e) {
-                document.body.style.backgroundColor = this.result;
-        }
-        reader.readAsText(file);
-    });
-}
 function setFontSize(fileEntry) {
     fileEntry.file(function(file) {
         var reader = new FileReader();
