@@ -52,6 +52,14 @@ function text(event){
         textValue = 'Arial, Helvetica, sans-serif';
     if (textValue == 'Open Dyslexic')
         textValue = '"OpenDyslexic"';
+//        if (textValue == 'Verdana')
+//            textValue = 'Verdana, Geneva, sans-serif';
+//        if (textValue == 'Tahoma')
+//            textValue = 'Tahoma, Geneva, sans-serif';
+//        if (textValue == 'Trebuchet')
+//            textValue = '"Trebuchet MS", Helvetica, sans-serif';
+//        if (textValue == 'Helvetica Neue')
+//            textValue = '"Helvetica Neue", Helvetica, Arial, sans-serif';
     setfont();
 }
 function size(event){
@@ -154,10 +162,7 @@ function setValue(fileEntry) {
     fileEntry.file(function(file) {
         var reader = new FileReader();
         reader.onloadend = function(e) {
-            if (this.result=='Palette 1')
-                document.body.style.backgroundColor = ;
-            if (this.result=='Palette 2')
-                document.body.style.backgroundColor = ;
+                document.body.style.backgroundColor = this.result;
         }
         reader.readAsText(file);
     });

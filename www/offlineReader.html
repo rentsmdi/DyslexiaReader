@@ -43,9 +43,9 @@
                 <div class="col-2 mediax2 bg2">
                     <div id="btnhome"><br><h2>Incolla il link nel form</h2></div>
                     <input type="text" id="link" value="www.apache.org">
-                    <button id="submit" class='button'>Scarica</button>
+                    <input type="button" id="submit" value="Scarica">
                     <table id="results"></table>
-<!--                    <button id='btnset'>Set Buttons</button>-->
+                    <button id='btnset'>Set Buttons</button>
                 </div>
             </div>       
         </div>
@@ -54,7 +54,6 @@
         <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
         <script type="text/javascript">
         document.addEventListener("deviceready", onDeviceReady, false);
-
         function onDeviceReady() {
             var ref = null;
             var url;
@@ -65,10 +64,10 @@
             readBack()
             readFont();
             readSize();
-
+            
             function set(){
                 document.getElementById("submit").addEventListener("click", saveLink);
-//                document.getElementById("btnset").addEventListener("click", setButtons);
+                document.getElementById("btnset").addEventListener("click", setButtons);
                 requestCSS('css/config2.css');
             }
             function requestCSS(css){  
@@ -79,15 +78,13 @@
             function saveLink(){
                 url = document.getElementById("link").value;
                 var urlConn = 'http://'+url;
-                var conn = "link"+i+".html";
-  //per non visualizzare http:// basta toglierlo dalla stringa url              
+                var conn = "link"+i+".html";             
                 window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
                     fileSystem.root.getFile(conn, {create: true, exclusive: false}, function(fileEntry){
                         fileEntry.createWriter(function(writer){
                             writer.onwriteend = function(evt) {
-                                document.getElementById("results").innerHTML += "<tr><td>"+i+": "+url+"</td><td><button class='button' id='link"+i+"'>Apri</button></td><td><button class='button'>Rimuovi</button></td></tr>";
+                                document.getElementById("results").innerHTML += "<tr><td>"+i+": "+url+"</td><td><button class='button' id='link"+i+"'>Apri</button></td><td><button>Rimuovi</button></td></tr>";
                                 i++;
-                                setButtons();
                                 saveAllLinks();
                             };
                             $.get(urlConn, function(responseText, status) {
@@ -100,24 +97,33 @@
             }
             function saveAllLinks(){
                 window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
-                    fileSystem.root.getFile("linksalvati.html", {create: true, exclusive: false}, function(fileEntry{
+                    fileSystem.root.getFile("fontCSS.txt", {create: true, exclusive: false}, function(fileEntry){
                         fileEntry.createWriter(function(writer){
-                            writer.write(textValue);
-                            readFont();
+                            writer.onwriteend = function(evt) {
+                                alert('scritto');
+                            };
+                            writer.write(document.getElementById("results").innerHTML);
                         });
                     });
                 });
             }
+            function readAllLinks(){
+                window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
+                    fileSystem.root.getFile("backCSS.txt", null, setValue);
+                });    
+            }
             function setButtons(){
-                for (j=0; j<i; j++){
+                var n = $('.button').length;
+                alert(n);
+                for (j=0; j<n; j++){
                     $('#results').on('click', '#link'+j, function(evt){
                         var c = evt.target.id+'.html'; 
                         window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
                             fileSystem.root.getFile(c, null, function(fileEntry){
                                 ref = window.open(fileEntry.toURL(), '_blank','location=no');
-                                ref.addEventListener('loadstop', function() {
-                            ref.insertCSS({code: filecss});
-                        });
+                                        ref.addEventListener('loadstop', function() {
+                                    ref.insertCSS({code: filecss});
+                                });
                             })
                         });
                     });
@@ -145,7 +151,6 @@
                 var reader = new FileReader();
                 reader.onloadend = function(e) {
                     var str = this.result;
-                //                            if (str.charAt(0)==1)
                         document.getElementsByClassName("col-2")[0].style.backgroundColor = str;
                 }
                 reader.readAsText(file);
