@@ -98,6 +98,16 @@
                     });
                 });      
             }
+            function saveAllLinks(){
+                window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
+                    fileSystem.root.getFile("fontCSS.txt", {create: true, exclusive: false}, function(fileEntry){
+                        fileEntry.createWriter(function(writer){
+                            writer.write(textValue);
+                            readFont();
+                        });
+                    });
+                });
+            }
             function setButtons(){
                 for (j=0; j<i; j++){
                     $('#results').on('click', '#link'+j, function(evt){

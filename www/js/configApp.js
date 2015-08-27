@@ -26,16 +26,11 @@ function set(){
 //        if (f==0){
 //            setFCSS();    
 //        }
-    var btnhome = document.getElementById("btnhome");
-    btnhome.addEventListener("click", home);
-    var imp = document.getElementById("submit");
-    imp.addEventListener("click", write);
-    var col = document.getElementById("palette");
-    col.addEventListener("change", list);
-    var testo = document.getElementById("testo");
-    testo.addEventListener("change", text);
-    var fontsize = document.getElementById("fontsize");
-    fontsize.addEventListener("change", size);
+    document.getElementById("btnhome").addEventListener("click", home);
+    document.getElementById("submit").addEventListener("click", write);
+    document.getElementById("palette").addEventListener("change", list);
+    document.getElementById("testo").addEventListener("change", text);
+    document.getElementById("fontsize").addEventListener("change", size);
 }
 
 function list(event){
@@ -57,14 +52,6 @@ function text(event){
         textValue = 'Arial, Helvetica, sans-serif';
     if (textValue == 'Open Dyslexic')
         textValue = '"OpenDyslexic"';
-//        if (textValue == 'Verdana')
-//            textValue = 'Verdana, Geneva, sans-serif';
-//        if (textValue == 'Tahoma')
-//            textValue = 'Tahoma, Geneva, sans-serif';
-//        if (textValue == 'Trebuchet')
-//            textValue = '"Trebuchet MS", Helvetica, sans-serif';
-//        if (textValue == 'Helvetica Neue')
-//            textValue = '"Helvetica Neue", Helvetica, Arial, sans-serif';
     setfont();
 }
 function size(event){
