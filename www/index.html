@@ -123,8 +123,27 @@
                     fileEntry.file(function(file) {
                         var reader = new FileReader();
                         reader.onloadend = function(e) {
-                            var str = this.result;
-                                document.getElementsByClassName("col-2")[0].style.backgroundColor = str;
+                            if(this.result=='Standard'){
+                                document.getElementsByClassName("bg1")[0].style.backgroundColor = '#fffff9';  
+                                document.getElementsByClassName("bg2")[0].style.backgroundColor = '#fffa8f';
+                                document.getElementsByClassName("bg3")[0].style.backgroundColor = '#8cffc7';
+                                document.getElementsByClassName("bg4")[0].style.backgroundColor = '#ffdeb0';
+                                document.getElementsByClassName("bg5")[0].style.backgroundColor = '#c9f5ff';
+                            }
+                            else if(this.result=='Greyscale'){
+                                document.getElementsByClassName("bg1")[0].style.backgroundColor = '#ffffff';
+                                document.getElementsByClassName("bg2")[0].style.backgroundColor = '#f2f2f2';
+                                document.getElementsByClassName("bg3")[0].style.backgroundColor = '#e8e8e8';
+                                document.getElementsByClassName("bg4")[0].style.backgroundColor = '#e0e0e0';
+                                document.getElementsByClassName("bg5")[0].style.backgroundColor = '#d6d6d6';
+                            }
+                            else if(this.result=='Lavender'){
+                                document.getElementsByClassName("bg1")[0].style.backgroundColor = '#d3f8e2';
+                                document.getElementsByClassName("bg2")[0].style.backgroundColor = '#e4c1f9';
+                                document.getElementsByClassName("bg3")[0].style.backgroundColor = '#f694c1';
+                                document.getElementsByClassName("bg4")[0].style.backgroundColor = '#ede7b1';
+                                document.getElementsByClassName("bg5")[0].style.backgroundColor = '#a9def9';
+                            }
                         }
                         reader.readAsText(file);
                     });

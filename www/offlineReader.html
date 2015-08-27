@@ -161,8 +161,18 @@
                 fileEntry.file(function(file) {
                 var reader = new FileReader();
                 reader.onloadend = function(e) {
-                    var str = this.result;
-                        document.getElementsByClassName("col-2")[0].style.backgroundColor = str;
+                    if(this.result=='Standard'){
+                        document.getElementsByClassName("bg1")[0].style.backgroundColor = '#fffff9';  
+                        document.getElementsByClassName("bg2")[0].style.backgroundColor = '#fffa8f';  
+                    }
+                    else if(this.result=='Greyscale'){
+                        document.getElementsByClassName("bg1")[0].style.backgroundColor = '#ffffff';
+                        document.getElementsByClassName("bg2")[0].style.backgroundColor = '#f2f2f2'; 
+                    }
+                    else if(this.result=='Lavender'){
+                        document.getElementsByClassName("bg1")[0].style.backgroundColor = '#d3f8e2';
+                        document.getElementsByClassName("bg2")[0].style.backgroundColor = '#e4c1f9';
+                    }
                 }
                 reader.readAsText(file);
                 });
