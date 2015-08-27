@@ -27,56 +27,41 @@
         <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
         <link rel="stylesheet" type="text/css" href="css/index.css" />
-        <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
         <title>Dyslexia</title>
     </head>
-    <body>       
-        <div class="se-pre-con"></div>
-        <div class="container">
-            <div class="row">
-                <div class="col-2 vh30 bg1">
-                     <div id="breadcrumb">
-                        <a href="index.html">Home</a> <span>></span>
-                        <a href="navigazione.html">Configurazione Navigazione</a> <span>></span>
-                        <em>Configurazione Avanzata</em>
-                    </div>
-                    <h1>Configurazione Avanzata</h1>
-                    <p>Qui puoi modificare le impostazioni avanzate</p>
-                </div>
-            </div>
-                <div class="col-2 mediax2 bg2" style="padding-left: 10vw; text-align:left;">
-                    <h2 style="margin-top: 0vh;">Selezionare i formati interessati:</h2>
-                    <form>
-                        <div class="vh15">Pagina Iniziale:
-                            <input class="enjoy-input" type="text" id="initpage" placeholder="http://www.google.it" value="http://www.google.it">
-                            <input type="button" class="button" id="submit" value="Imposta" >
-                        </div>
-                        
-                        <div class="vh15">Configura Background:
-                            <select class="enjoy-input" id="palette">
-                                <option>Seleziona</option>
-                                <option>Bianco</option>
-                                <option>Crema</option>
-                                <option>Giallo</option>
-                            </select>
-                        </div>
-                       
-                        <div class="vh15">Configura Dimensione Font:
-                            <select class="enjoy-input" id="fontsize">
-                                <option>Seleziona</option>
-                                <option>12px</option>
-                                <option>18px</option>
-                                <option>24px</option>
-                            </select>
-                        </div>
-                    </form>
-                    
-                    <div class="vh15">
-                        <h3>Inizia la navigazione <button class="button" type="button" id="btngo">Go!</button> </h3>  
-                        
-                    </div>
-                </div>
-            </div>
+    <body>
+        <div id="breadcrumb">
+            <a href="index.html">Home</a> <span>></span>
+            <a href="navigazione.html">Configurazione Navigazione</a> <span>></span>
+            <em>Configurazione Avanzata</em>
+        </div>
+        <h1>Configurazione Avanzata</h1>
+        <h2>Torna alla home</h2>
+        <button type="button" id="btnhome">Home</button>
+        <br>
+        <p>Selezionare i formati interessati:</p>
+        <form>
+            <fieldset>
+            <legend>Configura Background:</legend>
+                <select id="palette">
+                    <option>Seleziona</option>
+                    <option>Bianco</option>
+                    <option>Crema</option>
+                    <option>Giallo</option>
+                </select>
+            </fieldset>
+            <fieldset>
+            <legend>Configura Font Size:</legend>
+                <select id="fontsize">
+                    <option>Seleziona</option>
+                    <option>12px</option>
+                    <option>13px</option>
+                    <option>44px</option>
+                </select>
+            </fieldset>
+        </form>
+        <h3>Inizia la navigazione</h3>  
+        <button type="button" id="btngo">Go!</button> 
     
         <script type="text/javascript" src="cordova.js"></script>
 <!--        <script type="text/javascript" src="js/configAvanz.js"></script>-->
@@ -166,15 +151,6 @@
                 };
                 
             };
-        </script>
-                <script type="text/javascript">
-
-            $(window).load(function() {
-                // Animate loader off screen
-                $(".se-pre-con").fadeOut("slow");;
-            });
-            document.addEventListener("deviceready", onDeviceReady, false);
-             
         </script>
     </body>
 </html>

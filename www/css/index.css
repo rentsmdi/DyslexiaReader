@@ -25,7 +25,7 @@
 }
 
 body {
-    
+    background-color: black;
     -webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
     -webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
     -webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
@@ -127,7 +127,7 @@ body {
     cursor: pointer;
     border: none;
     font-family: OpenDyslexic;
-    color: rgba(255,255,255,0.9);
+    color: darkblue;
     text-transform: capitalize;
     -o-text-overflow: clip;
     text-overflow: clip;
