@@ -98,7 +98,7 @@
             }
             function saveAllLinks(){
                 window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
-                    fileSystem.root.getFile("savedLinks.html", {create: true, exclusive: false}, function(fileEntry){
+                    fileSystem.root.getFile("test01.html", {create: true, exclusive: false}, function(fileEntry){
                         fileEntry.createWriter(function(writer){
                             writer.onwriteend = function(evt) {
                                 alert('scritto');
@@ -110,7 +110,7 @@
             }
             function readAllLinks(){
                 window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
-                    fileSystem.root.getFile("savedLinks.html", null, function(fileEntry){
+                    fileSystem.root.getFile("test01.html", null, function(fileEntry){
                         fileEntry.file(function(file) {
                         var reader = new FileReader();
                         reader.onloadend = function(e) {
