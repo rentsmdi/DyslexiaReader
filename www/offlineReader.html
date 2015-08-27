@@ -87,6 +87,7 @@
                                 document.getElementById("results").innerHTML += "<tr><td>"+i+": "+url+"</td><td><button class='button' id='link"+i+"'>Apri</button></td><td><button>Rimuovi</button></td></tr>";
                                 i++;
                                 saveAllLinks();
+                                setButtons();
                             };
                             $.get(urlConn, function(responseText, status) {
                                 alert(status);
@@ -101,7 +102,7 @@
                     fileSystem.root.getFile("test01.html", {create: true, exclusive: false}, function(fileEntry){
                         fileEntry.createWriter(function(writer){
                             writer.onwriteend = function(evt) {
-                                alert('scritto');
+//                                alert('scritto');
                             };
                             writer.write(document.getElementById("results").innerHTML);
                         });
@@ -114,10 +115,9 @@
                         fileEntry.file(function(file) {
                         var reader = new FileReader();
                         reader.onloadend = function(e) {
-//                            alert(this.result);
                             document.getElementById("results").innerHTML = this.result;
                             i = $('.button').length;
-//                            alert(i);
+                            setButtons();
                         }
                         reader.readAsText(file);
                         });
@@ -125,9 +125,8 @@
                 });    
             }
             function setButtons(){
-                var n = $('.button').length;
-                alert(n);
-                for (j=0; j<n; j++){
+                alert(i);
+                for (j=0; j<i; j++){
                     $('#results').on('click', '#link'+j, function(evt){
                         var c = evt.target.id+'.html'; 
                         window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
