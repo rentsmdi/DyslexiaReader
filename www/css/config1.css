@@ -14,8 +14,8 @@ html, body, div, p, h1, h2, h3, h4, h5, li, ul, ol, br, table, td, tr, a, span {
 
 body, div, p{
     font-family: 'Chelsea Market', cursive;
-    font-size: 12px  !important;
-    line-height: 150%  !important;
+    font-size: 16px  !important;
+    line-height: 200%  !important;
     background-color: yellow  !important;
     text-align:left  !important;
     text-transform: lowercase  !important;

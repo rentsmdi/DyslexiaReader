@@ -15,6 +15,9 @@ function set(){
     document.getElementById("palette").addEventListener("change", list);
     document.getElementById("testo").addEventListener("change", text);
     document.getElementById("fontsize").addEventListener("change", size);
+    document.addEventListener("backbutton", function(event){
+        window.location="index.html";
+    }, false);
 }
 
 function list(event){
@@ -40,7 +43,7 @@ function home(){
 //IMPOSTAZIONI URL CONNESSIONE
 function readURL(){
     window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
-        fileSystem.root.getFile("readme.txt", null, setURL, fail);
+        fileSystem.root.getFile("connessione.txt", null, setURL, fail);
     }, fail);    
 }
 function setURL(fileEntry) {
@@ -54,7 +57,7 @@ function setURL(fileEntry) {
 }
 function write(){
     window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
-        fileSystem.root.getFile("readme.txt", {create: true, exclusive: false}, function(fileEntry){
+        fileSystem.root.getFile("connessione.txt", {create: true, exclusive: false}, function(fileEntry){
             fileEntry.createWriter(function(writer){
                 writer.onwriteend = function(evt) {
                     readURL();

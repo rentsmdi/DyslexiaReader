@@ -42,10 +42,9 @@
             <div class="row">
                 <div class="col-2 mediax2 bg2">
                     <div id="btnhome"><br><h2>Incolla il link nel form</h2></div>
-                    <input type="text" id="link" value="www.apache.org">
+                    <input type="text" id="link" placeholder="Inserire Link">
                     <input type="button" id="submit" value="Scarica">
                     <table id="results"></table>
-<!--                    <button id='btnset'>Set Buttons</button>-->
                 </div>
             </div>       
         </div>
@@ -60,7 +59,6 @@
             var i = 0;
             var c;
             var n;
-            var j;
             var filecss;
             set();
             readBack()
@@ -70,11 +68,10 @@
             
             function set(){
                 document.getElementById("submit").addEventListener("click", saveLink);
-//                document.getElementById("btnset").addEventListener("click", setButtons);
                 document.addEventListener("backbutton", function(event){
                     window.location="index.html";
                 }, false);
-                requestCSS('css/config2.css');
+                requestCSS('css/config1.css');
             }
             function requestCSS(css){  
                 $.get(css, function(responseText) {
@@ -92,8 +89,6 @@
                                 document.getElementById("results").innerHTML += "<tr id='"+i+"'><td>"+i+": "+url+"</td><td><button class='buttonLink' id='link"+i+"'>Apri</button></td><td><button class='button' id='rmv"+i+"'>Rimuovi</button></td></tr>";
                                 i++;
                                 saveAllLinks();
-//                                knowButton();
-//                                setButtons();
                             };
                             $.get(urlConn, function(responseText, status) {
                                 alert(status);
@@ -122,13 +117,11 @@
                         var reader = new FileReader();
                         reader.onloadend = function(e) {
                             document.getElementById("results").innerHTML = this.result;
-//                            i = $('.buttonLink').length;
                             i = $('.buttonLink').last().attr('id');
                             i = i.slice(4,i.length);
                             i++;
                             alert(i);
                             knowButton();
-//                            setButtons();
                         }
                         reader.readAsText(file);
                         });
@@ -156,7 +149,6 @@
                     else if (c[0]=='r'){
                         n = c.slice(3,c.length);
                         c = 'link'+n+'.html';
-//                        alert(c);
                         alert(n);
                         window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
                             fileSystem.root.getFile(c, null, function(fileEntry){
@@ -167,29 +159,14 @@
                 });    
             }
             function success(entry) {
-                alert("Removal succeeded");
+                alert("Rimosso");
                 $( "#"+n ).remove();
                 saveAllLinks();
             }
 
             function fail(error) {
-                alert('Error removing file: ' + error.code);
+                alert('Errore nella rimozione del file: ' + error.code);
             }
-//            function setButtons(){
-//                for (j=0; j<i; j++){
-//                    $('#results').on('click', '#link'+j, function(evt){
-//                        var c = evt.target.id+'.html'; 
-//                        window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
-//                            fileSystem.root.getFile(c, null, function(fileEntry){
-//                                ref = window.open(fileEntry.toURL(), '_blank','location=no');
-//                                        ref.addEventListener('loadstop', function() {
-//                                    ref.insertCSS({code: filecss});
-//                                });
-//                            })
-//                        });
-//                    });
-//                }
-//            }
             
 // LETTURA IMPOSTAZIONI APP
             function readBack(){
