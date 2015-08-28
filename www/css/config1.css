@@ -1,31 +1,27 @@
 @import url(http://fonts.googleapis.com/css?family=Chelsea+Market);
 
 @font-face {
-    font-family: 'Chelsea Market', cursive;
+    font-family: 'Chelsea Market', cursive !important;
 }
 
 html, body, div, p, h1, h2, h3, h4, h5, li, ul, ol, br, table, td, tr, a, span {
-    margin: 0;
-    padding: 0;
-    border: none;
-    border: 0;
-    background-color: yellow;
-}
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    border:  !important0;
+    background-color: yellow !important;
+}   
 
-html{
-    background-color: yellow;
-}
-    
-
-body{
+body, div, p{
     font-family: 'Chelsea Market', cursive;
-    font-size: 12px;
-    line-height: 150%;
-    background-color: yellow;
-    text-align:left;
-    text-transform: lowercase;
+    font-size: 12px  !important;
+    line-height: 150%  !important;
+    background-color: yellow  !important;
+    text-align:left  !important;
+    text-transform: lowercase  !important;
 }
 
+/* cancella pure
 div, p{
     font-family: 'Chelsea Market', cursive;
     font-size: 12px;
@@ -55,17 +51,10 @@ h1, h2, h3, h4, h5{
     text-align:left;
     text-transform: lowercase;
 }
-
-button{
-    color: red;
-}
-
- h1{
-    font-size: 14px;    
- }
+*/
 
 #header, #menu-bar, #sidebar, h2#postcomment, form#commentform, #footer {
-	display: none;
+	display: none !important;
 }
 
 
