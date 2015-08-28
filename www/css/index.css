@@ -38,25 +38,7 @@ body {
     overflow: hidden;
     font-size: 12px;
 }
-input {
-    background: -webkit-gradient(linear, bottom, left 175px, from(#CCCCCC), to(#EEEEEE));
-    background: -moz-linear-gradient(bottom, #CCCCCC, #EEEEEE 175px);
-    margin:auto;
-    position:relative;
-    font-size: 14px;
-    line-height: 24px;
-    color: #09C;
-    text-decoration: none;
-    -webkit-border-radius: 10px;
-    -moz-border-radius: 10px;
-    border-radius: 10px;
-    padding:10px;
-    border: 1px solid #999;
-    border: inset 1px solid #333;
-    -webkit-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
-    -moz-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
-    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
-}
+
 /* (default) */
 
 .container {
@@ -133,7 +115,7 @@ input {
 }
 
 /*bottone android*/
-.button {
+.button, .buttonLink {
     height: 3vh;
     font-size: 100%;
     padding: 5px;
@@ -161,7 +143,7 @@ input {
     transition: top 50ms cubic-bezier(0.42, 0, 0.58, 1);
 }
 
-.button:hover {
+.button:hover, .buttonLink:hover {
   background: rgba(78,182,216,1);
   -webkit-box-shadow: 0 5px 0 0 rgba(78,136,160,1) ;
   box-shadow: 0 5px 0 0 rgba(78,136,160,1) ;
@@ -171,7 +153,7 @@ input {
   transition: none;
 }
 
-.button:active {
+.button:active, .buttonLink:active {
   top: 2px;
   background: rgb(105,192,223)	;
   -webkit-box-shadow: 0 3px 0 0 rgba(78,136,160,1) ;
@@ -180,75 +162,7 @@ input {
   transform-origin: 50% 100% 0;
 }
 
-.button::before {
-  display: inline-block;
-  -webkit-box-sizing: content-box;
-  -moz-box-sizing: content-box;
-  box-sizing: content-box;
-  position: absolute;
-  content: "";
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  border: 0 solid #018dc4;
-  border-right: 1px solid rgba(255,255,255,0.2);
-  color: rgba(0,0,0,0.9);
-  -o-text-overflow: clip;
-  text-overflow: clip;
-  text-shadow: -1px -1px 0 rgba(15,73,168,0.66) ;
-  -webkit-transition: all 300ms cubic-bezier(0.42, 0, 0.58, 1);
-  -moz-transition: all 300ms cubic-bezier(0.42, 0, 0.58, 1);
-  -o-transition: all 300ms cubic-bezier(0.42, 0, 0.58, 1);
-  transition: all 300ms cubic-bezier(0.42, 0, 0.58, 1);
-}
-.buttonLink {
-    height: 3vh;
-    font-size: 100%;
-    padding: 5px;
-    padding-left: 10px;
-    padding-right: 10px;
-    display: inline-block;
-    -webkit-box-sizing: content-box;
-    -moz-box-sizing: content-box;
-    box-sizing: content-box;
-    position: relative;
-    cursor: pointer;
-    border: none;
-    font-family: OpenDyslexic;
-    color: darkblue;
-    text-transform: capitalize;
-    -o-text-overflow: clip;
-    text-overflow: clip;
-    background: rgb(105,192,223);
-    -webkit-box-shadow: 0 5px 0 0 rgb(87,151,180) ;
-    box-shadow: 0 5px 0 0 rgb(87,151,180) ;
-    text-shadow: 0 1px 1px rgba(87,151,180,0.36) ;
-    -webkit-transition: top 50ms cubic-bezier(0.42, 0, 0.58, 1);
-    -moz-transition: top 50ms cubic-bezier(0.42, 0, 0.58, 1);
-    -o-transition: top 50ms cubic-bezier(0.42, 0, 0.58, 1);
-    transition: top 50ms cubic-bezier(0.42, 0, 0.58, 1);
-}
-
-.buttonLink:hover {
-  background: rgba(78,182,216,1);
-  -webkit-box-shadow: 0 5px 0 0 rgba(78,136,160,1) ;
-  box-shadow: 0 5px 0 0 rgba(78,136,160,1) ;
-  -webkit-transition: none;
-  -moz-transition: none;
-  -o-transition: none;
-  transition: none;
-}
-
-.buttonLink:active {
-  top: 2px;
-  background: rgb(105,192,223)	;
-  -webkit-box-shadow: 0 3px 0 0 rgba(78,136,160,1) ;
-  box-shadow: 0 3px 0 0 rgba(78,136,160,1) ;
-  -webkit-transform-origin: 50% 100% 0;
-  transform-origin: 50% 100% 0;
-}
-
-.buttonLink::before {
+.button::before, .buttonLink::before {
   display: inline-block;
   -webkit-box-sizing: content-box;
   -moz-box-sizing: content-box;
@@ -271,7 +185,8 @@ input {
 }
 
 /*input android*/
-.enjoy-input {
+
+input, .enjoy-input {
     height: 3vh;
     padding: 5px;
     font-size: 100%;
@@ -292,7 +207,13 @@ input {
     transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);
 }
 
-.enjoy-input:hover {
+/*
+    -webkit-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+*/
+
+input:hover, .enjoy-input:hover {
   border: 1px solid #a3a3a3;
   background: rgba(255,255,255,1);
   -webkit-transition: all 100ms cubic-bezier(0.42, 0, 0.58, 1);
@@ -301,12 +222,19 @@ input {
   transition: all 100ms cubic-bezier(0.42, 0, 0.58, 1);
 }
 
-.enjoy-input:focus {
+input:focus, .enjoy-input:focus {
   border: 1px solid #018dc4;
   -webkit-transition: all 50ms cubic-bezier(0.42, 0, 0.58, 1);
   -moz-transition: all 50ms cubic-bezier(0.42, 0, 0.58, 1);
   -o-transition: all 50ms cubic-bezier(0.42, 0, 0.58, 1);
   transition: all 50ms cubic-bezier(0.42, 0, 0.58, 1);
+}
+
+.button, .buttonLink, .enjoy-input{
+    min-height: 35px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
 }
 
 /*jquery gif loading */
@@ -339,11 +267,25 @@ input {
     white-space: nowrap;
 }
 
+/* so small you shouldn't even exist */
+@media (max-width:319px){
+
+    body{
+        font-size: 60%;
+    }
+    .button, .buttonLink, .enjoy-input{
+    min-height: 21px;
+    }
+}
+
 /* small screen portrait */
 @media (min-width:320px){
 
     body{
         font-size: 60%;
+    }
+    .button, .buttonLink, .enjoy-input{
+    min-height: 21px;
     }
 }
 
@@ -352,6 +294,9 @@ input {
 
     body{
         font-size: 60%;
+    }
+    .button, .buttonLink, .enjoy-input{
+        min-height: 21px;
     }
 }
     
@@ -362,6 +307,9 @@ input {
     body{
         font-size: 80%;
     }
+    .button, .buttonLink, .enjoy-input{
+        min-height: 27px;
+    }
 }
 
 /* tablet portrait*/
@@ -370,6 +318,9 @@ input {
     body{
         font-size: 100%;
     }
+    .button, .buttonLink, .enjoy-input{
+        min-height: 27px;
+    }
 }
 
 /* tablet landscape */
@@ -377,6 +328,9 @@ input {
 
     body{
         font-size: 120%;
+    }
+    .button, .buttonLink, .enjoy-input{
+        min-height: 35px;
     }
 }
 
