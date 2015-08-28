@@ -3,17 +3,107 @@
 @font-face {
     font-family: 'Chelsea Market', cursive;
 }
-body{
+
+html{
     background-color: yellow;
 }
-div {
+    
+
+body{
     font-family: 'Chelsea Market', cursive;
     font-size: 12px;
     line-height: 150%;
     background-color: yellow;
     text-align:left;
-    text-transform: lowercase;
+    text-transform: lowercase;4 *
+    text-align: center;
 }
+
+div{
+    font-family: 'Chelsea Market', cursive;
+    font-size: 12px;
+    line-height: 150%;
+    background-color: yellow;
+    text-align:left;
+    text-transform: lowercase;4 *
+    text-align: center;
+}
+
+p, span, a{
+    font-family: 'Chelsea Market', cursive;
+    font-size: 12px;
+    line-height: 150%;
+    background-color: yellow;
+    text-align:left;
+    text-transform: lowercase;4 *
+    text-align: center;
+}
+
+a{
+    text-decoration: underline;
+}
+
+h1, h2, h3, h4, h5{
+    font-family: 'Chelsea Market', cursive;
+    line-height: 150%;
+    background-color: yellow;
+    text-align:left;
+    text-transform: lowercase;4 *
+    text-align: center;
+}
+
+button{
+    color: red;
+}
+
  h1{
     font-size: 14px;    
  }
+
+#header, #menu-bar, #sidebar, h2#postcomment, form#commentform, #footer {
+	display: none;
+}
+
+
+/* small screen portrait */
+@media (min-width:320px){
+
+    body{
+        font-size: 60%;
+    }
+}
+
+/* small screen landscape */
+@media (min-width:480px){
+
+    body{
+        font-size: 60%;
+    }
+}
+    
+
+/* small tablet portrait */
+@media (min-width:600px){
+
+    body{
+        font-size: 80%;
+    }
+}
+
+/* tablet portrait*/
+@media (min-width:768px){
+
+    body{
+        font-size: 100%;
+    }
+}
+
+/* tablet landscape */
+@media (min-width:1024px){
+
+    body{
+        font-size: 120%;
+    }
+}
+
+
