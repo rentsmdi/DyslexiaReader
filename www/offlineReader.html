@@ -88,7 +88,7 @@
                     fileSystem.root.getFile(conn, {create: true, exclusive: false}, function(fileEntry){
                         fileEntry.createWriter(function(writer){
                             writer.onwriteend = function(evt) {
-                                document.getElementById("results").innerHTML += "<tr><td>"+i+": "+url+"</td><td><button class='button' id='link"+i+"'>Apri</button></td><td><button>Rimuovi</button></td></tr>";
+                                document.getElementById("results").innerHTML += "<tr><td>"+i+": "+url+"</td><td><button class='buttonLink' id='link"+i+"'>Apri</button></td><td><button class='button' id='rmv"+i+"'>Rimuovi</button></td></tr>";
                                 i++;
                                 saveAllLinks();
 //                                knowButton();
@@ -104,7 +104,7 @@
             }
             function saveAllLinks(){
                 window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
-                    fileSystem.root.getFile("test05.html", {create: true, exclusive: false}, function(fileEntry){
+                    fileSystem.root.getFile("test07.html", {create: true, exclusive: false}, function(fileEntry){
                         fileEntry.createWriter(function(writer){
                             writer.onwriteend = function(evt) {
                                 window.location="offlineReader.html";
@@ -116,12 +116,12 @@
             }
             function readAllLinks(){
                 window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
-                    fileSystem.root.getFile("test05.html", null, function(fileEntry){
+                    fileSystem.root.getFile("test07.html", null, function(fileEntry){
                         fileEntry.file(function(file) {
                         var reader = new FileReader();
                         reader.onloadend = function(e) {
                             document.getElementById("results").innerHTML = this.result;
-                            i = $('.button').length;
+                            i = $('.buttonLink').length;
                             alert(i);
                             knowButton();
 //                            setButtons();
@@ -136,19 +136,38 @@
             }
             function knowButton(){
                 $("#results").click(function(event) {
-                    c = event.target.id+'.html';
-                    alert(c);
-                    window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
-                        fileSystem.root.getFile(c, null, function(fileEntry){
-                            ref = window.open(fileEntry.toURL(), '_blank','location=no');
-                                    ref.addEventListener('loadstop', function() {
-                                ref.insertCSS({code: filecss});
-                            });
-                        })
-                    });
+                    c = event.target.id;
+                    if (c[0]=='l'){
+                        c = event.target.id+'.html';
+                        alert(c);
+                        window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
+                            fileSystem.root.getFile(c, null, function(fileEntry){
+                                ref = window.open(fileEntry.toURL(), '_blank','location=no');
+                                        ref.addEventListener('loadstop', function() {
+                                    ref.insertCSS({code: filecss});
+                                });
+                            })
+                        });
+                    }
+                    else if (c[0]=='r'){
+                        c = c.slice(3,c.length);
+                        c = 'link'+c+'.html';
+                        alert(c);
+                        window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
+                            fileSystem.root.getFile(c, null, function(fileEntry){
+                                fileEntry.remove(success, fail);
+                            })
+                        });
+                    }
                 });    
             }
-            
+            function success(entry) {
+                alert("Removal succeeded");
+            }
+
+            function fail(error) {
+                alert('Error removing file: ' + error.code);
+            }
 //            function setButtons(){
 //                for (j=0; j<i; j++){
 //                    $('#results').on('click', '#link'+j, function(evt){

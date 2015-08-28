@@ -93,8 +93,11 @@
                     document.getElementById("palette").addEventListener("change", background);
                     document.getElementById("fontsize").addEventListener("change", fontsize);
                     document.getElementById("btngo").addEventListener("click", open);
-    //                    document.getElementById("testo").addEventListener("change", text);
-    //                    document.getElementById("fontsize").addEventListener("change", size);
+                    document.getElementById("testo").addEventListener("change", text);
+                    document.getElementById("fontsize").addEventListener("change", size);
+                    document.addEventListener("backbutton", function(event){
+                        window.location="index.html";
+                    }, false);
                 };
                 function open(){
                     var ref = window.open(conn, '_blank','location=yes');
