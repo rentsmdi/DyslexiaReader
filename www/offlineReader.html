@@ -88,7 +88,7 @@
                                 document.getElementById("results").innerHTML += "<tr><td>"+i+": "+url+"</td><td><button class='button' id='link"+i+"'>Apri</button></td><td><button>Rimuovi</button></td></tr>";
                                 i++;
                                 saveAllLinks();
-                                knowButton();
+//                                knowButton();
 //                                setButtons();
                             };
                             $.get(urlConn, function(responseText, status) {
@@ -103,6 +103,9 @@
                 window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
                     fileSystem.root.getFile("test05.html", {create: true, exclusive: false}, function(fileEntry){
                         fileEntry.createWriter(function(writer){
+                            writer.onwriteend = function(evt) {
+                                readAllLinks();
+                            };
                             writer.write(document.getElementById("results").innerHTML);
                         });
                     });
