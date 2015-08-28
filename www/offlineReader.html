@@ -105,7 +105,7 @@
             }
             function saveAllLinks(){
                 window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
-                    fileSystem.root.getFile("test07.html", {create: true, exclusive: false}, function(fileEntry){
+                    fileSystem.root.getFile("test10.html", {create: true, exclusive: false}, function(fileEntry){
                         fileEntry.createWriter(function(writer){
                             writer.onwriteend = function(evt) {
                                 window.location="offlineReader.html";
@@ -117,12 +117,15 @@
             }
             function readAllLinks(){
                 window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
-                    fileSystem.root.getFile("test07.html", null, function(fileEntry){
+                    fileSystem.root.getFile("test10.html", null, function(fileEntry){
                         fileEntry.file(function(file) {
                         var reader = new FileReader();
                         reader.onloadend = function(e) {
                             document.getElementById("results").innerHTML = this.result;
-                            i = $('.buttonLink').length;
+//                            i = $('.buttonLink').length;
+                            i = $('.buttonLink').last().attr('id');
+                            i = i.slice(4,i.length);
+                            i++;
                             alert(i);
                             knowButton();
 //                            setButtons();
@@ -164,8 +167,9 @@
                 });    
             }
             function success(entry) {
-                alert("Removal succeeded"+c);
+                alert("Removal succeeded");
                 $( "#"+n ).remove();
+                saveAllLinks();
             }
 
             function fail(error) {
