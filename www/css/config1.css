@@ -4,8 +4,14 @@
     font-family: 'Chelsea Market', cursive;
 }
 
+html, body, div, p, h1, h2, h3, h4, h5 {
+    margin: 0;
+    padding: 0;
+}
+
 html{
     background-color: yellow;
+    border: 0;
 }
     
 
@@ -15,27 +21,27 @@ body{
     line-height: 150%;
     background-color: yellow;
     text-align:left;
-    text-transform: lowercase;4 *
+    text-transform: lowercase;
     text-align: center;
 }
 
-div{
+div, p{
     font-family: 'Chelsea Market', cursive;
     font-size: 12px;
     line-height: 150%;
     background-color: yellow;
     text-align:left;
-    text-transform: lowercase;4 *
+    text-transform: lowercase;
     text-align: center;
 }
 
-p, span, a{
+span, a{
     font-family: 'Chelsea Market', cursive;
     font-size: 12px;
     line-height: 150%;
     background-color: yellow;
     text-align:left;
-    text-transform: lowercase;4 *
+    text-transform: lowercase;
     text-align: center;
 }
 
@@ -48,7 +54,7 @@ h1, h2, h3, h4, h5{
     line-height: 150%;
     background-color: yellow;
     text-align:left;
-    text-transform: lowercase;4 *
+    text-transform: lowercase;
     text-align: center;
 }
 
