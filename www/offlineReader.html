@@ -70,6 +70,9 @@
             function set(){
                 document.getElementById("submit").addEventListener("click", saveLink);
 //                document.getElementById("btnset").addEventListener("click", setButtons);
+                document.addEventListener("backbutton", function(event){
+                    window.location="index.html";
+                }, false);
                 requestCSS('css/config2.css');
             }
             function requestCSS(css){  
@@ -104,7 +107,7 @@
                     fileSystem.root.getFile("test05.html", {create: true, exclusive: false}, function(fileEntry){
                         fileEntry.createWriter(function(writer){
                             writer.onwriteend = function(evt) {
-                                readAllLinks();
+                                window.location="offlineReader.html";
                             };
                             writer.write(document.getElementById("results").innerHTML);
                         });

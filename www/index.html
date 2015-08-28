@@ -91,6 +91,9 @@
                         event.preventDefault();
                         window.location="impostazioni.html";
                     }, false);  
+                    document.addEventListener("backbutton", function(event){
+                        navigator.app.exitApp();
+                    }, false);
                 }
                 
 // LETTURA IMPOSTAZIONI APP
