@@ -130,30 +130,30 @@
                 }
                 function navigation(event){
                     event.preventDefault();
-                    if (filecss==null){
+                    if (filecss==null && text=='undefined' && back=='undefined' && font=='undefined'){
                         alert('Selezionare configurazione!');
                     }                    
-//                    else if (filecss!=null && text!='undefined' && back!='undefined' && font!='undefined'){
-//                        filecss = "html, body, div, p, h1, h2, h3, h4, h5, li, ul, ol, br, table, td, tr, a, span { margin: 2 !important; padding: 5 !important; border: none !important; border: 0 !important; color: "+text+" !important; background-color: "+back+" !important;} body, div, p{ font-size: "+font+"  !important; line-height: 200%  !important; color: "+text+" !important; background-color: "+back+" !important; text-align:left  !important; text-transform: lowercase  !important; }";
-//                        window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
-//                            fileSystem.root.getFile("personalizedCSS2.txt", {create: true, exclusive: false}, function(fileEntry){
-//                                fileEntry.createWriter(function(writer){
-//                                    writer.onwriteend = function(evt) {
-//                                        alert('salvatoCSS'+filecss);
-//                                    };
-//                                    writer.write(filecss);
-//                                });
-//                            });
-//                        });
-//                        setCSS(); 
-//                    } 
-//                    else {
-//                        setCSS(); 
-//                    }
+                    else if (filecss==null && text!='undefined' && back!='undefined' && font!='undefined'){
+                        filecss = "html, body, div, p, h1, h2, h3, h4, h5, li, ul, ol, br, table, td, tr, a, span { margin: 2 !important; padding: 5 !important; border: none !important; border: 0 !important; color: "+text+" !important; background-color: "+back+" !important;} body, div, p{ font-size: "+font+"  !important; line-height: 200%  !important; color: "+text+" !important; background-color: "+back+" !important; text-align:left  !important; text-transform: lowercase  !important; }";
+                        window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
+                            fileSystem.root.getFile("personalizedCSS4.txt", {create: true, exclusive: false}, function(fileEntry){
+                                fileEntry.createWriter(function(writer){
+                                    writer.onwriteend = function(evt) {
+                                        alert('salvatoCSS'+filecss);
+                                    };
+                                    writer.write(filecss);
+                                });
+                            });
+                        });
+                        setCSS(); 
+                    } 
+                    else{
+                        setCSS(); 
+                    }
                 }
                 function readCSS(){
                     window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
-                        fileSystem.root.getFile("personalizedCSS3.txt", null, function(fileEntry){
+                        fileSystem.root.getFile("personalizedCSS4.txt", null, function(fileEntry){
                             fileEntry.file(function(file) {
                             var reader = new FileReader();
                             reader.onloadend = function(e) {
@@ -175,7 +175,7 @@
                     }); 
                 }
                 function background(event){
-                    if (event.target.value!='undefined'){
+                    
                         back = event.target.value;
                         if (back == 'Bianco')
                             back = '#f7f7f7';
@@ -185,11 +185,11 @@
                             back = '#FFFF00';
                         if (back == 'Blu')
                             back = '#0000FF';
-                    }
+                    
                 };
                 function textcolor(event){
-                    if (event.target.value!='undefined'){
-                        text = event.target.value;
+                    
+                    text = event.target.value;
                     if (text == 'Bianco')
                         text = '#f7f7f7';
                     if (text == 'Nero')
@@ -198,10 +198,10 @@
                         text = '#964B00';
                     if (text == 'Blu')
                         text = '#0000FF';
-                    }
+                    
                 };
                 function fontsize(event){
-                    if (event.target.value!='undefined')
+                    
                     font = event.target.value;
                 };
 // LETTURA URL CONNESSIONE
