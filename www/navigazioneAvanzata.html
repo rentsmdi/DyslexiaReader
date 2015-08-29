@@ -116,26 +116,57 @@
                 readFont();
                 readSize();
                 initConn();
+                readCSS();
                 set();
                 
                 function set(){
                     document.getElementById("palette").addEventListener("change", background);
                     document.getElementById("fontsize").addEventListener("change", fontsize); 
                     document.getElementById("color").addEventListener("change", textcolor);
+                    document.getElementById("btngo").addEventListener("touchend", navigation, false);
                     document.addEventListener("backbutton", function(event){
                         window.location="navigazione.html";
-                    }, false);
-                    document.getElementById("btngo").addEventListener("touchend", function(){
-                        event.preventDefault();
-                        if (filecss=='null'){
-                            alert('Selezionare configurazione!');
-                        }
-                        else {
-//                            filecss = "html, body, div, p, h1, h2, h3, h4, h5, li, ul, ol, br, table, td, tr, a, span{background-color:"+back+" !important;};";
-                            filecss = "html, body, div, p, h1, h2, h3, h4, h5, li, ul, ol, br, table, td, tr, a, span { margin: 2 !important; padding: 5 !important; border: none !important; border: 0 !important; color: "+text+" !important; background-color: "+back+" !important;} body, div, p{ font-size: "+font+"  !important; line-height: 200%  !important; color: "+text+" !important; background-color: "+back+" !important; text-align:left  !important; text-transform: lowercase  !important; }";
-                            setCSS();
-                        }
-                    }, false); 
+                    }, false);  
+                }
+                function navigation(event){
+                    event.preventDefault();
+                    if (filecss==null){
+                        alert('Selezionare configurazione!');
+                    }                    
+//                    else if (filecss!=null && text!='undefined' && back!='undefined' && font!='undefined'){
+//                        filecss = "html, body, div, p, h1, h2, h3, h4, h5, li, ul, ol, br, table, td, tr, a, span { margin: 2 !important; padding: 5 !important; border: none !important; border: 0 !important; color: "+text+" !important; background-color: "+back+" !important;} body, div, p{ font-size: "+font+"  !important; line-height: 200%  !important; color: "+text+" !important; background-color: "+back+" !important; text-align:left  !important; text-transform: lowercase  !important; }";
+//                        window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
+//                            fileSystem.root.getFile("personalizedCSS2.txt", {create: true, exclusive: false}, function(fileEntry){
+//                                fileEntry.createWriter(function(writer){
+//                                    writer.onwriteend = function(evt) {
+//                                        alert('salvatoCSS'+filecss);
+//                                    };
+//                                    writer.write(filecss);
+//                                });
+//                            });
+//                        });
+//                        setCSS(); 
+//                    } 
+//                    else {
+//                        setCSS(); 
+//                    }
+                }
+                function readCSS(){
+                    window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
+                        fileSystem.root.getFile("personalizedCSS3.txt", null, function(fileEntry){
+                            fileEntry.file(function(file) {
+                            var reader = new FileReader();
+                            reader.onloadend = function(e) {
+                                filecss = this.result;
+                                alert('caricato css: '+filecss);
+                            }
+                            reader.readAsText(file);
+                            });
+                        }, function(e){ 
+                            filecss = null;
+                            alert('filecss ancora vuoto: '+filecss);
+                        });
+                    });    
                 }
                 function setCSS(){
                     ref = window.open('http://'+url, '_blank','location=yes');
@@ -144,18 +175,21 @@
                     }); 
                 }
                 function background(event){
-                    back = event.target.value;
-                    if (back == 'Bianco')
-                        back = '#f7f7f7';
-                    if (back == 'Crema')
-                        back = '#FAFAC8';
-                    if (back == 'Giallo')
-                        back = '#FFFF00';
-                    if (back == 'Blu')
-                        back = '#0000FF';
+                    if (event.target.value!='undefined'){
+                        back = event.target.value;
+                        if (back == 'Bianco')
+                            back = '#f7f7f7';
+                        if (back == 'Crema')
+                            back = '#FAFAC8';
+                        if (back == 'Giallo')
+                            back = '#FFFF00';
+                        if (back == 'Blu')
+                            back = '#0000FF';
+                    }
                 };
                 function textcolor(event){
-                    text = event.target.value;
+                    if (event.target.value!='undefined'){
+                        text = event.target.value;
                     if (text == 'Bianco')
                         text = '#f7f7f7';
                     if (text == 'Nero')
@@ -164,14 +198,14 @@
                         text = '#964B00';
                     if (text == 'Blu')
                         text = '#0000FF';
+                    }
                 };
                 function fontsize(event){
+                    if (event.target.value!='undefined')
                     font = event.target.value;
-                    alert(font);
                 };
 // LETTURA URL CONNESSIONE
                 function initConn(){
-                    filecss = back;
                     window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
                         fileSystem.root.getFile("connessione.txt", null, function(fileEntry){
                             fileEntry.file(function(file) {

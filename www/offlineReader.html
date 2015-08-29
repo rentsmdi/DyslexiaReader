@@ -120,14 +120,14 @@
                             i = $('.buttonLink').last().attr('id');
                             i = i.slice(4,i.length);
                             i++;
-                            alert(i);
+//                            alert(i);
                             knowButton();
                         }
                         reader.readAsText(file);
                         });
                     }, function(e){ 
                         i = 0;
-                        alert(i);
+//                        alert(i);
                     });
                 });    
             }
@@ -136,7 +136,7 @@
                     c = event.target.id;
                     if (c[0]=='l'){
                         c = event.target.id+'.html';
-                        alert(c);
+//                        alert(c);
                         window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
                             fileSystem.root.getFile(c, null, function(fileEntry){
                                 ref = window.open(fileEntry.toURL(), '_blank','location=no');
@@ -149,7 +149,7 @@
                     else if (c[0]=='r'){
                         n = c.slice(3,c.length);
                         c = 'link'+n+'.html';
-                        alert(n);
+//                        alert(n);
                         window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
                             fileSystem.root.getFile(c, null, function(fileEntry){
                                 fileEntry.remove(success, fail);
