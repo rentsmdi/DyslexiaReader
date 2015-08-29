@@ -59,6 +59,7 @@
                                 <option>Bianco</option>
                                 <option>Crema</option>
                                 <option>Giallo</option>
+                                <option>Blu</option>
                             </select>
                         </div>
                     
@@ -71,6 +72,15 @@
                             </select>
                         </div>
 -->
+                        <div class="vh15">Configura Colore Font:
+                            <select class="enjoy-input" id="color">
+                                <option>Seleziona</option>
+                                <option>Nero</option>
+                                <option>Blu</option>
+                                <option>Bianco</option>
+                                <option>Marrone</option>
+                            </select>
+                        </div>
                        
                         <div class="vh15">Configura Dimensione Font:
                             <select class="enjoy-input" id="fontsize">
@@ -101,6 +111,7 @@
                 var url;
                 var back;
                 var font;
+                var text;
                 readBack();
                 readFont();
                 readSize();
@@ -110,6 +121,7 @@
                 function set(){
                     document.getElementById("palette").addEventListener("change", background);
                     document.getElementById("fontsize").addEventListener("change", fontsize); 
+                    document.getElementById("color").addEventListener("change", textcolor);
                     document.addEventListener("backbutton", function(event){
                         window.location="navigazione.html";
                     }, false);
@@ -119,14 +131,17 @@
                             alert('Selezionare configurazione!');
                         }
                         else {
-                            filecss = back + font;
-                            alert(filecss);
-                            ref = window.open('http://'+url, '_blank','location=yes');
-                            ref.addEventListener('loadstop', function() {
-                                ref.insertCSS({code: filecss});
-                            }); 
+//                            filecss = "html, body, div, p, h1, h2, h3, h4, h5, li, ul, ol, br, table, td, tr, a, span{background-color:"+back+" !important;};";
+                            filecss = "html, body, div, p, h1, h2, h3, h4, h5, li, ul, ol, br, table, td, tr, a, span { margin: 2 !important; padding: 5 !important; border: none !important; border: 0 !important; color: "+text+" !important; background-color: "+back+" !important;} body, div, p{ font-size: "+font+"  !important; line-height: 200%  !important; color: "+text+" !important; background-color: "+back+" !important; text-align:left  !important; text-transform: lowercase  !important; }";
+                            setCSS();
                         }
                     }, false); 
+                }
+                function setCSS(){
+                    ref = window.open('http://'+url, '_blank','location=yes');
+                    ref.addEventListener('loadstop', function() {
+                        ref.insertCSS({code: filecss});
+                    }); 
                 }
                 function background(event){
                     back = event.target.value;
@@ -136,11 +151,23 @@
                         back = '#FAFAC8';
                     if (back == 'Giallo')
                         back = '#FFFF00';
-                    back = "html, body, div, p, h1, h2, h3, h4, h5, li, ul, ol, br, table, td, tr, a, span{background-color:"+back+" !important;};";
+                    if (back == 'Blu')
+                        back = '#0000FF';
+                };
+                function textcolor(event){
+                    text = event.target.value;
+                    if (text == 'Bianco')
+                        text = '#f7f7f7';
+                    if (text == 'Nero')
+                        text = '#000000';
+                    if (text == 'Marrone')
+                        text = '#964B00';
+                    if (text == 'Blu')
+                        text = '#0000FF';
                 };
                 function fontsize(event){
                     font = event.target.value;
-                    font = "body{font-size:"+font+" !important;};";
+                    alert(font);
                 };
 // LETTURA URL CONNESSIONE
                 function initConn(){
