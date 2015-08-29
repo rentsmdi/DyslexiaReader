@@ -30,47 +30,61 @@
         <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
         <title>Dyslexia</title>
     </head>
-    <body>       
-        <div class="se-pre-con"></div>
+    <body>
+    <div class="se-pre-con"></div>
         <div class="container">
             <div class="row">
                 <div class="col-2 vh30 bg1">
                      <div id="breadcrumb">
                         <a href="index.html">Home</a> <span>></span>
-                        <a href="navigazione.html">Configurazione Navigazione</a> <span>></span>
-                        <em>Configurazione Avanzata</em>
+                        <a href="navigazione.html">Navigazione</a> <span>></span>
+                        <em>Navigazione Avanzata</em>
                     </div>
-                    <h1>Configurazione Avanzata</h1>
-                    <p>Qui puoi modificare le impostazioni avanzate</p>
+                    <h1>Navigazione Avanzata</h1>
                 </div>
             </div>
                 <div class="col-2 mediax2 bg2" style="padding-left: 10vw; text-align:left;">
-                    <h2 style="margin-top: 0vh;">Selezionare i formati interessati:</h2>
+                    <h2 style="margin-top: 0vh;">Selezionare le impostazioni:</h2>
                     <form>
+<!--
                         <div class="vh15">Pagina Iniziale:
-                            <input class="enjoy-input" type="text" id="initpage" placeholder="http://www.google.it" value="http://www.google.it">
+                            <input class="enjoy-input" type="text" id="initpage" placeholder="www.google.it" value="www.google.it">
                             <input type="button" class="button" id="submit" value="Imposta" >
                         </div>
+-->
                         
-                        <div class="vh15">Configura Background:
-                            <select class="enjoy-input" id="palette">
+                        <div class="vh15">Configura Colore di Sfondo:
+                            <select  class="enjoy-input" id="palette">
                                 <option>Seleziona</option>
                                 <option>Bianco</option>
                                 <option>Crema</option>
                                 <option>Giallo</option>
                             </select>
                         </div>
+                    
+<!--
+                        <div class="vh15">Configura Font:
+                            <select class="enjoy-input" id="testo">
+                                <option>Seleziona</option>
+                                <option>Normal</option>
+                                <option>Open Dyslexic</option>
+                            </select>
+                        </div>
+-->
                        
                         <div class="vh15">Configura Dimensione Font:
                             <select class="enjoy-input" id="fontsize">
                                 <option>Seleziona</option>
                                 <option>12px</option>
+                                <option>14px</option>
+                                <option>16px</option>
                                 <option>18px</option>
+                                <option>20px</option>
+                                <option>22px</option>
                                 <option>24px</option>
                             </select>
                         </div>
                     </form>
-                    
                     <div class="vh15">
                         <h3>Inizia la navigazione <button class="button" type="button" id="btngo">Vai!</button></h3>                   
                     </div>
@@ -78,104 +92,131 @@
             </div>
     
         <script type="text/javascript" src="cordova.js"></script>
-<!--        <script type="text/javascript" src="js/configAvanz.js"></script>-->
+        <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
         <script type="text/javascript">
             document.addEventListener("deviceready", onDeviceReady, false);
-            
             function onDeviceReady() {
-//                var ref = null;
-                var conn = 'http://www.google.it';
-                var filecss;
-                set();
+                var filecss = null;
+                var ref = null;
+                var url;
+                var back;
+                var font;
+                readBack();
+                readFont();
+                readSize();
                 initConn();
+                set();
                 
                 function set(){
                     document.getElementById("palette").addEventListener("change", background);
-                    document.getElementById("fontsize").addEventListener("change", fontsize);
-                    document.getElementById("btngo").addEventListener("click", open);
-                    document.getElementById("testo").addEventListener("change", text);
-                    document.getElementById("fontsize").addEventListener("change", size);
+                    document.getElementById("fontsize").addEventListener("change", fontsize); 
                     document.addEventListener("backbutton", function(event){
-                        window.location="index.html";
+                        window.location="navigazione.html";
                     }, false);
-                };
-                function open(){
-                    var ref = window.open(conn, '_blank','location=yes');
-                    ref.addEventListener('loadstop', function() {
-                        ref.insertCSS({code: filecss});
-                    }); 
-                };
-                function home(){
-                    window.location="index.html";     
-                };
-                function fontsize(event){
-                    var font = event.target.value;
-//                    var pos = str.indexOf();
-                    filecss = filecss.replace("{","{font-size:"+font+"; ");
-    //                window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
-    //                    fileSystem.root.getFile("personalizedCSS.txt", {create: true, exclusive: false}, function(fileEntry){
-    //                        fileEntry.createWriter(function(writer){
-    //                            writer.write("body{background-color:"+back+"};");
-    //                            readCSS();
-    //                        });
-    //                    });
-    //                });
-                };
+                    document.getElementById("btngo").addEventListener("touchend", function(){
+                        event.preventDefault();
+                        if (filecss=='null'){
+                            alert('Selezionare configurazione!');
+                        }
+                        else {
+                            filecss = back + font;
+                            alert(filecss);
+                            ref = window.open('http://'+url, '_blank','location=yes');
+                            ref.addEventListener('loadstop', function() {
+                                ref.insertCSS({code: filecss});
+                            }); 
+                        }
+                    }, false); 
+                }
                 function background(event){
-                    var back = event.target.value;
+                    back = event.target.value;
                     if (back == 'Bianco')
                         back = '#f7f7f7';
                     if (back == 'Crema')
                         back = '#FAFAC8';
                     if (back == 'Giallo')
                         back = '#FFFF00';
-                    filecss = "body,div{background-color:"+back+";};"
-    //                window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
-    //                    fileSystem.root.getFile("personalizedCSS.txt", {create: true, exclusive: false}, function(fileEntry){
-    //                        fileEntry.createWriter(function(writer){
-    //                            writer.write("body{background-color:"+back+"};");
-    //                            readCSS();
-    //                        });
-    //                    });
-    //                });
+                    back = "html, body, div, p, h1, h2, h3, h4, h5, li, ul, ol, br, table, td, tr, a, span{background-color:"+back+" !important;};";
                 };
-    //            function readCSS(){
-    //                window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
-    //                    fileSystem.root.getFile("personalizedCSS.txt", null, function(fileEntry){
-    //                        fileEntry.file(function(file) {
-    //                            var reader = new FileReader();
-    //                            reader.onloadend = function(e) {
-    //                                    filecss = this.result;
-    //                            }
-    //                            reader.readAsText(file);
-    //                        });
-    //                    });
-    //                });    
-    //            };
+                function fontsize(event){
+                    font = event.target.value;
+                    font = "body{font-size:"+font+" !important;};";
+                };
+// LETTURA URL CONNESSIONE
                 function initConn(){
+                    filecss = back;
                     window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
-                        fileSystem.root.getFile("readme.txt", null, function(fileEntry){
+                        fileSystem.root.getFile("connessione.txt", null, function(fileEntry){
                             fileEntry.file(function(file) {
                                 var reader = new FileReader();
                                 reader.onloadend = function(e) {
-                                    conn = this.result;
+                                    url = this.result;
                                 }
                                 reader.readAsText(file);
                             });
-                        });
+                        },function(e){url = 'www.google.it'});
                     });
                 };
                 
+// LETTURA IMPOSTAZIONI APP
+                function readBack(){
+                    window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
+                        fileSystem.root.getFile("backCSS.txt", null, setValue);
+                    });    
+                }
+                function readFont(){
+                    window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
+                        fileSystem.root.getFile("fontCSS.txt", null, setFF);
+                    });    
+                }
+                function readSize(){
+                    window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
+                        fileSystem.root.getFile("fontsizeCSS.txt", null, setFontSize);
+                    });    
+                }
+                function setFF(fileEntry) {
+                    fileEntry.file(function(file) {
+                        var reader = new FileReader();
+                        reader.onloadend = function(e) {
+                            var str = this.result;
+                                document.body.style.fontFamily = str;
+                        }
+                        reader.readAsText(file);
+                    });
+                } 
+                function setValue(fileEntry) {
+                    fileEntry.file(function(file) {
+                        var reader = new FileReader();
+                        reader.onloadend = function(e) {
+                            if(this.result=='Standard'){
+                                document.getElementsByClassName("bg1")[0].style.backgroundColor = '#fffff9';  
+                                document.getElementsByClassName("bg2")[0].style.backgroundColor = '#fffa8f';  
+                            }
+                            else if(this.result=='Greyscale'){
+                                document.getElementsByClassName("bg1")[0].style.backgroundColor = '#ffffff';
+                                document.getElementsByClassName("bg2")[0].style.backgroundColor = '#f2f2f2'; 
+                            }
+                            else if(this.result=='Lavender'){
+                                document.getElementsByClassName("bg1")[0].style.backgroundColor = '#d3f8e2';
+                                document.getElementsByClassName("bg2")[0].style.backgroundColor = '#e4c1f9';
+                            }
+                        }
+                        reader.readAsText(file);
+                    });
+                }
+                function setFontSize(fileEntry) {
+                    fileEntry.file(function(file) {
+                        var reader = new FileReader();
+                        reader.onloadend = function(e) {
+                                document.body.style.fontSize = this.result;
+                        }
+                        reader.readAsText(file);
+                    });
+                }
             };
-        </script>
-                <script type="text/javascript">
-
             $(window).load(function() {
-                // Animate loader off screen
                 $(".se-pre-con").fadeOut("slow");;
             });
-            document.addEventListener("deviceready", onDeviceReady, false);
-             
         </script>
     </body>
 </html>

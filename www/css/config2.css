@@ -11,7 +11,7 @@ html, body, div, p, h1, h2, h3, h4, h5, li, ul, ol, br, table, td, tr, a, span {
     margin: 2px !important;
     padding: 5px !important;
     border: none !important;
-    border:  !important0;
+    border: 0 !important;
     background-color: #FAFAC8 !important;
 } 
 body, div,p {
