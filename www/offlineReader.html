@@ -71,13 +71,28 @@
                 document.addEventListener("backbutton", function(event){
                     window.location="index.html";
                 }, false);
-                requestCSS('css/config1.css');
+                readCSS();
             }
             function requestCSS(css){  
                 $.get(css, function(responseText) {
                     filecss = responseText;
                 });  
             }
+            function readCSS(){
+                    window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
+                        fileSystem.root.getFile('eee.txt', null, function(fileEntry){
+                            fileEntry.file(function(file) {
+                            var reader = new FileReader();
+                            reader.onloadend = function(e) {
+                                filecss = this.result;
+                            }
+                            reader.readAsText(file);
+                            });
+                        }, function(e){ 
+                            requestCSS('css/config1.css');    
+                        });
+                    });    
+                }
             function saveLink(){
                 url = document.getElementById("link").value;
                 var urlConn = 'http://'+url;
