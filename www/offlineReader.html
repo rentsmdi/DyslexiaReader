@@ -44,6 +44,12 @@
                     <div id="btnhome"><br><h2>Incolla il link nel form</h2></div>
                     <input type="text" id="link" class="enjoy-input" placeholder="Inserire Link">
                     <button id="submit" class="button">Scarica</button>
+                    <p>Utilizza configurazione per la lettura:</p>
+                    <select class="enjoy-input" id="conf">
+                        <option>Configurazione 1</option>
+                        <option>Configurazione 2</option>
+                        <option>Configurazione Avanzata</option>
+                    </select>
                     <table id="results"></table>
                 </div>
             </div>       
@@ -68,10 +74,19 @@
             
             function set(){
                 document.getElementById("submit").addEventListener("click", saveLink);
+                document.getElementById("conf").addEventListener("change", function(event){
+                    event.preventDefault();
+                    if(event.target.value=='Configurazione 1')
+                        requestCSS('css/config1.css');
+                    if(event.target.value=='Configurazione 2')
+                        requestCSS('css/config2.css');  
+                    if(event.target.value=='Configurazione Avanzata')
+                        readCSS();
+                }, false);
                 document.addEventListener("backbutton", function(event){
                     window.location="index.html";
                 }, false);
-                readCSS();
+                requestCSS('css/config1.css');
             }
             function requestCSS(css){  
                 $.get(css, function(responseText) {
@@ -89,7 +104,8 @@
                             reader.readAsText(file);
                             });
                         }, function(e){ 
-                            requestCSS('css/config1.css');    
+                            alert('Non è presente una configurazione avanzata. Sarà selezionata Configurazione 1');
+                            requestCSS('css/config1.css');        
                         });
                     });    
                 }
