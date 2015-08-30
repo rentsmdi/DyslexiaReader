@@ -5,8 +5,8 @@
 }
 
 html, body, div, p, h1, h2, h3, h4, h5, li, ul, ol, br, table, td, tr, a, span {
-    margin: 2 !important;
-    padding: 5 !important;
+    margin: 2px !important;
+    padding: 5px !important;
     border: none !important;
     border: 0 !important;
     background-color: yellow !important;

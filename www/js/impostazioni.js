@@ -30,6 +30,8 @@ function text(event){
         textValue = 'Arial, Helvetica, sans-serif';
     if (textValue == 'Open Dyslexic')
         textValue = '"OpenDyslexic"';
+    if (textValue == 'Chelsea Market')
+        textValue = "'Chelsea Market', cursive";
     setfont();
 }
 function size(event){

@@ -1,4 +1,5 @@
 @import url(http://fonts.googleapis.com/css?family=Chelsea+Market);
+@import url(https://fonts.googleapis.com/css?family=Slackey);
 
 @font-face {
     font-family: 'Chelsea Market', cursive;
@@ -15,8 +16,8 @@ html, body, div, p, h1, h2, h3, h4, h5, li, ul, ol, br, table, td, tr, a, span {
     background-color: #FAFAC8 !important;
 } 
 body, div,p {
-/*    font-family: 'Chelsea Market', cursive;*/
-    font-family: 'OpenDyslexic'; !important;
+    font-family: 'Slackey', cursive;
+/*    font-family: 'OpenDyslexic'; !important;*/
 /*
     margin:2px;
     padding:5px;
@@ -43,11 +44,9 @@ h1 {
     text-align: center;
      
 }
-/*
 img {
     display: none;
 }
-*/
 .container{
     background-color: #FAFAC8;
 }
