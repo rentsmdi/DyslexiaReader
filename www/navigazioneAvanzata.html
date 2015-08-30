@@ -108,11 +108,11 @@
             function onDeviceReady() {
                 var filecss = null;
                 var ref = null;
-                var url;
                 var back = null;
                 var font = null;
                 var text = null;
-                var test = 'ccc.txt';
+                var test = 'ddd.txt';
+                var url;
                 readBack();
                 readFont();
                 readSize();
@@ -140,17 +140,17 @@
                         window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
                             fileSystem.root.getFile(test, {create: true, exclusive: false}, function(fileEntry){
                                 fileEntry.createWriter(function(writer){
-                                    writer.onwriteend = function(evt) {
-                                        alert('salvatoCSS'+test);
-                                    };
+//                                    writer.onwriteend = function(evt) {
+//                                        alert('salvatoCSS'+test);
+//                                    };
                                     writer.write(filecss);
                                 });
                             });
                         });
                         setCSS();     
                         }
-                        else 
-                            alert('caso non specificato(?)');
+//                        else 
+//                            alert('caso non specificato(?)');
                     }                    
                     else if(filecss!=null){
                         if(text!=null && back!=null && font!=null){
@@ -158,9 +158,9 @@
                             window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
                                 fileSystem.root.getFile(test, {create: true, exclusive: false}, function(fileEntry){
                                     fileEntry.createWriter(function(writer){
-                                        writer.onwriteend = function(evt) {
-                                            alert('salvatoCSS'+test);
-                                        };
+//                                        writer.onwriteend = function(evt) {
+//                                            alert('salvatoCSS'+test);
+//                                        };
                                         writer.write(filecss);
                                     });
                                 });
@@ -168,10 +168,16 @@
                             setCSS(); 
                         } 
                         else {
-                            alert('filecss non nullo ma una della variabili è nulle');
+//                            alert('filecss non nullo ma una della variabili è nulle');
                             setCSS(); 
                         }
                     }
+                }
+                function setCSS(){
+                    ref = window.open('http://'+url, '_blank','location=yes');
+                    ref.addEventListener('loadstop', function() {
+                        ref.insertCSS({code: filecss});
+                    }); 
                 }
                 function readCSS(){
                     window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
@@ -180,22 +186,17 @@
                             var reader = new FileReader();
                             reader.onloadend = function(e) {
                                 filecss = this.result;
-                                alert('caricato css: '+test);
+//                                alert('caricato css: '+test);
                             }
                             reader.readAsText(file);
                             });
                         }, function(e){ 
                             filecss = null;
-                            alert('filecss ancora vuoto: '+test);
+//                            alert('filecss ancora vuoto: '+test);
                         });
                     });    
                 }
-                function setCSS(){
-                    ref = window.open('http://'+url, '_blank','location=yes');
-                    ref.addEventListener('loadstop', function() {
-                        ref.insertCSS({code: filecss});
-                    }); 
-                }
+                
 // FUNZIONI DI STILE
                 function background(event){
                     event.preventDefault();
