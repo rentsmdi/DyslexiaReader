@@ -109,9 +109,9 @@
                 var filecss = null;
                 var ref = null;
                 var url;
-                var back;
-                var font;
-                var text;
+                var back = null;
+                var font = null;
+                var text = null;
                 readBack();
                 readFont();
                 readSize();
@@ -120,23 +120,24 @@
                 set();
                 
                 function set(){
-                    document.getElementById("palette").addEventListener("change", background);
-                    document.getElementById("fontsize").addEventListener("change", fontsize); 
-                    document.getElementById("color").addEventListener("change", textcolor);
+                    document.getElementById("palette").addEventListener("change", background, false);
+                    document.getElementById("fontsize").addEventListener("change", fontsize, false); 
+                    document.getElementById("color").addEventListener("change", textcolor, false);
                     document.getElementById("btngo").addEventListener("touchend", navigation, false);
                     document.addEventListener("backbutton", function(event){
+                        event.preventDefault();
                         window.location="navigazione.html";
                     }, false);  
                 }
                 function navigation(event){
                     event.preventDefault();
-                    if (filecss==null && text=='undefined' && back=='undefined' && font=='undefined'){
-                        alert('Selezionare configurazione!');
-                    }                    
-                    else if (filecss==null && text!='undefined' && back!='undefined' && font!='undefined'){
-                        filecss = "html, body, div, p, h1, h2, h3, h4, h5, li, ul, ol, br, table, td, tr, a, span { margin: 2 !important; padding: 5 !important; border: none !important; border: 0 !important; color: "+text+" !important; background-color: "+back+" !important;} body, div, p{ font-size: "+font+"  !important; line-height: 200%  !important; color: "+text+" !important; background-color: "+back+" !important; text-align:left  !important; text-transform: lowercase  !important; }";
+                    if (filecss==null){
+                        if (text==null || back==null || font==null)
+                            alert('Selezionare configurazione!');
+                        else if (text!=null && back!=null && font!=null){
+                            filecss = "html, body, div, p, h1, h2, h3, h4, h5, li, ul, ol, br, table, td, tr, a, span { margin: 2 !important; padding: 5 !important; border: none !important; border: 0 !important; color: "+text+" !important; background-color: "+back+" !important;} body, div, p{ font-size: "+font+"  !important; line-height: 200%  !important; color: "+text+" !important; background-color: "+back+" !important; text-align:left  !important; text-transform: lowercase  !important; }";
                         window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
-                            fileSystem.root.getFile("personalizedCSS4.txt", {create: true, exclusive: false}, function(fileEntry){
+                            fileSystem.root.getFile("personalizedCSS2.txt", {create: true, exclusive: false}, function(fileEntry){
                                 fileEntry.createWriter(function(writer){
                                     writer.onwriteend = function(evt) {
                                         alert('salvatoCSS'+filecss);
@@ -145,26 +146,46 @@
                                 });
                             });
                         });
-                        setCSS(); 
-                    } 
-                    else{
-                        setCSS(); 
+                        setCSS();     
+                        }
+                        else 
+                            alert('caso non specificato(?)');
+                    }                    
+                    else if(filecss!=null){
+                        if(text!=null && back!=null && font!=null){
+                            filecss = "html, body, div, p, h1, h2, h3, h4, h5, li, ul, ol, br, table, td, tr, a, span { margin: 2 !important; padding: 5 !important; border: none !important; border: 0 !important; color: "+text+" !important; background-color: "+back+" !important;} body, div, p{ font-size: "+font+"  !important; line-height: 200%  !important; color: "+text+" !important; background-color: "+back+" !important; text-align:left  !important; text-transform: lowercase  !important; }";
+                            window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
+                                fileSystem.root.getFile("CSS0.txt", {create: true, exclusive: false}, function(fileEntry){
+                                    fileEntry.createWriter(function(writer){
+                                        writer.onwriteend = function(evt) {
+//                                            alert('salvatoCSS'+filecss);
+                                        };
+                                        writer.write(filecss);
+                                    });
+                                });
+                            });
+                            setCSS(); 
+                        } 
+                        else {
+                            alert('filecss non nullo ma una della variabili è nulle');
+                            setCSS(); 
+                        }
                     }
                 }
                 function readCSS(){
                     window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
-                        fileSystem.root.getFile("personalizedCSS4.txt", null, function(fileEntry){
+                        fileSystem.root.getFile("CSS0.txt", null, function(fileEntry){
                             fileEntry.file(function(file) {
                             var reader = new FileReader();
                             reader.onloadend = function(e) {
                                 filecss = this.result;
-                                alert('caricato css: '+filecss);
+//                                alert('caricato css: '+filecss);
                             }
                             reader.readAsText(file);
                             });
                         }, function(e){ 
                             filecss = null;
-                            alert('filecss ancora vuoto: '+filecss);
+//                            alert('filecss ancora vuoto: '+filecss);
                         });
                     });    
                 }
@@ -174,21 +195,21 @@
                         ref.insertCSS({code: filecss});
                     }); 
                 }
+// FUNZIONI DI STILE
                 function background(event){
-                    
-                        back = event.target.value;
-                        if (back == 'Bianco')
-                            back = '#f7f7f7';
-                        if (back == 'Crema')
-                            back = '#FAFAC8';
-                        if (back == 'Giallo')
-                            back = '#FFFF00';
-                        if (back == 'Blu')
-                            back = '#0000FF';
-                    
+                    event.preventDefault();
+                    back = event.target.value;
+                    if (back == 'Bianco')
+                        back = '#f7f7f7';
+                    if (back == 'Crema')
+                        back = '#FAFAC8';
+                    if (back == 'Giallo')
+                        back = '#FFFF00';
+                    if (back == 'Blu')
+                        back = '#0000FF';
                 };
                 function textcolor(event){
-                    
+                    event.preventDefault();
                     text = event.target.value;
                     if (text == 'Bianco')
                         text = '#f7f7f7';
@@ -198,10 +219,9 @@
                         text = '#964B00';
                     if (text == 'Blu')
                         text = '#0000FF';
-                    
                 };
                 function fontsize(event){
-                    
+                    event.preventDefault();
                     font = event.target.value;
                 };
 // LETTURA URL CONNESSIONE
