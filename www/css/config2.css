@@ -1,9 +1,11 @@
 @import url(http://fonts.googleapis.com/css?family=Chelsea+Market);
 @import url(https://fonts.googleapis.com/css?family=Slackey);
 
+/*
 @font-face {
     font-family: 'Chelsea Market', cursive;
 }
+*/
 @font-face {
     font-family: 'OpenDyslexic';
     src: url(OpenDyslexic-Regular.otf);
@@ -17,6 +19,7 @@ html, body, div, p, h1, h2, h3, h4, h5, li, ul, ol, br, table, td, tr, a, span {
 } 
 body, div,p {
     font-family: 'Slackey', cursive;
+    /*non si può usare*/
 /*    font-family: 'OpenDyslexic'; !important;*/
 /*
     margin:2px;

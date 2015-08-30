@@ -119,7 +119,11 @@ body {
 .vh30{
     height: 30vh;
 }
-
+#about {
+    padding:20px;
+    text-align: left;
+    line-height: 150%;
+}
 /*bottone android*/
 .button, .buttonLink {
     height: 3vh;
@@ -412,4 +416,8 @@ input:focus, .enjoy-input:focus {
         min-height: 35px;
     }
 }
+
+
+
+
 

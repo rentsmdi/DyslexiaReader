@@ -61,7 +61,7 @@
                     <h2>Impostazioni</h2>
                     <br><img class="imgicon" src="img/gear91.png"/>
                 </div>
-                <div class="col-1-right bg4">
+                <div id="btnabout" class="col-1-right bg4">
                     <h2>About</h2>
                     <br><img class="imgicon" src="img/id-card10.png"/>
                 </div>
@@ -93,6 +93,10 @@
                         event.preventDefault();
                         window.location="impostazioni.html";
                     }, false);  
+                    document.getElementById("btnabout").addEventListener("touchend", function(event){
+                        event.preventDefault();
+                        window.location="about.html";
+                    }, false);
                     document.addEventListener("backbutton", function(event){
                         navigator.app.exitApp();
                     }, false);
