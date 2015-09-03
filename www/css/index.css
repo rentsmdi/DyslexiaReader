@@ -31,11 +31,10 @@
     src: url(OpenDyslexic-Regular.otf);
 }
 body {
-    background-color: black;
+    background-color: white;
     -webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
     -webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
     -webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
-    background-color: #FAFAC8;
     font-family: "OpenDyslexic";
     height:100vh;
     margin:0px;
@@ -112,13 +111,18 @@ body {
 }
 /*end backgrounds*/
 
-.vh15{
-    height: 15vh;
+.vh10{
+    height: 10vh;
 }
 
 .vh30{
     height: 30vh;
 }
+
+.scorre{
+    height: 100% !important;
+}
+
 #about {
     padding:20px;
     text-align: left;
@@ -282,7 +286,9 @@ input:focus, .enjoy-input:focus {
 		.breadcrumb { 
 			list-style: none; 
 			overflow: hidden; 
-			font-size: 80%;
+			font-size: 90%;
+            margin-top:0px;
+            margin-left:-40px;
 		}
 		.breadcrumb li { 
 			float: left; 
@@ -322,7 +328,7 @@ input:focus, .enjoy-input:focus {
 			position: absolute;
 			top: 50%;
 			margin-top: -50px; 
-			margin-left: 1px;
+			margin-left: 0px;
 			left: 100%;
 			z-index: 1; 
 		}	
