@@ -98,8 +98,11 @@ function setsize(){
     window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
         fileSystem.root.getFile("fontsizeCSS.txt", {create: true, exclusive: false}, function(fileEntry){
             fileEntry.createWriter(function(writer){
+                writer.onwriteend = function(evt) {
+                    window.location = "impostazioni.html";    
+                }
                 writer.write(sizeValue);
-                readSize();
+//                readSize();
             }, fail);
         }, fail);
     }, fail);
