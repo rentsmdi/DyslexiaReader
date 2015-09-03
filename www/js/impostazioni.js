@@ -32,6 +32,12 @@ function text(event){
         textValue = '"OpenDyslexic"';
     if (textValue == 'Chelsea Market')
         textValue = "'Chelsea Market', cursive";
+    if (textValue == 'Open Sans')
+        textValue = "'Open Sans', sans-serif";
+    if (textValue == 'Exo')
+        textValue = "'Exo', sans-serif";
+    if (textValue == 'Ubuntu')
+        textValue = "'Ubuntu', sans-serif";
     setfont();
 }
 function size(event){

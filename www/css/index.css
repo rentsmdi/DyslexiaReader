@@ -16,13 +16,18 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-/*@import url(http://fonts.googleapis.com/css?family=Chelsea+Market);*/
 
 /*
 @font-face {
     font-family: 'Chelsea Market', cursive !important;
 }
 */
+
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+@import url(https://fonts.googleapis.com/css?family=Exo);
+@import url(https://fonts.googleapis.com/css?family=Ubuntu);
+@import url(http://fonts.googleapis.com/css?family=Chelsea+Market);
+
 * {
     -webkit-tap-highlight-color: rgba(0,0,0,0); /* make transparent link selection, adjust last value opacity 0 to 1.0 */
 }
@@ -142,7 +147,7 @@ body {
     position: relative;
     cursor: pointer;
     border: none;
-    font-family: OpenDyslexic;
+    font-family: inherit;
     color: darkblue;
     text-transform: capitalize;
     -o-text-overflow: clip;
@@ -211,7 +216,7 @@ input, .enjoy-input {
     -moz-box-sizing: content-box;
     box-sizing: content-box;
     border: 1px solid #b7b7b7;
-    font-family: OpenDyslexic;
+    font-family: inherit;
     color: darkblue;
     -o-text-overflow: clip;
     text-overflow: clip;
@@ -347,13 +352,14 @@ input:focus, .enjoy-input:focus {
 		.breadcrumb li:nth-child(5) a       { background:        hsla(182,85%,75%,1); }
 		.breadcrumb li:nth-child(5) a:after { border-left-color: hsla(182,85%,75%,1); }
 		.breadcrumb li:last-child a {
-			background: white !important;
+			background: hsla(182,85%,85%,1) !important;
             padding-right: 10px;
 			color: black;
 			pointer-events: none;
  			cursor: default;
 		}
 		.breadcrumb li:last-child a:after { border: 0; }
+		.breadcrumb li:last-child a:before { border-left-color: hsla(182,85%,85%,1) !important; }
 		.breadcrumb li a:hover { background: hsla(182,85%,25%,1); }
 		.breadcrumb li a:hover:after { border-left-color: hsla(182,85%,25%,1) !important; }
 
