@@ -1,15 +1,6 @@
 @import url(http://fonts.googleapis.com/css?family=Chelsea+Market);
 @import url(https://fonts.googleapis.com/css?family=Slackey);
 
-/*
-@font-face {
-    font-family: 'Chelsea Market', cursive;
-}
-*/
-@font-face {
-    font-family: 'OpenDyslexic';
-    src: url(OpenDyslexic-Regular.otf);
-}
 html, body, div, p, h1, h2, h3, h4, h5, li, ul, ol, br, table, td, tr, a, span {
     margin: 2px !important;
     padding: 5px !important;
@@ -19,8 +10,6 @@ html, body, div, p, h1, h2, h3, h4, h5, li, ul, ol, br, table, td, tr, a, span {
 } 
 body, div,p {
     font-family: 'Slackey', cursive;
-    /*non si può usare*/
-/*    font-family: 'OpenDyslexic'; !important;*/
 /*
     margin:2px;
     padding:5px;
@@ -41,15 +30,18 @@ body, div,p {
 }
 h1 {
     font-size: 24px; 
+     
+}
+h1, h2, h3, h4, h5 {
     font-weight: bold;
     letter-spacing: 2px;
     word-spacing: 3px;
     text-align: center;
-     
+    text-align: center;
 }
 img {
     display: none;
 }
-.container{
-    background-color: #FAFAC8;
+#header, #menu-bar, #sidebar, h2#postcomment, form#commentform, #footer {
+	display: none !important;
 }
