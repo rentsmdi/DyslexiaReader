@@ -18,7 +18,7 @@ img {
 }
 */
 h1, h2, h3, h4, h5 {
-    font-family: 'Chelsea Market', cursive;
+    font-family: 'Chelsea Market', cursive !important;
 }
 h1 {
     font-weight: bold !important;
@@ -31,7 +31,7 @@ body{
     padding: 0px !important;    
 }
 div, p, article, section {
-    font-family: 'Chelsea Market', cursive;
+    font-family: 'Chelsea Market', cursive !important;
     border: 0px !important;
     font-size: 18px !important;
 } 
@@ -43,7 +43,7 @@ p, li {
 }
 
 input, textarea, select{
-    font-family: 'Chelsea Market', cursive;
+    font-family: 'Chelsea Market', cursive !important;
     background: white !important;
     border: 1px solid black !important;
 }

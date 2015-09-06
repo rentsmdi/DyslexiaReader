@@ -3,8 +3,29 @@
 @font-face {
     font-family: 'Chelsea Market', cursive !important;
 }
+<<<<<<< HEAD
 html, body, div, p, h1, h2, h3, h4, h5, li, ul, ol, table, td, tr, a, list, .navbar {
     color: white !important;
+=======
+
+html, body, div, p, h1, h2, h3, h4, h5, li, ul, ol, br, table, td, tr, a, span, list {
+    margin: 0px !important;
+    padding: 0px !important;
+    border: none !important;
+    border: 0 !important;
+    background-color: yellow !important;
+    color: black;
+}   
+
+div, p{
+    margin: 5px !important;
+    padding: 5px !important;
+    font-family: 'Chelsea Market', cursive;
+    font-size: 16px  !important;
+    line-height: 200%  !important;
+    background-color: yellow  !important;
+    text-align:left  !important;
+>>>>>>> origin/master
     text-transform: lowercase  !important;
     text-decoration: none !important;
     font-family: 'Chelsea Market', cursive !important;
