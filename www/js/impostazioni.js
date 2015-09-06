@@ -68,7 +68,8 @@ function write(){
         fileSystem.root.getFile("connessione.txt", {create: true, exclusive: false}, function(fileEntry){
             fileEntry.createWriter(function(writer){
                 writer.onwriteend = function(evt) {
-                    readURL();
+//                    readURL();
+                    window.location = "impostazioni.html"; 
                 };
                 writer.write(document.getElementById("initpage").value);
             }, fail);
@@ -84,8 +85,11 @@ function setfont(){
     window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
         fileSystem.root.getFile("fontCSS.txt", {create: true, exclusive: false}, function(fileEntry){
             fileEntry.createWriter(function(writer){
+                writer.onwriteend = function(evt) {
+                    window.location = "impostazioni.html";    
+                }
                 writer.write(textValue);
-                readFont();
+//                readFont();
             }, fail);
         }, fail);
     }, fail);
@@ -94,8 +98,11 @@ function setcolor(){
     window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
         fileSystem.root.getFile("backCSS.txt", {create: true, exclusive: false}, function(fileEntry){
             fileEntry.createWriter(function(writer){
+                writer.onwriteend = function(evt) {
+                    window.location = "impostazioni.html";    
+                }
                 writer.write(selValue);
-                readBack();
+//                readBack();
             }, fail);
         }, fail);
     }, fail);
