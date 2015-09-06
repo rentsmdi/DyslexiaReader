@@ -1,47 +1,27 @@
 @import url(http://fonts.googleapis.com/css?family=Chelsea+Market);
-@import url(https://fonts.googleapis.com/css?family=Slackey);
 
-html, body, div, p, h1, h2, h3, h4, h5, li, ul, ol, br, table, td, tr, a, span {
-    margin: 2px !important;
-    padding: 5px !important;
-    border: none !important;
-    border: 0 !important;
-    background-color: #FAFAC8 !important;
-} 
-body, div,p {
-    font-family: 'Slackey', cursive;
-/*
-    margin:2px;
-    padding:5px;
-*/
-    font-size: 18px  !important;
-    line-height: 200%  !important;
-    text-align:left  !important;
-    text-transform: lowercase  !important;
-    text-decoration: none !important;
+@font-face {
+    font-family: 'Chelsea Market', cursive !important;
+}
+html, body, div, p, h1, h2, h3, h4, h5, li, ul, ol, table, td, tr, a, list {
     color: black !important;
-    letter-spacing: 2px !important;
-    word-spacing: 4px !important;
-    word-break: keep-all !important;
-    font-style: normal !important;
-    column-count: 1;
-    display: block;
-    
+    font-family: 'Chelsea Market', cursive;
 }
-h1 {
-    font-size: 24px; 
-     
+div, p {
+    font-family: 'Chelsea Market', cursive;
+    background-color: #FFFFCC !important;
+    border: 0px !important;
+    font-size: 20px !important;
+} 
+p, li {
+    line-height: 150%  !important;
 }
-h1, h2, h3, h4, h5 {
-    font-weight: bold;
-    letter-spacing: 2px;
-    word-spacing: 3px;
-    text-align: center;
-    text-align: center;
+
+input, textarea, select{
+    font-family: 'Chelsea Market', cursive;
+    background: white !important;
+    border: 1px solid black !important;
 }
-img {
-    display: none;
-}
-#header, #menu-bar, #sidebar, h2#postcomment, form#commentform, #footer {
-	display: none !important;
+form, fieldset {
+    background: none !important;
 }
