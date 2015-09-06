@@ -3,13 +3,13 @@
 @font-face {
     font-family: 'Chelsea Market', cursive !important;
 }
-html, body, div, p, h1, h2, h3, h4, h5, li, ul, ol, table, td, tr, a, list {
+html, body, div, p, h1, h2, h3, h4, h5, li, ul, ol, table, td, tr, a, list, .navbar {
     color: black !important;
     text-transform: lowercase  !important;
     text-decoration: none !important;
     font-family: 'Chelsea Market', cursive;
 }
-html, body, div, p, h1, h2, h3, h4, h5, li, ul, ol, br, table, td, tr, a, list, article, section {
+html, body, div, p, h1, h2, h3, h4, h5, li, ul, ol, br, table, td, tr, a, list, article, section, .navbar {
     background-color: #FFFFCC !important;
 }
 /*
