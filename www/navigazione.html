@@ -100,7 +100,17 @@
                     document.getElementById("btngo").addEventListener("touchend", function(){
                         event.preventDefault();
                         ref = window.open('http://'+conn, '_blank','location=yes', 'hardwareback=yes');
-                        ref.addEventListener('loadstop', function() {
+                        ref.addEventListener('loadstop', function(event) {
+                            window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
+                                fileSystem.root.getFile("url01.txt", {create: true, exclusive: false}, function(fileEntry){
+                                    fileEntry.createWriter(function(writer){
+//                                        writer.onwriteend = function(evt) {
+//                                            alert(event.url);   
+//                                        }
+                                        writer.write(event.url);
+                                    });
+                                });
+                            });
                             ref.insertCSS({code: filecss});
                         }); 
                     }, false); 

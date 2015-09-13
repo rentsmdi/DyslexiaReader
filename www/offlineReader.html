@@ -68,6 +68,7 @@
             var c;
             var n;
             var filecss;
+            init();
             set();
             readBack()
             readFont();
@@ -89,6 +90,19 @@
                     window.location="index.html";
                 }, false);
                 requestCSS('css/config1.css');
+            }
+            function init(){
+                window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
+                    fileSystem.root.getFile('url01.txt', null, function(fileEntry){
+                        fileEntry.file(function(file) {
+                        var reader = new FileReader();
+                        reader.onloadend = function(e) {
+                            document.getElementById("link").value = this.result.slice(this.result.indexOf("/")+2,this.result.length);
+                        };
+                        reader.readAsText(file);
+                        });
+                    });
+                }); 
             }
             function requestCSS(css){  
                 $.get(css, function(responseText) {
@@ -125,8 +139,8 @@
                                 saveAllLinks();
                             };
                             $.get(urlConn, function(responseText, status) {
-                                alert(status);
-                                writer.write(responseText);
+                                    alert(status);
+                                    writer.write(responseText);
                             }); 
                         });
                     });
