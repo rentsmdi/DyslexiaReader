@@ -436,3 +436,8 @@ input:focus, .enjoy-input:focus {
 
 
 
+
+#testsettings {
+    float: right;
+/*    width: 40vw;*/
+}

@@ -47,8 +47,8 @@
                     <button id="submit" class="button">Scarica</button>
                     <p>Utilizza configurazione per la lettura:</p>
                     <select class="enjoy-input" id="conf">
-                        <option>Configurazione 1</option>
-                        <option>Configurazione 2</option>
+                        <option>Configurazione Blu-Bianco</option>
+                        <option>Configurazione Crema-Nero</option>
                         <option>Configurazione Avanzata</option>
                     </select>
                     <br>
@@ -79,9 +79,9 @@
                 document.getElementById("submit").addEventListener("click", saveLink);
                 document.getElementById("conf").addEventListener("change", function(event){
                     event.preventDefault();
-                    if(event.target.value=='Configurazione 1')
+                    if(event.target.value=='Configurazione Blu-Bianco')
                         requestCSS('css/config1.css');
-                    if(event.target.value=='Configurazione 2')
+                    if(event.target.value=='Configurazione Crema-Nero')
                         requestCSS('css/config2.css');  
                     if(event.target.value=='Configurazione Avanzata')
                         readCSS();
@@ -111,7 +111,7 @@
             }
             function readCSS(){
                     window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
-                        fileSystem.root.getFile('eee.txt', null, function(fileEntry){
+                        fileSystem.root.getFile('fff.txt', null, function(fileEntry){
                             fileEntry.file(function(file) {
                             var reader = new FileReader();
                             reader.onloadend = function(e) {
@@ -120,9 +120,8 @@
                             reader.readAsText(file);
                             });
                         }, function(e){ 
-                            alert('Non è presente una configurazione avanzata. Sarà selezionata Configurazione 1');
-                            requestCSS('css/config1.css');    
-//                            window.location="navigazioneAvanzata.html";
+                            alert('Non è presente una configurazione avanzata.');   
+//                            window.location="impostazioni.html";
                         });
                     });    
                 }
