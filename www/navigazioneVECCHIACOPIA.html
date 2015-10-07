@@ -33,7 +33,7 @@
         <div class="se-pre-con"></div>
         <div class="container">
             <div class="row">
-                <div id="btnhome" class="col-2 vh30 bg1">
+                <div id="btnhome" class="col-2 bg1">
                     <ul class="breadcrumb">
                         <li><a href="index.html">Home</a></li>
                         <li><a>Navigazione</a></li>
@@ -44,14 +44,24 @@
             </div>
 
             <div class="row">
-                <div id="btn1" class="col-2 mediax2 bg2">
-                    <p>Utilizza configurazione per la navigazione:</p>
-                    <select class="enjoy-input" id="conf">
-                        <option>Configurazione Blu-Bianco</option>
-                        <option>Configurazione Crema-Nero</option>
-                        <option>Configurazione Avanzata</option>
-                    </select>
-                    <p><button id="btngo" class="button">Inizia La Navigazione</button></p>
+                <div id="btn1" class="col-1-left bg2">
+                    <h3>Configurazione Blu-Bianco</h3>
+                    <br><img class="imgicon" src="img/writing84.png"/>
+                </div>
+                <div id="btn2" class="col-1-right bg3">
+                    <h3>Configurazione Crema-Nero</h3>
+                    <br><img class="imgicon" src="img/writing84.png"/>
+                </div>
+            </div>
+                
+            <div class="row">
+                <div id="btnavz" class="col-1-left bg5">
+                    <h3>Navigazione Avanzata</h3>
+                    <br><img class="imgicon" src="img/tools_128.png"/>
+                </div>
+                <div id="btngo" class="col-1-right bg4">
+                    <h3>Inizia la navigazione</h3>  
+                    <br><img class="imgicon" src="img/world-grid11.png"/>
                 </div>
             </div>
         </div>   
@@ -70,42 +80,6 @@
                 initConn();
                 readCSS();
                 set();
-
-/**** TI HO FATTO QUESTE FUNZIONI SENZA CANCELLARE QUELLE VECCHIE. SE VANNO BENE USALE/CORREGGILE, ALTRIMENTI RIFALLE PURE DA ZERO! ****
-                function setNUOVA(){
-                    document.getElementById("btngo").addEventListener("click", startNavigation);
-                    document.getElementById("conf").addEventListener("change", function(event){
-                        event.preventDefault();
-                        if(event.target.value=='Configurazione Blu-Bianco')
-                            requestCSS('css/config1.css');
-                        if(event.target.value=='Configurazione Crema-Nero')
-                            requestCSS('css/config2.css');  
-                        if(event.target.value=='Configurazione Avanzata')
-                            window.location="navigazioneAvanzata.html";
-                    }, false);
-                    document.addEventListener("backbutton", function(event){
-                        window.location="index.html";
-                    }, false);
-                    requestCSS('css/config1.css');
-                }
-                function startNavigation(){
-                        event.preventDefault();
-                        ref = window.open('http://'+conn, '_blank','location=yes', 'hardwareback=yes');
-                        ref.addEventListener('loadstop', function(event) {
-                            window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
-                                fileSystem.root.getFile("url01.txt", {create: true, exclusive: false}, function(fileEntry){
-                                    fileEntry.createWriter(function(writer){
-//                                        writer.onwriteend = function(evt) {
-//                                            alert(event.url);   
-//                                        }
-                                        writer.write(event.url);
-                                    });
-                                });
-                            });
-                            ref.insertCSS({code: filecss});
-                        }); 
-                    }
-******************************************************** FINE FUNZIONI DI LEO ********************************************************/                
                 
                 function set(){
                     document.getElementById("btn1").addEventListener("touchend", function(event){
@@ -207,14 +181,23 @@
                             if(this.result=='Standard'){
                                 document.getElementsByClassName("bg1")[0].style.backgroundColor = '#fffff9';  
                                 document.getElementsByClassName("bg2")[0].style.backgroundColor = '#fffa8f';
+                                document.getElementsByClassName("bg3")[0].style.backgroundColor = '#8cffc7';
+                                document.getElementsByClassName("bg4")[0].style.backgroundColor = '#ffdeb0';
+                                document.getElementsByClassName("bg5")[0].style.backgroundColor = '#c9f5ff';
                             }
                             else if(this.result=='Greyscale'){
                                 document.getElementsByClassName("bg1")[0].style.backgroundColor = '#ffffff';
                                 document.getElementsByClassName("bg2")[0].style.backgroundColor = '#f2f2f2';
+                                document.getElementsByClassName("bg3")[0].style.backgroundColor = '#e8e8e8';
+                                document.getElementsByClassName("bg4")[0].style.backgroundColor = '#e0e0e0';
+                                document.getElementsByClassName("bg5")[0].style.backgroundColor = '#d6d6d6';
                             }
                             else if(this.result=='Lavender'){
                                 document.getElementsByClassName("bg1")[0].style.backgroundColor = '#d3f8e2';
                                 document.getElementsByClassName("bg2")[0].style.backgroundColor = '#e4c1f9';
+                                document.getElementsByClassName("bg3")[0].style.backgroundColor = '#f694c1';
+                                document.getElementsByClassName("bg4")[0].style.backgroundColor = '#ede7b1';
+                                document.getElementsByClassName("bg5")[0].style.backgroundColor = '#a9def9';
                             }
                         }
                         reader.readAsText(file);
