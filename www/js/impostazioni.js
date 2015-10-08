@@ -256,7 +256,7 @@
                     });
                 });
             });
-            setCSS();     
+//            setCSS();     
             }
 //                        else 
 //                            alert('caso non specificato(?)');
@@ -274,7 +274,7 @@
                         });
                     });
                 });
-                setCSS(); 
+//                setCSS(); 
             } 
             else {
 //                            setCSS();
@@ -282,12 +282,7 @@
             }
         }
     }
-    function setCSS(){
-        ref = window.open('http://'+url, '_blank','location=yes');
-        ref.addEventListener('loadstop', function() {
-            ref.insertCSS({code: filecss});
-        }); 
-    }
+
     function readCSS(){
         window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
             fileSystem.root.getFile(test, null, function(fileEntry){
