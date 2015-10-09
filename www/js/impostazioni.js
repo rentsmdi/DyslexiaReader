@@ -220,12 +220,20 @@
     function ffamily(event){
         event.preventDefault();
         textValue = event.target.value;
-        if (textValue == 'Normal')
+        if (textValue == 'Standard')
             textValue = 'Arial, Helvetica, sans-serif';
         if (textValue == 'Open Dyslexic')
             textValue = '"OpenDyslexic"';
         if (textValue == 'Chelsea Market')
             textValue = "'Chelsea Market', cursive";
+        if (textValue == 'Open Sans')
+            textValue = "'Open Sans', sans-serif";
+        if (textValue == 'Exo')
+            textValue = "'Exo', sans-serif";
+        if (textValue == 'Ubuntu')
+            textValue = "'Ubuntu', sans-serif";
+        if (textValue == 'Slackey')
+            textValue = "'Slackey', cursive";
         document.getElementById("testsettings").style.fontFamily = textValue;
     }
     function fontsize(event){
@@ -245,7 +253,7 @@
             if (text==null || back==null || font==null || textValue==null)
                 alert('Selezionare configurazione!');
             else if (text!=null && back!=null && font!=null && textValue!=null){
-                filecss = "@import url(http://fonts.googleapis.com/css?family=Chelsea+Market); @font-face {font-family: "+textValue+" !important; } html, body, div, p, h1, h2, h3, h4, h5, li, ul, ol, table, td, tr, a, list {color: "+text+" !important; text-transform: lowercase !important; text-decoration: none !important; font-family: "+textValue+" !important; } html, body, div, p, h1, h2, h3, h4, h5, li, ul, ol, br, table, td, tr, a, list, article, section {background-color: "+back+" !important; } h1, h2, h3, h4, h5 { font-family: "+textValue+" !important; } h1{ font-weight: bold !important; font-size: 24px !important; letter-spacing: 2px !important; word-spacing: 3px !important;} body {margin: 0px !important; padding: 0px !important;} div, p, article, section { font-family: "+textValue+" !important; border: 0px !important; font-size: "+font+"  !important; } p, li { line-height:"+intlinea+" !important; letter-spacing: 2px !important; word-spacing: 3px !important; text-align: left !important; } input, textarea, select{ font-family: "+textValue+" !important; background: white !important; border: 1px solid black !important; } form, fieldset {  background: none !important; }";
+                filecss = "@import url(http://fonts.googleapis.com/css?family=Chelsea+Market);  @import url(https://fonts.googleapis.com/css?family=Slackey); @import url(https://fonts.googleapis.com/css?family=Open+Sans); @import url(https://fonts.googleapis.com/css?family=Exo); @import url(https://fonts.googleapis.com/css?family=Ubuntu); @import url(http://canvasweb.altervista.org/fonts/opendyslexic-regular-webfont.ttf);  @font-face {font-family: "+textValue+" !important; } html, body, div, p, h1, h2, h3, h4, h5, li, ul, ol, table, td, tr, a, list {color: "+text+" !important; text-transform: lowercase !important; text-decoration: none !important; font-family: "+textValue+" !important; } html, body, div, p, h1, h2, h3, h4, h5, li, ul, ol, br, table, td, tr, a, list, article, section {background-color: "+back+" !important; } h1, h2, h3, h4, h5 { font-family: "+textValue+" !important; } h1{ font-weight: bold !important; font-size: 24px !important; letter-spacing: 2px !important; word-spacing: 3px !important;} body {margin: 0px !important; padding: 0px !important;} div, p, article, section { font-family: "+textValue+" !important; border: 0px !important; font-size: "+font+"  !important; } p, li { line-height:"+intlinea+" !important; letter-spacing: 2px !important; word-spacing: 3px !important; text-align: left !important; } input, textarea, select{ font-family: "+textValue+" !important; background: white !important; border: 1px solid black !important; } form, fieldset {  background: none !important; }";
             window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
                 fileSystem.root.getFile(test, {create: true, exclusive: false}, function(fileEntry){
                     fileEntry.createWriter(function(writer){
@@ -263,7 +271,7 @@
         }                    
         else if(filecss!=null){
             if(text!=null && back!=null && font!=null && textValue!=null){
-                filecss = "@import url(http://fonts.googleapis.com/css?family=Chelsea+Market); @font-face {font-family: "+textValue+" !important; } html, body, div, p, h1, h2, h3, h4, h5, li, ul, ol, table, td, tr, a, list {color: "+text+" !important; text-transform: lowercase !important; text-decoration: none !important; font-family: "+textValue+" !important; } html, body, div, p, h1, h2, h3, h4, h5, li, ul, ol, br, table, td, tr, a, list, article, section {background-color: "+back+" !important; } h1, h2, h3, h4, h5 { font-family: "+textValue+" !important; } h1{ font-weight: bold !important; font-size: 24px !important; letter-spacing: 2px !important; word-spacing: 3px !important;} body {margin: 0px !important; padding: 0px !important;} div, p, article, section { font-family: "+textValue+" !important; border: 0px !important; font-size: "+font+"  !important; } p, li { line-height:"+intlinea+" !important;  letter-spacing: 2px !important; word-spacing: 3px !important; text-align: left !important; } input, textarea, select{ font-family: "+textValue+" !important; background: white !important; border: 1px solid black !important; } form, fieldset {  background: none !important; }";
+                filecss = "@import url(http://fonts.googleapis.com/css?family=Chelsea+Market);  @import url(https://fonts.googleapis.com/css?family=Slackey); @import url(https://fonts.googleapis.com/css?family=Open+Sans); @import url(https://fonts.googleapis.com/css?family=Exo); @import url(https://fonts.googleapis.com/css?family=Ubuntu); @import url(http://canvasweb.altervista.org/fonts/opendyslexic-regular-webfont.ttf);  @font-face {font-family: "+textValue+" !important; } html, body, div, p, h1, h2, h3, h4, h5, li, ul, ol, table, td, tr, a, list {color: "+text+" !important; text-transform: lowercase !important; text-decoration: none !important; font-family: "+textValue+" !important; } html, body, div, p, h1, h2, h3, h4, h5, li, ul, ol, br, table, td, tr, a, list, article, section {background-color: "+back+" !important; } h1, h2, h3, h4, h5 { font-family: "+textValue+" !important; } h1{ font-weight: bold !important; font-size: 24px !important; letter-spacing: 2px !important; word-spacing: 3px !important;} body {margin: 0px !important; padding: 0px !important;} div, p, article, section { font-family: "+textValue+" !important; border: 0px !important; font-size: "+font+"  !important; } p, li { line-height:"+intlinea+" !important;  letter-spacing: 2px !important; word-spacing: 3px !important; text-align: left !important; } input, textarea, select{ font-family: "+textValue+" !important; background: white !important; border: 1px solid black !important; } form, fieldset {  background: none !important; }";
                 window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
                     fileSystem.root.getFile(test, {create: true, exclusive: false}, function(fileEntry){
                         fileEntry.createWriter(function(writer){
