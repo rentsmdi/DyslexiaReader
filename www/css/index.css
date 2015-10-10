@@ -67,6 +67,10 @@ body {
     height: 34vh;
     position: relative;
 }
+.abcol-2 {
+    width: 100vw;
+    position: relative;
+}
 
 .col-1-left {
     width: 50vw;
