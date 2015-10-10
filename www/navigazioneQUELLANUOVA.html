@@ -29,7 +29,7 @@
         <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
         <title>Dyslexia</title>
     </head>
-    <body>  
+    <body class="bg2">  
         <div class="se-pre-con"></div>
         <div class="container">
             <div class="row">
@@ -207,17 +207,20 @@
                     fileEntry.file(function(file) {
                         var reader = new FileReader();
                         reader.onloadend = function(e) {
-                            if(this.result=='Standard'){
+                           if(this.result=='Standard'){
                                 document.getElementsByClassName("bg1")[0].style.backgroundColor = '#fffff9';  
-                                document.getElementsByClassName("bg2")[0].style.backgroundColor = '#fffa8f';
+                                document.getElementsByClassName("bg2")[0].style.backgroundColor = '#fffa8f'; 
+                                document.getElementsByClassName("bg2")[1].style.backgroundColor = '#fffa8f'; 
                             }
                             else if(this.result=='Greyscale'){
                                 document.getElementsByClassName("bg1")[0].style.backgroundColor = '#ffffff';
-                                document.getElementsByClassName("bg2")[0].style.backgroundColor = '#f2f2f2';
+                                document.getElementsByClassName("bg2")[0].style.backgroundColor = '#f2f2f2'; 
+                                document.getElementsByClassName("bg2")[1].style.backgroundColor = '#f2f2f2'; 
                             }
                             else if(this.result=='Lavender'){
                                 document.getElementsByClassName("bg1")[0].style.backgroundColor = '#d3f8e2';
                                 document.getElementsByClassName("bg2")[0].style.backgroundColor = '#e4c1f9';
+                                document.getElementsByClassName("bg2")[1].style.backgroundColor = '#e4c1f9';
                             }
                         }
                         reader.readAsText(file);
