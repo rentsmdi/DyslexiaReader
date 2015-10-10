@@ -281,6 +281,11 @@ input:focus, .enjoy-input:focus {
     margin-right: auto;
     height: 10vh;
 }
+.imgicon2{
+    margin-left: auto;
+    margin-right: auto;
+    height: 3vh;
+}
 
 #results {
     margin-left: auto;

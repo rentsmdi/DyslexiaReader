@@ -4,14 +4,13 @@
     font-family: 'OpenDyslexic'; !important;
 }*/
 
-/*@font-face{ 
+@font-face{ 
 	font-family: 'OpenDyslexic'; !important;
 	src: url('http://canvasweb.altervista.org/fonts/opendyslexic-regular-webfont.eot');
 	src: url('http://canvasweb.altervista.org/fonts/opendyslexic-regular-webfont.eot') format('embedded-opentype'),
 	     url('http://canvasweb.altervista.org/fonts/opendyslexic-regular-webfont.woff') format('woff'),
 	     url('http://canvasweb.altervista.org/fonts/opendyslexic-regular-webfont.ttf') format('truetype');
 }
-*/
 
 html, body, div, p, h1, h2, h3, h4, h5, li, ul, ol, table, td, tr, a, list, .navbar {
     color: white !important;
@@ -46,7 +45,7 @@ div, p, article, section {
     /*font-size: 110% !important;*/
 } 
 p, li {
-    line-height: 175%  !important;
+    line-height: 150%  !important;
     letter-spacing: 2px !important;
     word-spacing: 3px !important;
     text-align: left !important;

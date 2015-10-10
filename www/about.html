@@ -37,19 +37,37 @@
                          <li><a>About</a></li>
                     </ul>
                     <h1>About</h1>
+                    <p>Informazioni sull'applicazione</p>
                 </div>
             </div>
 
-            <div class="row">
-                <div class="col-2 mediax2 bg2" id="about">
-                    <h3>Informazioni generali</h3>
-                    <p>Lo scopo dell'applicazione è rendere il web più accessibile per utenti con problemi di dislessia e/o daltonia. <br> Dalla pagina principale si può accedere, in ordine, alle sezioni "Navigazione", "Offline Reader", "Impostazioni" e "About"</p>
-                    <h3>Sezione Navigazione</h3>
-                    <p>Sono state predisposte due configurazioni predefinite, e una terza opzione di Configurazione Avanzata alla quale si può accedere tramite l'apposito riquadro. <br> E' necessario selezionare una delle due configurazioni prima di far partire la navigazione, altrimenti verrà selezionata la prima.</p>
-                    <p>Dalla Configurazione Avanzata, è necessario compilare tutti i campi prima di accedere alla navigazione, altrimenti verrà utilizzata la configurazione precedente.</p>
-                    <p></p>
+            <div class="row mediax2">
+                <div class="abcol-2 bg4" id="about">
+                    <h3><img class="imgicon2" src="img/id-card10.png"/> Informazioni generali</h3>
+                        <p>Lo scopo dell'applicazione è rendere il web più accessibile per utenti affetti da dislessia. <br> Dalla pagina principale si può accedere, in ordine, alle sezioni "Web Reader", "Offline Reader", "Impostazioni" e "About".
+                        </p><br>
                 </div>
-            </div>       
+                
+                <div class="abcol-2 bg2" id="about">
+                    <h3><img class="imgicon2" src="img/mobile-phone23.png"/> Sezione Web Reader</h3>
+                        <p>Qui è possibile navigare online, utilizzando delle configurazioni che renderanno la navigazione più accessibile all'utente dislessico. E' possibile utilizzare una configurazione predefinita a scelta, oppure configurare completamente la navigazione dalla sezione "impostazioni". Le configurazioni predefinite sono:<br>
+                            Configurazione blu-bianco: sfondo blu, testo bianco, carattere OpenDyslexic, interlinea 1.5.<br>
+                            Configurazione crema-nero: sfondo crema, testo nero, carattere Chelsea Market, interlinea 1.5.
+                    </p><br>
+                </div>
+                    
+                <div class="abcol-2 bg3" id="about">
+                    <h3><img class="imgicon2" src="img/book_128.png"/> Sezione Offline Reader</h3>
+                    <p>Qui è possibile scaricare una pagina web da consultare offline, inserendo l'URL nel riquadro indicato. La configurazione può essere selezionata allo stesso modo di quella online.
+                    </p><br>
+                </div>
+                    
+                <div class="abcol-2 bg5" id="about">
+                    <h3><img class="imgicon2" src="img/gear91.png"/> Sezione Impostazioni</h3>
+                    <p>Qui è possibile scegliere il formato dell'applicazione modificando la combinazione di colori ed il carattere. Inoltre è possibile creare una configurazione avanzata per la navigazione online ("Web Reader") oppure offline ("Offline Reader").
+                    </p>
+                </div>       
+            </div>
         </div>
     
         <script type="text/javascript" src="cordova.js"></script>
@@ -88,17 +106,26 @@
                 fileEntry.file(function(file) {
                 var reader = new FileReader();
                 reader.onloadend = function(e) {
-                    if(this.result=='Standard'){
+                   if(this.result=='Standard'){
                         document.getElementsByClassName("bg1")[0].style.backgroundColor = '#fffff9';  
-                        document.getElementsByClassName("bg2")[0].style.backgroundColor = '#fffa8f';  
+                        document.getElementsByClassName("bg2")[0].style.backgroundColor = '#fffa8f';
+                        document.getElementsByClassName("bg3")[0].style.backgroundColor = '#8cffc7';
+                        document.getElementsByClassName("bg4")[0].style.backgroundColor = '#ffdeb0';
+                        document.getElementsByClassName("bg5")[0].style.backgroundColor = '#c9f5ff';
                     }
                     else if(this.result=='Greyscale'){
                         document.getElementsByClassName("bg1")[0].style.backgroundColor = '#ffffff';
-                        document.getElementsByClassName("bg2")[0].style.backgroundColor = '#f2f2f2'; 
+                        document.getElementsByClassName("bg2")[0].style.backgroundColor = '#f2f2f2';
+                        document.getElementsByClassName("bg3")[0].style.backgroundColor = '#e8e8e8';
+                        document.getElementsByClassName("bg4")[0].style.backgroundColor = '#e0e0e0';
+                        document.getElementsByClassName("bg5")[0].style.backgroundColor = '#d6d6d6';
                     }
                     else if(this.result=='Lavender'){
                         document.getElementsByClassName("bg1")[0].style.backgroundColor = '#d3f8e2';
                         document.getElementsByClassName("bg2")[0].style.backgroundColor = '#e4c1f9';
+                        document.getElementsByClassName("bg3")[0].style.backgroundColor = '#f694c1';
+                        document.getElementsByClassName("bg4")[0].style.backgroundColor = '#ede7b1';
+                        document.getElementsByClassName("bg5")[0].style.backgroundColor = '#a9def9';
                     }
                 }
                 reader.readAsText(file);
