@@ -32,6 +32,24 @@
 * {
     -webkit-tap-highlight-color: rgba(0,0,0,0); /* make transparent link selection, adjust last value opacity 0 to 1.0 */
 }
+
+h1{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        -webkit-transform: translate(-50%, -50%);
+        -moz-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+    margin-top: 0px;
+    padding-top: 0px;
+    text-align: center;
+    
+}
+
+h3{
+    text-align:center;
+}
 @font-face {
     font-family: "OpenDyslexic";
     src: url(OpenDyslexic-Regular.otf);
@@ -66,11 +84,21 @@ body {
     width: 100vw;
     height: 34vh;
     position: relative;
+    
 }
 .abcol-2 {
     width: 100vw;
-    position: relative;
+    overflow: auto;
+    text-align: left;
 }
+
+.paddingLeftRight{
+    margin-left: 5vw;
+    margin-right: 5vw;
+}
+
+
+    
 
 .col-1-left {
     width: 50vw;
@@ -133,11 +161,7 @@ body {
     height: 100% !important;
 }
 
-#about {
-    padding:20px;
-    text-align: left;
-    line-height: 150%;
-}
+
 /*bottone android*/
 .button, .buttonLink {
     height: 3vh;
@@ -306,7 +330,9 @@ input:focus, .enjoy-input:focus {
 			overflow: hidden; 
 			font-size: 100%;
             margin-top:0px;
-            margin-left:-40px;
+            margin-bottom:0px;
+            padding-left:0px;
+            width: 100vw;
 		}
 		.breadcrumb li { 
 			float: left; 
@@ -448,6 +474,8 @@ input:focus, .enjoy-input:focus {
 
 
 #testsettings {
-    float: right;
+    padding-left: -5vw;
+    padding-right: 5vw;
+    text-align: left;
 /*    width: 40vw;*/
 }
