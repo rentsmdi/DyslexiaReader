@@ -1,12 +1,13 @@
- var selValue;
-    var textValue;
-    var sizeValue;
+    var selValue = null;
+    var sizeValue = null;
     var filecss = null;
     var back = null;
     var font = null;
     var text = null;
     var textValue = null;
     var intlinea = null;
+    var letters = null;
+    var words = null;
     var test = 'fff.txt';
 
     function onDeviceReady() {
@@ -16,7 +17,6 @@
         readSize();
         readURL();
         readCSS();
-
     };
     function set(){
         document.getElementById("submit").addEventListener("click", write);
@@ -28,6 +28,8 @@
         document.getElementById("fontfamilynav").addEventListener("change", ffamily, false); 
         document.getElementById("colornav").addEventListener("change", textcolor, false);
         document.getElementById("interlinea").addEventListener("change", inter, false);
+        document.getElementById("wordpsacing").addEventListener("change", word, false);
+        document.getElementById("letterspacing").addEventListener("change", letter, false);
         document.getElementById("save").addEventListener("touchend", navigation, false);
         document.addEventListener("backbutton", function(event){
             window.location="index.html";
@@ -38,14 +40,17 @@
         selValue = event.target.value;
         setcolor();
     }
+
     function textapp(event){
         textValue = event.target.value;
-        if (textValue == 'Normal')
-            textValue = 'Arial, Helvetica, sans-serif';
+        if (textValue == 'Standard')
+            textValue = "'Roboto', sans-serif";
         if (textValue == 'Open Dyslexic')
-            textValue = '"OpenDyslexic"';
+            textValue = "'OpenDyslexic'";
         if (textValue == 'Chelsea Market')
             textValue = "'Chelsea Market', cursive";
+        if (textValue == 'Slackey')
+            textValue = "'Slackey', cursive";
         if (textValue == 'Open Sans')
             textValue = "'Open Sans', sans-serif";
         if (textValue == 'Exo')
@@ -82,7 +87,7 @@
             fileSystem.root.getFile("connessione.txt", {create: true, exclusive: false}, function(fileEntry){
                 fileEntry.createWriter(function(writer){
                     writer.onwriteend = function(evt) {
-    //                    readURL();
+                        alert("Salvato!");
                         window.location = "impostazioni.html"; 
                     };
                     writer.write(document.getElementById("initpage").value);
@@ -94,7 +99,6 @@
     function fail(e) { };
 
     //IMPOSTAZIONE CONFIGURAZIONE BACKGROUND FONT E FONT-SIZE
-
     function setfont(){  
         window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
             fileSystem.root.getFile("fontCSS.txt", {create: true, exclusive: false}, function(fileEntry){
@@ -190,7 +194,7 @@
             reader.readAsText(file);
         });
     } 
-// FUNZIONI DI STILE
+// FUNZIONI DI STILE SUL RIQUADRO DI PROVA
     function background(event){
         event.preventDefault();
         back = event.target.value;
@@ -220,12 +224,20 @@
     function ffamily(event){
         event.preventDefault();
         textValue = event.target.value;
-        if (textValue == 'Normal')
-            textValue = 'Arial, Helvetica, sans-serif';
+        if (textValue == 'Standard')
+            textValue = "'Roboto', sans-serif";
         if (textValue == 'Open Dyslexic')
             textValue = '"OpenDyslexic"';
         if (textValue == 'Chelsea Market')
             textValue = "'Chelsea Market', cursive";
+        if (textValue == 'Open Sans')
+            textValue = "'Open Sans', sans-serif";
+        if (textValue == 'Exo')
+            textValue = "'Exo', sans-serif";
+        if (textValue == 'Ubuntu')
+            textValue = "'Ubuntu', sans-serif";
+        if (textValue == 'Slackey')
+            textValue = "'Slackey', cursive";
         document.getElementById("testsettings").style.fontFamily = textValue;
     }
     function fontsize(event){
@@ -238,6 +250,16 @@
         intlinea = event.target.value;
         document.getElementById("testsettings").style.lineHeight = intlinea;
     };
+    function letter(event){
+        event.preventDefault();
+        letters = event.target.value;
+        document.getElementById("testsettings").style.letterSpacing = letters;
+    };
+    function word(event){
+        event.preventDefault();
+        words = event.target.value;
+        document.getElementById("testsettings").style.wordSpacing = words;
+    };
 // NAVIGAZIONE
     function navigation(event){
         event.preventDefault();
@@ -245,36 +267,36 @@
             if (text==null || back==null || font==null || textValue==null)
                 alert('Selezionare configurazione!');
             else if (text!=null && back!=null && font!=null && textValue!=null){
-                filecss = "@import url(http://fonts.googleapis.com/css?family=Chelsea+Market); @font-face {font-family: "+textValue+" !important; } html, body, div, p, h1, h2, h3, h4, h5, li, ul, ol, table, td, tr, a, list {color: "+text+" !important; text-transform: lowercase !important; text-decoration: none !important; font-family: "+textValue+" !important; } html, body, div, p, h1, h2, h3, h4, h5, li, ul, ol, br, table, td, tr, a, list, article, section {background-color: "+back+" !important; } h1, h2, h3, h4, h5 { font-family: "+textValue+" !important; } h1{ font-weight: bold !important; font-size: 24px !important; letter-spacing: 2px !important; word-spacing: 3px !important;} body {margin: 0px !important; padding: 0px !important;} div, p, article, section { font-family: "+textValue+" !important; border: 0px !important; font-size: "+font+"  !important; } p, li { line-height:"+intlinea+" !important; letter-spacing: 2px !important; word-spacing: 3px !important; text-align: left !important; } input, textarea, select{ font-family: "+textValue+" !important; background: white !important; border: 1px solid black !important; } form, fieldset {  background: none !important; }";
+                filecss = "@import url(http://fonts.googleapis.com/css?family=Chelsea+Market);  @import url(https://fonts.googleapis.com/css?family=Slackey); @import url(https://fonts.googleapis.com/css?family=Open+Sans); @import url(https://fonts.googleapis.com/css?family=Exo); @import url(https://fonts.googleapis.com/css?family=Ubuntu); @import url(http://canvasweb.altervista.org/fonts/opendyslexic-regular-webfont.ttf);  @font-face{font-family: 'OpenDyslexic'; !important; src: url('http://canvasweb.altervista.org/fonts/opendyslexic-regular-webfont.eot'); src: url('http://canvasweb.altervista.org/fonts/opendyslexic-regular-webfont.eot') format('embedded-opentype'), url('http://canvasweb.altervista.org/fonts/opendyslexic-regular-webfont.woff') format('woff'), url('http://canvasweb.altervista.org/fonts/opendyslexic-regular-webfont.ttf') format('truetype');}         @font-face {font-family: "+textValue+" !important; } html, body, div, p, h1, h2, h3, h4, h5, li, ul, ol, table, td, tr, a, list {color: "+text+" !important; text-transform: lowercase !important; text-decoration: none !important; font-family: "+textValue+" !important; } html, body, div, p, h1, h2, h3, h4, h5, li, ul, ol, br, table, td, tr, a, list, article, section {background-color: "+back+" !important; } h1, h2, h3, h4, h5 { font-family: "+textValue+" !important; } h1{ font-weight: bold !important; font-size: 24px !important; letter-spacing: 2px !important; word-spacing: 3px !important;} body {margin: 0px !important; padding: 0px !important;} div, p, article, section { font-family: "+textValue+" !important; border: 0px !important; font-size: "+font+"  !important; } p, li { line-height:"+intlinea+" !important; letter-spacing: 2px !important; word-spacing: 3px !important; text-align: left !important; } input, textarea, select{ font-family: "+textValue+" !important; background: white !important; border: 1px solid black !important; } form, fieldset {  background: none !important; }";
             window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
                 fileSystem.root.getFile(test, {create: true, exclusive: false}, function(fileEntry){
                     fileEntry.createWriter(function(writer){
-//                                    writer.onwriteend = function(evt) {
-//                                        alert('salvatoCSS'+test);
-//                                    };
+                        writer.onwriteend = function(evt) {
+                            alert('Configurazione salvata!');
+                        };
                         writer.write(filecss);
                     });
                 });
             });
-            setCSS();     
+//            setCSS();     
             }
 //                        else 
 //                            alert('caso non specificato(?)');
         }                    
         else if(filecss!=null){
             if(text!=null && back!=null && font!=null && textValue!=null){
-                filecss = "@import url(http://fonts.googleapis.com/css?family=Chelsea+Market); @font-face {font-family: "+textValue+" !important; } html, body, div, p, h1, h2, h3, h4, h5, li, ul, ol, table, td, tr, a, list {color: "+text+" !important; text-transform: lowercase !important; text-decoration: none !important; font-family: "+textValue+" !important; } html, body, div, p, h1, h2, h3, h4, h5, li, ul, ol, br, table, td, tr, a, list, article, section {background-color: "+back+" !important; } h1, h2, h3, h4, h5 { font-family: "+textValue+" !important; } h1{ font-weight: bold !important; font-size: 24px !important; letter-spacing: 2px !important; word-spacing: 3px !important;} body {margin: 0px !important; padding: 0px !important;} div, p, article, section { font-family: "+textValue+" !important; border: 0px !important; font-size: "+font+"  !important; } p, li { line-height:"+intlinea+" !important;  letter-spacing: 2px !important; word-spacing: 3px !important; text-align: left !important; } input, textarea, select{ font-family: "+textValue+" !important; background: white !important; border: 1px solid black !important; } form, fieldset {  background: none !important; }";
+                filecss = "@import url(http://fonts.googleapis.com/css?family=Chelsea+Market);  @import url(https://fonts.googleapis.com/css?family=Slackey); @import url(https://fonts.googleapis.com/css?family=Open+Sans); @import url(https://fonts.googleapis.com/css?family=Exo); @import url(https://fonts.googleapis.com/css?family=Ubuntu); @import url(http://canvasweb.altervista.org/fonts/opendyslexic-regular-webfont.ttf); @font-face{font-family: 'OpenDyslexic'; !important; src: url('http://canvasweb.altervista.org/fonts/opendyslexic-regular-webfont.eot'); src: url('http://canvasweb.altervista.org/fonts/opendyslexic-regular-webfont.eot') format('embedded-opentype'), url('http://canvasweb.altervista.org/fonts/opendyslexic-regular-webfont.woff') format('woff'), url('http://canvasweb.altervista.org/fonts/opendyslexic-regular-webfont.ttf') format('truetype');}          @font-face {font-family: "+textValue+" !important; } html, body, div, p, h1, h2, h3, h4, h5, li, ul, ol, table, td, tr, a, list {color: "+text+" !important; text-transform: lowercase !important; text-decoration: none !important; font-family: "+textValue+" !important; } html, body, div, p, h1, h2, h3, h4, h5, li, ul, ol, br, table, td, tr, a, list, article, section {background-color: "+back+" !important; } h1, h2, h3, h4, h5 { font-family: "+textValue+" !important; } h1{ font-weight: bold !important; font-size: 24px !important; letter-spacing: 2px !important; word-spacing: 3px !important;} body {margin: 0px !important; padding: 0px !important;} div, p, article, section { font-family: "+textValue+" !important; border: 0px !important; font-size: "+font+"  !important; } p, li { line-height:"+intlinea+" !important;  letter-spacing: 2px !important; word-spacing: 3px !important; text-align: left !important; } input, textarea, select{ font-family: "+textValue+" !important; background: white !important; border: 1px solid black !important; } form, fieldset {  background: none !important; }";
                 window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
                     fileSystem.root.getFile(test, {create: true, exclusive: false}, function(fileEntry){
                         fileEntry.createWriter(function(writer){
-//                                        writer.onwriteend = function(evt) {
-//                                            alert('salvatoCSS'+test);
-//                                        };
+                            writer.onwriteend = function(evt) {
+                                alert('Configurazione salvata!');
+                            };
                             writer.write(filecss);
                         });
                     });
                 });
-                setCSS(); 
+//                setCSS(); 
             } 
             else {
 //                            setCSS();
@@ -282,12 +304,7 @@
             }
         }
     }
-    function setCSS(){
-        ref = window.open('http://'+url, '_blank','location=yes');
-        ref.addEventListener('loadstop', function() {
-            ref.insertCSS({code: filecss});
-        }); 
-    }
+
     function readCSS(){
         window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
             fileSystem.root.getFile(test, null, function(fileEntry){

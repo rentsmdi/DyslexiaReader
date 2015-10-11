@@ -1,5 +1,5 @@
-    var selValue;
-    var sizeValue;
+    var selValue = null;
+    var sizeValue = null;
     var filecss = null;
     var back = null;
     var font = null;
@@ -15,7 +15,6 @@
         readSize();
         readURL();
         readCSS();
-
     };
     function set(){
         document.getElementById("submit").addEventListener("click", write);
@@ -222,7 +221,7 @@
         event.preventDefault();
         textValue = event.target.value;
         if (textValue == 'Standard')
-            textValue = 'Arial, Helvetica, sans-serif';
+            textValue = "'Roboto', sans-serif";
         if (textValue == 'Open Dyslexic')
             textValue = '"OpenDyslexic"';
         if (textValue == 'Chelsea Market')
