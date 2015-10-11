@@ -40,12 +40,14 @@
     }
     function text(event){
         textValue = event.target.value;
-        if (textValue == 'Normal')
-            textValue = 'Arial, Helvetica, sans-serif';
+        if (textValue == 'Standard')
+            textValue = "'Roboto', sans-serif";
         if (textValue == 'Open Dyslexic')
             textValue = '"OpenDyslexic"';
         if (textValue == 'Chelsea Market')
             textValue = "'Chelsea Market', cursive";
+        if (textValue == 'Slackey')
+            textValue = "'Slackey', cursive";
         if (textValue == 'Open Sans')
             textValue = "'Open Sans', sans-serif";
         if (textValue == 'Exo')
@@ -82,7 +84,7 @@
             fileSystem.root.getFile("connessione.txt", {create: true, exclusive: false}, function(fileEntry){
                 fileEntry.createWriter(function(writer){
                     writer.onwriteend = function(evt) {
-    //                    readURL();
+                        alert("Salvato!");
                         window.location = "impostazioni.html"; 
                     };
                     writer.write(document.getElementById("initpage").value);
@@ -94,7 +96,6 @@
     function fail(e) { };
 
     //IMPOSTAZIONE CONFIGURAZIONE BACKGROUND FONT E FONT-SIZE
-
     function setfont(){  
         window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
             fileSystem.root.getFile("fontCSS.txt", {create: true, exclusive: false}, function(fileEntry){
@@ -257,9 +258,9 @@
             window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
                 fileSystem.root.getFile(test, {create: true, exclusive: false}, function(fileEntry){
                     fileEntry.createWriter(function(writer){
-//                                    writer.onwriteend = function(evt) {
-//                                        alert('salvatoCSS'+test);
-//                                    };
+                        writer.onwriteend = function(evt) {
+                            alert('Configurazione Salvata!');
+                        };
                         writer.write(filecss);
                     });
                 });
@@ -275,9 +276,9 @@
                 window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
                     fileSystem.root.getFile(test, {create: true, exclusive: false}, function(fileEntry){
                         fileEntry.createWriter(function(writer){
-//                                        writer.onwriteend = function(evt) {
-//                                            alert('salvatoCSS'+test);
-//                                        };
+                            writer.onwriteend = function(evt) {
+                                alert('Configurazione Salvata!');
+                            };
                             writer.write(filecss);
                         });
                     });
