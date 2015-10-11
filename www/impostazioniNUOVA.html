@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <!--
     Copyright (c) 2012-2014 Adobe Systems Incorporated. All rights reserved.
+
     Licensed to the Apache Software Foundation (ASF) under one
     or more contributor license agreements.  See the NOTICE file
     distributed with this work for additional information
@@ -8,7 +9,9 @@
     to you under the Apache License, Version 2.0 (the
     "License"); you may not use this file except in compliance
     with the License.  You may obtain a copy of the License at
+
     http://www.apache.org/licenses/LICENSE-2.0
+
     Unless required by applicable law or agreed to in writing,
     software distributed under the License is distributed on an
     "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -36,12 +39,11 @@
                          <li><a href="index.html">Home</a></li>
                          <li><a>Impostazioni</a</li>
                     </ul>
-                    <h1>Configurazione Applicazione</h1>
-                    <p>Qui puoi selezionare il formato della navigazione</p>
+                    <h1>Impostazioni</h1>
                 </div>
             </div>
                 <div class="col-2 mediax2 bg2" style="padding-left: 10vw; text-align:left; width: 90vw; height: auto; min-height: 70vh;">
-                    <h2 style="margin-top: 0vh;">Selezionare i formati interessati:</h2>
+                    <h2 style="margin-top: 0vh;">Impostazioni Applicazione:</h2>
                     <form>
                         <div class="vh10">Pagina Iniziale:
                             <input class="enjoy-input" type="text" id="initpage" placeholder="www.google.it" value="www.google.it">
@@ -57,12 +59,13 @@
                             </select>
                         </div>
                     
-                        <div class="vh10">Configura Font:
+                       <div class="vh10">Configura Font:
                             <select class="enjoy-input" id="testo">
                                 <option>Seleziona</option>
                                 <option>Normal</option>
                                 <option>Open Dyslexic</option>
                                 <option>Chelsea Market</option>
+                                <option>Slackey</option>
                                 <option>Open Sans</option>
                                 <option>Exo</option>
                                 <option>Ubuntu</option>
@@ -81,7 +84,7 @@
                     </form>
                     <h2>Impostazioni Navigazione Avanzata</h2>
                     <form>
-                        <div class="vh10">Configura Colore di Sfondo:
+                        <div class="vh10">Colore di Sfondo:
                             <select  class="enjoy-input" id="palettenav">
                                 <option>Seleziona</option>
                                 <option>Bianco</option>
@@ -90,16 +93,20 @@
                                 <option>Blu</option>
                             </select>
                         </div>
-                        <div class="vh10">Configura Font:
+                        <div class="vh10">Carattere:
                             <select class="enjoy-input" id="fontfamilynav">
                                 <option>Seleziona</option>
-                                <option>Normal</option>
+                                <option>Standard</option>
                                 <option>Open Dyslexic</option>
                                 <option>Chelsea Market</option>
+                                <option>Slackey</option>
+                                <option>Open Sans</option>
+                                <option>Exo</option>
+                                <option>Ubuntu</option>
                             </select>
                         </div>
                         
-                        <div class="vh10">Configura Colore Font:
+                        <div class="vh10">Colore Carattere:
                             <select class="enjoy-input" id="colornav">
                                 <option>Seleziona</option>
                                 <option>Nero</option>
@@ -109,7 +116,7 @@
                             </select>
                         </div>
                        
-                        <div class="vh10">Configura Dimensione Font:
+                        <div class="vh10">Dimensione Carattere:
                             <select class="enjoy-input" id="fontsizenav">
                                 <option>Seleziona</option>
                                 <option>12px</option>
@@ -130,12 +137,30 @@
                                 <option>2.5</option>
                             </select>
                         </div>
+                        <div class="vh10">Spaziatura Parole:
+                            <select class="enjoy-input" id="wordspacing">
+                                <option>Seleziona</option>
+                                <option>1.0</option>
+                                <option>1.5</option>
+                                <option>2.0</option>
+                                <option>2.5</option>
+                            </select>
+                        </div>
+                        <div class="vh10">Spaziatura Lettere:
+                            <select class="enjoy-input" id="letterspacing">
+                                <option>Seleziona</option>
+                                <option>1.0</option>
+                                <option>1.5</option>
+                                <option>2.0</option>
+                                <option>2.5</option>
+                            </select>
+                        </div>
                         <div id="testsettings"><p>Pariatur ubi sunt sed ita et duis nescius. Non illum fidelissimae. Commodo ut 
                             lorem, incididunt eram hic eiusmod sempiternum, velit incurreret philosophari, 
                             doctrina quorum an incurreret philosophari eu officia si labore incurreret ab 
                             ita cillum o cillum te duis eiusmod do tractavissent aut duis officia ne fugiat 
                             eram. </p></div>
-                        <button class="button" id="save">Salva</button>
+                        <button class="button" id="save" style="margin-bottom:20px;">Salva</button>
                     </form>
                 </div>
             </div>
@@ -144,6 +169,7 @@
         <script type="text/javascript" src="js/impostazioni.js"></script>
         <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
         <script type="text/javascript">
+
             $(window).load(function() {
                 // Animate loader off screen
                 $(".se-pre-con").fadeOut("slow");;
