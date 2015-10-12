@@ -110,7 +110,7 @@
                 }
                 function initConn(){
                     window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
-                        fileSystem.root.getFile("connessione.txt", null, function(fileEntry){
+                        fileSystem.root.getFile("conn04.txt", null, function(fileEntry){
                             fileEntry.file(function(file) {
                                 var reader = new FileReader();
                                 reader.onloadend = function(e) {

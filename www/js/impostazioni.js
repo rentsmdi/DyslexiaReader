@@ -1,11 +1,13 @@
-    var selValue = null;
-    var sizeValue = null;
+    var selValue;
+    var sizeValue;
     var filecss = null;
     var back = null;
     var font = null;
     var text = null;
     var textValue = null;
     var intlinea = null;
+    var wspc = null;
+    var lspc = null;
     var test = 'fff.txt';
 
     function onDeviceReady() {
@@ -17,15 +19,17 @@
         readCSS();
     };
     function set(){
-        document.getElementById("submit").addEventListener("click", write);
-        document.getElementById("palette").addEventListener("change", list);
-        document.getElementById("testo").addEventListener("change", textapp);
-        document.getElementById("fontsize").addEventListener("change", size);
+        document.getElementById("submit").addEventListener("touchend", write, false);
+        document.getElementById("palette").addEventListener("change", list, false);
+        document.getElementById("testo").addEventListener("change", textapp, false);
+        document.getElementById("fontsize").addEventListener("change", size, false);
         document.getElementById("palettenav").addEventListener("change", background, false);
         document.getElementById("fontsizenav").addEventListener("change", fontsize, false); 
         document.getElementById("fontfamilynav").addEventListener("change", ffamily, false); 
         document.getElementById("colornav").addEventListener("change", textcolor, false);
         document.getElementById("interlinea").addEventListener("change", inter, false);
+        document.getElementById("wspace").addEventListener("change", wspacing, false);
+        document.getElementById("lspace").addEventListener("change", lspacing, false);
         document.getElementById("save").addEventListener("touchend", navigation, false);
         document.addEventListener("backbutton", function(event){
             window.location="index.html";
@@ -66,7 +70,7 @@
     //IMPOSTAZIONI URL CONNESSIONE
     function readURL(){
         window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
-            fileSystem.root.getFile("connessione.txt", null, setURL, fail);
+            fileSystem.root.getFile("conn04.txt", null, setURL, fail);
         }, fail);    
     }
     function setURL(fileEntry) {
@@ -80,10 +84,10 @@
     }
     function write(){
         window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
-            fileSystem.root.getFile("connessione.txt", {create: true, exclusive: false}, function(fileEntry){
+            fileSystem.root.getFile("conn04.txt", {create: true, exclusive: false}, function(fileEntry){
                 fileEntry.createWriter(function(writer){
                     writer.onwriteend = function(evt) {
-                        alert("Salvato!");
+//                        alert("Salvato!");
                         window.location = "impostazioni.html"; 
                     };
                     writer.write(document.getElementById("initpage").value);
@@ -221,7 +225,7 @@
         event.preventDefault();
         textValue = event.target.value;
         if (textValue == 'Standard')
-            textValue = "'Roboto', sans-serif";
+            textValue = 'Arial, Helvetica, sans-serif';
         if (textValue == 'Open Dyslexic')
             textValue = '"OpenDyslexic"';
         if (textValue == 'Chelsea Market')
@@ -246,14 +250,24 @@
         intlinea = event.target.value;
         document.getElementById("testsettings").style.lineHeight = intlinea;
     };
+    function wspacing(event){
+        event.preventDefault();
+        wspc = event.target.value;
+        document.getElementById("testsettings").style.wordSpacing = wspc;
+    }
+    function lspacing(event){
+            event.preventDefault();
+            lspc = event.target.value;
+            document.getElementById("testsettings").style.letterSpacing = lspc;
+        }
 // NAVIGAZIONE
     function navigation(event){
         event.preventDefault();
         if (filecss==null){
-            if (text==null || back==null || font==null || textValue==null)
+            if (text==null || back==null || font==null || textValue==null || inter==null || wspc==null || lspc==null)
                 alert('Selezionare configurazione!');
             else if (text!=null && back!=null && font!=null && textValue!=null){
-                filecss = "@import url(http://fonts.googleapis.com/css?family=Chelsea+Market);  @import url(https://fonts.googleapis.com/css?family=Slackey); @import url(https://fonts.googleapis.com/css?family=Open+Sans); @import url(https://fonts.googleapis.com/css?family=Exo); @import url(https://fonts.googleapis.com/css?family=Ubuntu); @import url(http://canvasweb.altervista.org/fonts/opendyslexic-regular-webfont.ttf);  @font-face{font-family: 'OpenDyslexic'; !important; src: url('http://canvasweb.altervista.org/fonts/opendyslexic-regular-webfont.eot'); src: url('http://canvasweb.altervista.org/fonts/opendyslexic-regular-webfont.eot') format('embedded-opentype'), url('http://canvasweb.altervista.org/fonts/opendyslexic-regular-webfont.woff') format('woff'), url('http://canvasweb.altervista.org/fonts/opendyslexic-regular-webfont.ttf') format('truetype');}         @font-face {font-family: "+textValue+" !important; } html, body, div, p, h1, h2, h3, h4, h5, li, ul, ol, table, td, tr, a, list {color: "+text+" !important; text-transform: lowercase !important; text-decoration: none !important; font-family: "+textValue+" !important; } html, body, div, p, h1, h2, h3, h4, h5, li, ul, ol, br, table, td, tr, a, list, article, section {background-color: "+back+" !important; } h1, h2, h3, h4, h5 { font-family: "+textValue+" !important; } h1{ font-weight: bold !important; font-size: 24px !important; letter-spacing: 2px !important; word-spacing: 3px !important;} body {margin: 0px !important; padding: 0px !important;} div, p, article, section { font-family: "+textValue+" !important; border: 0px !important; font-size: "+font+"  !important; } p, li { line-height:"+intlinea+" !important; letter-spacing: 2px !important; word-spacing: 3px !important; text-align: left !important; } input, textarea, select{ font-family: "+textValue+" !important; background: white !important; border: 1px solid black !important; } form, fieldset {  background: none !important; }";
+                filecss = "@import url(http://fonts.googleapis.com/css?family=Chelsea+Market);  @import url(https://fonts.googleapis.com/css?family=Slackey); @import url(https://fonts.googleapis.com/css?family=Open+Sans); @import url(https://fonts.googleapis.com/css?family=Exo); @import url(https://fonts.googleapis.com/css?family=Ubuntu); @import url(http://canvasweb.altervista.org/fonts/opendyslexic-regular-webfont.ttf); @font-face{font-family: 'OpenDyslexic'; !important; src: url('http://canvasweb.altervista.org/fonts/opendyslexic-regular-webfont.eot'); src: url('http://canvasweb.altervista.org/fonts/opendyslexic-regular-webfont.eot') format('embedded-opentype'), url('http://canvasweb.altervista.org/fonts/opendyslexic-regular-webfont.woff') format('woff'), url('http://canvasweb.altervista.org/fonts/opendyslexic-regular-webfont.ttf') format('truetype');}          @font-face {font-family: "+textValue+" !important; } html, body, div, p, h1, h2, h3, h4, h5, li, ul, ol, table, td, tr, a, list {color: "+text+" !important; text-transform: lowercase !important; text-decoration: none !important; font-family: "+textValue+" !important; } html, body, div, p, h1, h2, h3, h4, h5, li, ul, ol, br, table, td, tr, a, list, article, section {background-color: "+back+" !important; } h1, h2, h3, h4, h5 { font-family: "+textValue+" !important; } h1{ font-weight: bold !important; font-size: 24px !important; letter-spacing:"+lspc+" !important; word-spacing:"+wspc+" !important;} body {margin: 0px !important; padding: 0px !important;} div, p, article, section { font-family: "+textValue+" !important; border: 0px !important; font-size: "+font+"  !important; } p, li { line-height:"+intlinea+" !important;  letter-spacing:"+lspc+" !important; word-spacing:"+wspc+" !important; text-align: left !important; } input, textarea, select{ font-family: "+textValue+" !important; background: white !important; border: 1px solid black !important; } form, fieldset {  background: none !important; }";
             window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
                 fileSystem.root.getFile(test, {create: true, exclusive: false}, function(fileEntry){
                     fileEntry.createWriter(function(writer){
@@ -263,15 +277,12 @@
                         writer.write(filecss);
                     });
                 });
-            });
-//            setCSS();     
+            });    
             }
-//                        else 
-//                            alert('caso non specificato(?)');
         }                    
         else if(filecss!=null){
-            if(text!=null && back!=null && font!=null && textValue!=null){
-                filecss = "@import url(http://fonts.googleapis.com/css?family=Chelsea+Market);  @import url(https://fonts.googleapis.com/css?family=Slackey); @import url(https://fonts.googleapis.com/css?family=Open+Sans); @import url(https://fonts.googleapis.com/css?family=Exo); @import url(https://fonts.googleapis.com/css?family=Ubuntu); @import url(http://canvasweb.altervista.org/fonts/opendyslexic-regular-webfont.ttf); @font-face{font-family: 'OpenDyslexic'; !important; src: url('http://canvasweb.altervista.org/fonts/opendyslexic-regular-webfont.eot'); src: url('http://canvasweb.altervista.org/fonts/opendyslexic-regular-webfont.eot') format('embedded-opentype'), url('http://canvasweb.altervista.org/fonts/opendyslexic-regular-webfont.woff') format('woff'), url('http://canvasweb.altervista.org/fonts/opendyslexic-regular-webfont.ttf') format('truetype');}          @font-face {font-family: "+textValue+" !important; } html, body, div, p, h1, h2, h3, h4, h5, li, ul, ol, table, td, tr, a, list {color: "+text+" !important; text-transform: lowercase !important; text-decoration: none !important; font-family: "+textValue+" !important; } html, body, div, p, h1, h2, h3, h4, h5, li, ul, ol, br, table, td, tr, a, list, article, section {background-color: "+back+" !important; } h1, h2, h3, h4, h5 { font-family: "+textValue+" !important; } h1{ font-weight: bold !important; font-size: 24px !important; letter-spacing: 2px !important; word-spacing: 3px !important;} body {margin: 0px !important; padding: 0px !important;} div, p, article, section { font-family: "+textValue+" !important; border: 0px !important; font-size: "+font+"  !important; } p, li { line-height:"+intlinea+" !important;  letter-spacing: 2px !important; word-spacing: 3px !important; text-align: left !important; } input, textarea, select{ font-family: "+textValue+" !important; background: white !important; border: 1px solid black !important; } form, fieldset {  background: none !important; }";
+            if(text!=null && back!=null && font!=null && textValue!=null && inter!=null && wspc!=null && lspc!=null){
+                filecss = "@import url(http://fonts.googleapis.com/css?family=Chelsea+Market);  @import url(https://fonts.googleapis.com/css?family=Slackey); @import url(https://fonts.googleapis.com/css?family=Open+Sans); @import url(https://fonts.googleapis.com/css?family=Exo); @import url(https://fonts.googleapis.com/css?family=Ubuntu); @import url(http://canvasweb.altervista.org/fonts/opendyslexic-regular-webfont.ttf); @font-face{font-family: 'OpenDyslexic'; !important; src: url('http://canvasweb.altervista.org/fonts/opendyslexic-regular-webfont.eot'); src: url('http://canvasweb.altervista.org/fonts/opendyslexic-regular-webfont.eot') format('embedded-opentype'), url('http://canvasweb.altervista.org/fonts/opendyslexic-regular-webfont.woff') format('woff'), url('http://canvasweb.altervista.org/fonts/opendyslexic-regular-webfont.ttf') format('truetype');}          @font-face {font-family: "+textValue+" !important; } html, body, div, p, h1, h2, h3, h4, h5, li, ul, ol, table, td, tr, a, list {color: "+text+" !important; text-transform: lowercase !important; text-decoration: none !important; font-family: "+textValue+" !important; } html, body, div, p, h1, h2, h3, h4, h5, li, ul, ol, br, table, td, tr, a, list, article, section {background-color: "+back+" !important; } h1, h2, h3, h4, h5 { font-family: "+textValue+" !important; } h1{ font-weight: bold !important; font-size: 24px !important; letter-spacing:"+lspc+" !important; word-spacing:"+wspc+" !important;} body {margin: 0px !important; padding: 0px !important;} div, p, article, section { font-family: "+textValue+" !important; border: 0px !important; font-size: "+font+"  !important; } p, li { line-height:"+intlinea+" !important;  letter-spacing:"+lspc+" !important; word-spacing:"+wspc+" !important; text-align: left !important; } input, textarea, select{ font-family: "+textValue+" !important; background: white !important; border: 1px solid black !important; } form, fieldset {  background: none !important; }";
                 window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
                     fileSystem.root.getFile(test, {create: true, exclusive: false}, function(fileEntry){
                         fileEntry.createWriter(function(writer){
