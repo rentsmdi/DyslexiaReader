@@ -165,8 +165,8 @@
                     document.getElementsByClassName("bg2")[0].style.backgroundColor = '#f2f2f2'; 
                 }
                 else if(this.result=='Lavender'){
-                    document.getElementsByClassName("bg1")[0].style.backgroundColor = '#d3f8e2';
-                    document.getElementsByClassName("bg2")[0].style.backgroundColor = '#e4c1f9';
+                    document.getElementsByClassName("bg1")[0].style.backgroundColor = '#d8ffe8';
+                    document.getElementsByClassName("bg2")[0].style.backgroundColor = '#ebd6ff';
                 }
             }
             reader.readAsText(file);
