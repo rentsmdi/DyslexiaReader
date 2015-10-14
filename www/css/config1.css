@@ -16,7 +16,6 @@ html, body, div, p, h1, h2, h3, h4, h5, li, ul, ol, br, table, td, tr, a, li, ar
 }
 html, body, div, p, article, section, li, ul, ol, table, td, tr, a, .navbar {
     border: 0px !important;
-    font-size: 2vw !important;
     line-height: 2.0  !important;
     letter-spacing: 2px !important;
     word-spacing: 3px !important;
