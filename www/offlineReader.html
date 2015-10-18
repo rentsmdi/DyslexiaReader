@@ -49,7 +49,7 @@
                     <select class="enjoy-input" id="conf">
                         <option>Configurazione Crema-Nero</option>
                         <option>Configurazione Blu-Bianco</option>
-                        <option>Configurazione Avanzata</option>
+                        <option>Configurazione Personalizzata</option>
                     </select>
                     <br>
                     <br>
@@ -84,7 +84,7 @@
                         requestCSS('css/config1.css');
                     if(event.target.value=='Configurazione Blu-Bianco')
                         requestCSS('css/config2.css');
-                    if(event.target.value=='Configurazione Avanzata')
+                    if(event.target.value=='Configurazione Personalizzata')
                         readCSS();
                 }, false);
                 document.addEventListener("backbutton", function(event){
@@ -112,7 +112,7 @@
             }
             function readCSS(){
                 window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
-                    fileSystem.root.getFile('fff.txt', null, function(fileEntry){
+                    fileSystem.root.getFile('ggg.txt', null, function(fileEntry){
                         fileEntry.file(function(file) {
                         var reader = new FileReader();
                         reader.onloadend = function(e) {
@@ -121,7 +121,7 @@
                         reader.readAsText(file);
                         });
                     }, function(e){ 
-                        alert('Non è presente una configurazione avanzata.');   
+                        alert('Non è presente una configurazione personalizzata.');   
                         window.location="impostazioni.html";
                     });
                 });    
