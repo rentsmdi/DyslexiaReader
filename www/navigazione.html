@@ -63,12 +63,12 @@
             function onDeviceReady() {
                 var filecss;
                 var ref = null;
-                var conn;
+                var URLconn = null;
+                var fileConn = "conn05.txt";
                 readBack();
                 readFont();
                 readSize();
                 initConn();
-//                readCSS();
                 set();
 
                 function set(){
@@ -89,7 +89,7 @@
                 }
                 function startNavigation(){
                         event.preventDefault();
-                        ref = window.open('http://'+conn, '_blank','location=yes', 'hardwareback=yes');
+                        ref = window.open('http://'+URLconn, '_blank','location=yes', 'hardwareback=yes');
                         ref.addEventListener('loadstop', function(event) {
                             window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
                                 fileSystem.root.getFile("url01.txt", {create: true, exclusive: false}, function(fileEntry){
@@ -110,15 +110,18 @@
                 }
                 function initConn(){
                     window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
-                        fileSystem.root.getFile("conn04.txt", null, function(fileEntry){
+                        fileSystem.root.getFile(fileConn, null, function(fileEntry){
                             fileEntry.file(function(file) {
                                 var reader = new FileReader();
                                 reader.onloadend = function(e) {
-                                    conn = this.result;
+                                    URLconn = this.result;
                                 }
                                 reader.readAsText(file);
                             });
-                        },function(e){conn = 'www.google.it'});
+                        },function(e){
+//                            alert(e);
+                            URLconn = 'www.google.it'
+                        });
                     });
                 };
                 function readCSS(){

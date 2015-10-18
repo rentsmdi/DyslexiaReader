@@ -1,5 +1,7 @@
     var filecss = null;
 
+    var fileConn = "conn05.txt";
+
     var selValue = null;
     var textValue = null;
     var sizeValue = null;
@@ -23,7 +25,7 @@
     };
 
     function set(){
-        document.getElementById("submit").addEventListener("touchend", write, false);
+//        document.getElementById("submit").addEventListener("touchend", writeURL, false);
         document.getElementById("palette").addEventListener("change", paletteApp, false);
         document.getElementById("testo").addEventListener("change", textApp, false);
         document.getElementById("fontsize").addEventListener("change", sizeApp, false);
@@ -68,7 +70,7 @@
         event.preventDefault();
         sizeValue = event.target.value;
         setsize();
-    }
+    };
 
     //IMPOSTAZIONE CONFIGURAZIONE BACKGROUND FONT E FONT-SIZE
     function setfont(){  
@@ -76,34 +78,47 @@
             fileSystem.root.getFile("fontCSS.txt", {create: true, exclusive: false}, function(fileEntry){
                 fileEntry.createWriter(function(writer){
                     writer.write(textValue);
-                }, fail);
-            }, fail);
-        }, fail);
-    }
+                });
+            });
+        });
+    };
     function setcolor(){  
         window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
             fileSystem.root.getFile("backCSS.txt", {create: true, exclusive: false}, function(fileEntry){
                 fileEntry.createWriter(function(writer){
                     writer.write(selValue);
-                }, fail);
-            }, fail);
-        }, fail);
-    }
+                });
+            });
+        });
+    };
     function setsize(){  
         window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
             fileSystem.root.getFile("fontsizeCSS.txt", {create: true, exclusive: false}, function(fileEntry){
                 fileEntry.createWriter(function(writer){
                     writer.write(sizeValue);
-                }, fail);
-            }, fail);
-        }, fail);
-    }
+                });
+            });
+        });
+    };
 
     //IMPOSTAZIONI URL CONNESSIONE
+    function writeURL(){
+        alert("Impostazioni salvate!"); 
+        window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
+            fileSystem.root.getFile(fileConn, {create: true, exclusive: false}, function(fileEntry){
+                fileEntry.createWriter(function(writer){
+                        writer.onwriteend = function(evt) {
+                            window.location = "impostazioni.html";
+                        };
+                        writer.write(document.getElementById("initpage").value);
+                });
+            }, function(e){alert("Problemi nel salvataggio.")});
+        }, function(e){alert("Problemi nel salvataggio.")});
+    }
     function readURL(){
         window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
-            fileSystem.root.getFile("conn04.txt", null, setURL, fail);
-        }, fail);    
+            fileSystem.root.getFile(fileConn, null, setURL);
+        });    
     }
     function setURL(fileEntry) {
         fileEntry.file(function(file) {
@@ -114,22 +129,6 @@
             reader.readAsText(file);
         });
     }
-    function write(){
-        window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
-            fileSystem.root.getFile("conn04.txt", {create: true, exclusive: false}, function(fileEntry){
-                fileEntry.createWriter(function(writer){
-                    writer.onwriteend = function(evt) {
-//                        alert("Salvato!");
-                        window.location = "impostazioni.html"; 
-                    };
-                    writer.write(document.getElementById("initpage").value);
-                }, fail);
-            }, fail);
-        }, fail);
-    }
-
-    function fail(e) { };
-
 
     //LETTURA CONFIGURAZIONI PER QUESTA PAGINA
     function readBack(){
@@ -260,8 +259,8 @@
                 fileSystem.root.getFile(test, {create: true, exclusive: false}, function(fileEntry){
                     fileEntry.createWriter(function(writer){
                         writer.onwriteend = function(evt) {
-                            alert('Impostazioni salvate');
-                            window.location = "impostazioni.html";
+//affinchè tutte le modifiche siano effettive, è necessario ricaricare la pagina ma questo può essere fatto solo nella funzione writeURL, al termine della scrittura nel file altrimenti non viene salvato il link.                          
+                            writeURL();
                         };
                         writer.write(filecss);
                     });
@@ -269,9 +268,10 @@
             });    
         }
         else if (text==null && back==null && font==null && fontCSS==null && intlinea==null && wspc==null && lspc==null){
-            window.location = "impostazioni.html";     
+            //vedi commento precedente
+            writeURL();    
         }
         else {            
             alert("Impostare tutte le variabili della navigazione avanzata!");       
-        }       
+        } 
     }
