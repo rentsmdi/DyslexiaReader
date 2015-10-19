@@ -18,11 +18,11 @@
 
 // FUNZIONI
     function onDeviceReady() {
-        set();  
         readBack()
         readFont();
         readSize();
         readURL();
+        set();
     };
     function set(){
         document.getElementById("palette").addEventListener("change", paletteApp, false);
@@ -285,7 +285,7 @@
             });    
         }
         else if (text==null && back==null && font==null && fontCSS==null && intlinea==null && wspc==null && lspc==null){
-//vedi commento precedente
+            //vedi commento precedente
             writeURL();    
         }
         else {            

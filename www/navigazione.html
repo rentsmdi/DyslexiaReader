@@ -61,10 +61,13 @@
         <script type="text/javascript">
             document.addEventListener("deviceready", onDeviceReady, false);
             function onDeviceReady() {
-                var filecss;
+                
+                var filecss = null;
                 var ref = null;
                 var URLconn = null;
+                var test = 'ggg.txt';
                 var fileConn = "conn05.txt";
+                
                 readBack();
                 readFont();
                 readSize();
@@ -85,8 +88,10 @@
                     document.addEventListener("backbutton", function(event){
                         window.location="index.html";
                     }, false);
+                    //di default viene caricato questo file CSS nel caso l'utente non scelga una configurazione
                     requestCSS('css/config1.css');
                 }
+//INIZIO NAVIGAZIONE E SALVATAGGIO ULTIMO LINK VISITATO
                 function startNavigation(){
                         event.preventDefault();
                         ref = window.open('http://'+URLconn, '_blank','location=yes', 'hardwareback=yes');
@@ -102,12 +107,13 @@
                         }); 
                     }
                 
-
+//LETTURA E SALVATAGGIO IN VARIABILE DEL CODICE DI UN FILE CSS
                 function requestCSS(css){
                     $.get(css, function(responseText) {
                         filecss = responseText;
                     }); 
                 }
+//LETTURA DA FILE DELL'URL PAGINA INIZIALE (SALVATO IN "IMPOSTAZIONI")
                 function initConn(){
                     window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
                         fileSystem.root.getFile(fileConn, null, function(fileEntry){
@@ -119,14 +125,15 @@
                                 reader.readAsText(file);
                             });
                         },function(e){
-//                            alert(e);
+                            //se non è stato salvato alcun link allora viene usato il seguente
                             URLconn = 'www.google.it'
                         });
                     });
                 };
+//LETTURA DA FILE DEL CODICE CSS PER LA NAVIGAZIONE PERSONALIZZATA
                 function readCSS(){
                     window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
-                        fileSystem.root.getFile('ggg.txt', null, function(fileEntry){
+                        fileSystem.root.getFile(test, null, function(fileEntry){
                             fileEntry.file(function(file) {
                             var reader = new FileReader();
                             reader.onloadend = function(e) {
@@ -135,12 +142,13 @@
                             reader.readAsText(file);
                             });
                         }, function(e){ 
+                            //se non è stata impostata si viene riderizionati alle impostazioni
                             alert('Non è presente una configurazione personalizzata.');   
                                     window.location="impostazioni.html";
                         });
                     });    
                 }
-// LETTURA IMPOSTAZIONI APP
+// LETTURA DA FILE E APPLICAZIONE DELLE IMPOSTAZIONI APPPLICAZIONE
                 function readBack(){
                     window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
                         fileSystem.root.getFile("backCSS.txt", null, setValue);
@@ -199,6 +207,7 @@
                     });
                 }
             };
+//GIF DI CARICAMENTO PAGINA
             $(window).load(function() {
                 $(".se-pre-con").fadeOut("slow");;
             });
