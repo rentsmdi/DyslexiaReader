@@ -46,8 +46,7 @@
                     <h2 style="margin-top: 0vh;">Impostazioni Applicazione:</h2>
                     <form>
                         <div class="vh10">Pagina Iniziale:
-                            <input class="enjoy-input" type="text" id="initpage" placeholder="www.google.it">
-<!--                            <button class="button" id="submit">Imposta</button>-->
+                            <input class="enjoy-input" type="text" id="initpage" placeholder="es.: www.google.it">
                         </div>
                         
                         <div class="vh10">Configura Palette Colori:
@@ -75,9 +74,9 @@
                         <div class="vh10">Configura Dimensione Font:
                             <select class="enjoy-input" id="fontsize">
                                 <option>Seleziona</option>
-                                <option>medium</option>
-                                <option>small</option>
-                                <option>x-large</option>
+                                <option>Piccolo</option>
+                                <option>Normale</option>
+                                <option>Grande</option>
                             </select>
                         </div>
                     </form>
@@ -110,20 +109,20 @@
                                 <option>Seleziona</option>
                                 <option>Nero</option>
                                 <option>Blu</option>
-                                <option>Bianco</option>
                                 <option>Marrone</option>
+                                <option>Bianco</option>
                             </select>
                         </div>
                        
                         <div class="vh10">Dimensione Carattere:
                             <select class="enjoy-input" id="fontsizenav">
                                 <option>Seleziona</option>
-                                <option>medium</option>
-                                <option>small</option>
-                                <option>x-large</option>
+                                <option>Piccolo</option>
+                                <option>Normale</option>
+                                <option>Grande</option>
                             </select>
                         </div>
-                        <div class="vh10">Configura Interlinea:
+                        <div class="vh10">Interlinea:
                             <select class="enjoy-input" id="interlinea">
                                 <option>Seleziona</option>
                                 <option>1.0</option>
@@ -135,6 +134,7 @@
                         <div class="vh10">Spaziatura Parole:
                             <select class="enjoy-input" id="wspace">
                                 <option>Seleziona</option>
+                                <option>Nessuna</option>
                                 <option>3px</option>
                                 <option>6px</option>
                                 <option>9px</option>
@@ -144,9 +144,11 @@
                         <div class="vh10">Spaziatura Lettere:
                             <select class="enjoy-input" id="lspace">
                                 <option>Seleziona</option>
+                                <option>Nessuna</option>
+                                <option>1px</option>
+                                <option>2px</option>
                                 <option>3px</option>
-                                <option>6px</option>
-                                <option>9px</option>
+                                <option>4px</option>
                             </select>
                         </div>
                         <div id="testsettings"><p>Pariatur ubi sunt sed ita et duis nescius. Non illum fidelissimae. Commodo ut 
@@ -163,13 +165,11 @@
         <script type="text/javascript" src="js/impostazioni.js"></script>
         <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
         <script type="text/javascript">
-
             $(window).load(function() {
                 // Animate loader off screen
                 $(".se-pre-con").fadeOut("slow");;
             });
             document.addEventListener("deviceready", onDeviceReady, false);
-             
         </script>
     </body>
 </html>

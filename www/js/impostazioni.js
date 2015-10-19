@@ -16,6 +16,7 @@
 
     var test = 'ggg.txt';
 
+// FUNZIONI
     function onDeviceReady() {
         set();  
         readBack()
@@ -23,9 +24,7 @@
         readSize();
         readURL();
     };
-
     function set(){
-//        document.getElementById("submit").addEventListener("touchend", writeURL, false);
         document.getElementById("palette").addEventListener("change", paletteApp, false);
         document.getElementById("testo").addEventListener("change", textApp, false);
         document.getElementById("fontsize").addEventListener("change", sizeApp, false);
@@ -42,6 +41,7 @@
         }, false);
     }
 
+// IMPOSTAZIONI APPLICAZIONE
     function paletteApp(event){
         event.preventDefault();
         selValue = event.target.value;
@@ -69,10 +69,16 @@
     function sizeApp(event){
         event.preventDefault();
         sizeValue = event.target.value;
+        if (sizeValue == 'Piccolo')
+            sizeValue = "small";
+        if (sizeValue == 'Normale')
+            sizeValue = "medium";
+        if (sizeValue == 'Grande')
+            sizeValue = "x-large";
         setsize();
     };
 
-    //IMPOSTAZIONE CONFIGURAZIONE BACKGROUND FONT E FONT-SIZE
+//SALVATAGGIO IMPOSTAZIONI APPLICAZIONE
     function setfont(){  
         window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
             fileSystem.root.getFile("fontCSS.txt", {create: true, exclusive: false}, function(fileEntry){
@@ -101,7 +107,7 @@
         });
     };
 
-    //IMPOSTAZIONI URL CONNESSIONE
+//IMPOSTAZIONI URL PAGINA INIZIALE
     function writeURL(){
         alert("Impostazioni salvate!"); 
         window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
@@ -130,7 +136,7 @@
         });
     }
 
-    //LETTURA CONFIGURAZIONI PER QUESTA PAGINA
+//LETTURA CONFIGURAZIONI IMPOSTAZIONI APPLICAZIONE
     function readBack(){
         window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
             fileSystem.root.getFile("backCSS.txt", null, setValue);
@@ -184,7 +190,8 @@
             reader.readAsText(file);
         });
     } 
-// FUNZIONI PER LE IMPOSTAZIONI VISUALIZZAZIONE CONTENUTI WEB
+
+//FUNZIONI PER LE IMPOSTAZIONI VISUALIZZAZIONE CONTENUTI WEB
     function background(event){
         event.preventDefault();
         back = event.target.value;
@@ -233,6 +240,12 @@
     function fontsize(event){
         event.preventDefault();
         font = event.target.value;
+        if (font == 'Piccolo')
+            font = "small";
+        if (font == 'Normale')
+            font = "medium";
+        if (font == 'Grande')
+            font = "x-large";
         document.getElementById("testsettings").style.fontSize = font;
     };
     function inter(event){
@@ -243,13 +256,17 @@
     function wspacing(event){
         event.preventDefault();
         wspc = event.target.value;
+        if (wspc == 'Nessuna')
+            wspc = "0px";
         document.getElementById("testsettings").style.wordSpacing = wspc;
     }
     function lspacing(event){
-            event.preventDefault();
-            lspc = event.target.value;
-            document.getElementById("testsettings").style.letterSpacing = lspc;
-        }
+        event.preventDefault();
+        lspc = event.target.value;
+        if (lspc == 'Nessuna')
+            lspc = "0px";
+        document.getElementById("testsettings").style.letterSpacing = lspc;
+    }
 // BOTTONE SALVA
     function saveAll(event){
         event.preventDefault();
@@ -268,7 +285,7 @@
             });    
         }
         else if (text==null && back==null && font==null && fontCSS==null && intlinea==null && wspc==null && lspc==null){
-            //vedi commento precedente
+//vedi commento precedente
             writeURL();    
         }
         else {            
