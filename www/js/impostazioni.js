@@ -136,7 +136,7 @@
         });
     }
 
-//LETTURA CONFIGURAZIONI IMPOSTAZIONI APPLICAZIONE
+//LETTURA DA FILE E APPLICAZIONE DELLE IMPOSTAZIONI APPLICAZIONE
     function readBack(){
         window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
             fileSystem.root.getFile("backCSS.txt", null, setValue);
