@@ -65,7 +65,7 @@
                 var filecss = null;
                 var ref = null;
                 var URLconn = null;
-                var test = 'ggg.txt';
+                var CSScode = 'cssCode.txt';
                 var fileConn = "conn05.txt";
                 
                 readBack();
@@ -133,7 +133,7 @@
 //LETTURA DA FILE DEL CODICE CSS PER LA NAVIGAZIONE PERSONALIZZATA
                 function readCSS(){
                     window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
-                        fileSystem.root.getFile(test, null, function(fileEntry){
+                        fileSystem.root.getFile(CSScode, null, function(fileEntry){
                             fileEntry.file(function(file) {
                             var reader = new FileReader();
                             reader.onloadend = function(e) {

@@ -63,41 +63,50 @@
         <script type="text/javascript">
         document.addEventListener("deviceready", onDeviceReady, false);
         function onDeviceReady() {
+            
             var ref = null;
-            var url;
+            var url = null;
+            var urlConn = null;
+            var conn = null; 
+            var filecss = null;
+            var c = null;
+            var n = null;
+            var CSScode = 'cssCode.txt';
+            var savedLinks = 'test13.html';
             var i = 0;
-            var c;
-            var n;
-            var filecss;
-            init();
-            set();
+            
             readBack()
             readFont();
             readSize();
+            init();
             readAllLinks();
+            set();
             
             function set(){
                 document.getElementById("submit").addEventListener("click", saveLink);
                 document.getElementById("conf").addEventListener("change", function(event){
                     event.preventDefault();
                     if(event.target.value=='Configurazione Crema-Nero')
-                        requestCSS('css/config1.css');
+                        requestCSS('css/configOffline1.css');
                     if(event.target.value=='Configurazione Blu-Bianco')
-                        requestCSS('css/config2.css');
+                        requestCSS('css/configOffline2.css');
                     if(event.target.value=='Configurazione Personalizzata')
                         readCSS();
                 }, false);
                 document.addEventListener("backbutton", function(event){
                     window.location="index.html";
                 }, false);
+                //di default viene caricato questo file CSS nel caso l'utente non scelga una configurazione
                 requestCSS('css/config1.css');
             }
+//LETTURA DA FILE E INSERIMENTO NEL MODULO PER LO SCARICAMENTO DELL'ULTIMO LINK VISITATO  
             function init(){
                 window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
                     fileSystem.root.getFile('url01.txt', null, function(fileEntry){
                         fileEntry.file(function(file) {
                         var reader = new FileReader();
                         reader.onloadend = function(e) {
+                            //il link viene adattato per il download
                             document.getElementById("link").value = this.result.slice(this.result.indexOf("/")+2,this.result.length);
                         };
                         reader.readAsText(file);
@@ -105,14 +114,16 @@
                     });
                 }); 
             }
+//LETTURA E SALVATAGGIO IN VARIABILE DEL CODICE DI UN FILE CSS
             function requestCSS(css){  
                 $.get(css, function(responseText) {
                     filecss = responseText;
                 });  
             }
+//LETTURA DA FILE DEL CODICE CSS PER LA NAVIGAZIONE PERSONALIZZATA
             function readCSS(){
                 window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
-                    fileSystem.root.getFile('ggg.txt', null, function(fileEntry){
+                    fileSystem.root.getFile(CSScode, null, function(fileEntry){
                         fileEntry.file(function(file) {
                         var reader = new FileReader();
                         reader.onloadend = function(e) {
@@ -121,15 +132,17 @@
                         reader.readAsText(file);
                         });
                     }, function(e){ 
+                        //se non è stata impostata si viene riderizionati alle impostazioni
                         alert('Non è presente una configurazione personalizzata.');   
                         window.location="impostazioni.html";
                     });
                 });    
             }
+//SCARICAMENTO DELLA PAGINA WEB, SALVATAGGIO DEL CONTENUTO IN UN FILE DI TESTO E AGGIUNTA DELL'URL NELLA PAGINA
             function saveLink(){
                 url = document.getElementById("link").value;
-                var urlConn = 'http://'+url;
-                var conn = "link"+i+".html";             
+                urlConn = 'http://'+url;
+                conn = "link"+i+".html";             
                 window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
                     fileSystem.root.getFile(conn, {create: true, exclusive: false}, function(fileEntry){
                         fileEntry.createWriter(function(writer){
@@ -146,9 +159,10 @@
                     });
                 });      
             }
+//SALVATAGGIO DI TUTTI I LINK IN UN FILE DI TESTO
             function saveAllLinks(){
                 window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
-                    fileSystem.root.getFile("test12.html", {create: true, exclusive: false}, function(fileEntry){
+                    fileSystem.root.getFile(savedLinks, {create: true, exclusive: false}, function(fileEntry){
                         fileEntry.createWriter(function(writer){
                             writer.onwriteend = function(evt) {
                                 window.location="offlineReader.html";
@@ -158,9 +172,11 @@
                     });
                 });
             }
+//LETTURA DI TUTTI I LINK DA UN FILE DI TESTO E INSERIMENTO NELLA SEZIONE
+//la variabile "i" serve per associare i link scaricati ai rispettivi file
             function readAllLinks(){
                 window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
-                    fileSystem.root.getFile("test12.html", null, function(fileEntry){
+                    fileSystem.root.getFile(savedLinks, null, function(fileEntry){
                         fileEntry.file(function(file) {
                         var reader = new FileReader();
                         reader.onloadend = function(e) {
@@ -182,9 +198,11 @@
                     });
                 });    
             }
+//RICONOSCIMENTO DEL BOTTONE PREMUTO E ATTIVAZIONE DELLE RISPETTIVE FUNZIONI
             function knowButton(){
                 $("#results").click(function(event) {
                     c = event.target.id;
+                    //se viene premuto un bottone con id che comincia per 'l' vuol dire che è stato premuto "Apri" e di cosneguenza viene letto e aperto in InAppBrowser il contenuto de file
                     if (c[0]=='l'){
                         c = event.target.id+'.html';
                         window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
@@ -196,6 +214,7 @@
                             })
                         });
                     }
+                    //se viene premuto un bottone con id che comincia per 'r' vuol dire che è stato premuto "Rimuovi" e di conseguenza viene eliminato il file di testo dal dispositivo 
                     else if (c[0]=='r'){
                         n = c.slice(3,c.length);
                         c = 'link'+n+'.html';
@@ -207,6 +226,7 @@
                     }
                 });    
             }
+            //se il file viene rimosso con successo allora viene rimosso anche il link dalla lista di quelli salvati ed aggiornato il contenuto della pagina
             function success(entry) {
                 alert("Rimosso");
                 $( "#"+n ).remove();
@@ -217,7 +237,7 @@
                 alert('Errore nella rimozione del file: ' + error.code);
             }
             
-// LETTURA IMPOSTAZIONI APP
+// LETTURA DA FILE E APPLICAZIONE DELLE IMPOSTAZIONI APPLICAZIONE
             function readBack(){
                 window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
                     fileSystem.root.getFile("backCSS.txt", null, setValue);
@@ -276,6 +296,7 @@
                 });
             }
         };
+// GIF DI CARICAMENTO PAGINA
         $(window).load(function() {
             // Animate loader off screen
             $(".se-pre-con").fadeOut("slow");;

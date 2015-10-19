@@ -14,7 +14,7 @@
     var wspc = null;
     var lspc = null;
 
-    var test = 'ggg.txt';
+    var CSScode = 'cssCode.txt';
 
 // FUNZIONI
     function onDeviceReady() {
@@ -273,7 +273,7 @@
         if (text!=null && back!=null && font!=null && fontCSS!=null && intlinea!= null && wspc!=null && lspc!=null){
             filecss = "@import url(http://fonts.googleapis.com/css?family=Chelsea+Market);  @import url(https://fonts.googleapis.com/css?family=Slackey); @import url(https://fonts.googleapis.com/css?family=Open+Sans); @import url(https://fonts.googleapis.com/css?family=Exo); @import url(https://fonts.googleapis.com/css?family=Ubuntu); @import url(http://canvasweb.altervista.org/fonts/opendyslexic-regular-webfont.ttf); @font-face{font-family: 'OpenDyslexic'; !important; src: url('http://canvasweb.altervista.org/fonts/opendyslexic-regular-webfont.eot'); src: url('http://canvasweb.altervista.org/fonts/opendyslexic-regular-webfont.eot') format('embedded-opentype'), url('http://canvasweb.altervista.org/fonts/opendyslexic-regular-webfont.woff') format('woff'), url('http://canvasweb.altervista.org/fonts/opendyslexic-regular-webfont.ttf') format('truetype');}          @font-face {font-family: "+fontCSS+" !important; } html, body, div, p, h1, h2, h3, h4, h5, li, ul, ol, table, td, tr, a, list {color: "+text+" !important; text-transform: lowercase !important; text-decoration: none !important; font-family: "+fontCSS+" !important; } html, body, div, p, h1, h2, h3, h4, h5, li, ul, ol, br, table, td, tr, a, list, article, section {background-color: "+back+" !important; } h1, h2, h3, h4, h5 { font-family: "+fontCSS+" !important; } h1{ font-weight: bold !important; font-size: 24px !important; letter-spacing:"+lspc+" !important; word-spacing:"+wspc+" !important;} body {margin: 0px !important; padding: 0px !important;} div, p, article, section { font-family: "+fontCSS+" !important; border: 0px !important; font-size: "+font+"  !important; } p, li { line-height:"+intlinea+" !important;  letter-spacing:"+lspc+" !important; word-spacing:"+wspc+" !important; text-align: left !important; } input, textarea, select{ font-family: "+fontCSS+" !important; background: white !important; border: 1px solid black !important; } form, fieldset {  background: none !important; }";
             window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
-                fileSystem.root.getFile(test, {create: true, exclusive: false}, function(fileEntry){
+                fileSystem.root.getFile(CSScode, {create: true, exclusive: false}, function(fileEntry){
                     fileEntry.createWriter(function(writer){
                         writer.onwriteend = function(evt) {
 //affinchè tutte le modifiche siano effettive, è necessario ricaricare la pagina ma questo può essere fatto solo nella funzione writeURL, al termine della scrittura nel file altrimenti non viene salvato il link.                          

@@ -1,3 +1,9 @@
+@import url(http://fonts.googleapis.com/css?family=Chelsea+Market);
+
+/*@font-face {
+    font-family: 'OpenDyslexic'; !important;
+}*/
+
 @font-face{ 
 	font-family: 'OpenDyslexic'; !important;
 	src: url('http://canvasweb.altervista.org/fonts/opendyslexic-regular-webfont.eot');
@@ -25,6 +31,7 @@ h1, h2, h3, h4, h5 {
 }
 h1 {
     font-weight: bold !important;
+    /*font-size: 24px  !important;*/
     letter-spacing: 2px !important;
     word-spacing: 3px !important;
 }
@@ -35,6 +42,7 @@ body{
 div, p, article, section {
     font-family: 'OpenDyslexic'; !important;
     border: 0px !important;
+    /*font-size: 110% !important;*/
 } 
 p, li {
     line-height: 150%  !important;

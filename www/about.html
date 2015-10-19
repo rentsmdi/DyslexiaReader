@@ -49,21 +49,30 @@
                 
                 <div class="abcol-2 bg2">
                     <h3><img class="imgicon2" src="img/mobile-phone23.png"/> Sezione Web Reader</h3>
-                       <p class="paddingLeftRight"> Qui è possibile navigare online, utilizzando delle configurazioni che renderanno la navigazione più accessibile all'utente dislessico. E' possibile utilizzare una configurazione predefinita a scelta, oppure configurare completamente la navigazione dalla sezione "impostazioni". Le configurazioni predefinite sono:<br>
-                            Configurazione blu-bianco: sfondo blu, testo bianco, carattere OpenDyslexic, interlinea 1.5.<br>
-                            Configurazione crema-nero: sfondo crema, testo nero, carattere Chelsea Market, interlinea 1.5.
-                    </p><br>
+                       <p class="paddingLeftRight"> Qui è possibile navigare online, utilizzando delle configurazioni che renderanno la navigazione più accessibile all'utente dislessico. <br>Sono presenti due configurazioni predefinite e una personalizzabile dalla sezione "Impostazioni". E' possibile utilizzare la configurazione scelta selezionandola dal menu a tendina.<br> Le configurazioni predefinite sono:</p>
+                            <ul class="paddingLeftRight">
+                           <li>Configurazione Crema-Nero: sfondo crema, testo nero, carattere OpenDyslexic, dimensione del carattere normale, interlinea 1.5, spaziatura parole 3px e spaziatura lettere 2px.</li>
+                           <li>Configurazione Blu-Bianco: sfondo blu, testo bianco, carattere OpenDyslexic, dimensione del carattere normale, interlinea 1.5, spaziatura parole 3px e spaziatura lettere 2px.</li>
+                            </ul>
+                           <p class="paddingLeftRight">Se viene selezionata la Configurazione Personalizzata ma essa non è ancora stata impostata, si viene reindirizzati alla Sezione "Impostazioni" per configurarla.</p>
                 </div>
                     
                 <div class="abcol-2 bg3">
                     <h3><img class="imgicon2" src="img/book_128.png"/> Sezione Offline Reader</h3>
-                    <p class="paddingLeftRight">Qui è possibile scaricare una pagina web da consultare offline, inserendo l'URL nel riquadro indicato. La configurazione può essere selezionata allo stesso modo di quella online. Il form salva automaticamente l'ultima pagina visitata; in caso si voglia aprire un'altra pagina visitata, è sufficiente aprire la navigazione online dalla sezione "Web Reader" e chiudere il browser su quella pagina.
+                    <p class="paddingLeftRight">Qui è possibile scaricare pagine web da consultare offline, inserendo l'URL nel'apposito modulo. <br> Di default nel riquadro è presente l'ultima pagina visitata; in caso si voglia salvare l'ultima pagina visitata quindi, è sufficiente chiudere il browser della navigazione online (dalla Sezione "Web Reader") sulla pagina che si vuole salvare, altrimenti basta inserire il link preferito digitandolo a mano nel modulo. Infine, premere il pulsante "Salva pagina sul dispositivo".
+                        <br>La configurazione per la lettura può essere selezionata allo stesso modo di quella per la navigazione online. 
                     </p><br>
                 </div>
                     
                 <div class="abcol-2 bg5">
                     <h3><img class="imgicon2" src="img/gear91.png"/> Sezione Impostazioni</h3>
-                    <p class="paddingLeftRight">Qui è possibile scegliere il formato dell'applicazione modificando la combinazione di colori ed il carattere. Inoltre è possibile creare una configurazione avanzata per la navigazione online ("Web Reader") oppure offline ("Offline Reader").
+                    <p class="paddingLeftRight">Qui è possibile impostare la "Pagina Iniziale" della navigazione online, le "Impostazioni dell'Applicazione" e le "Impostazioni per la Visualizzazione Contenuti Web" (Configurazione Personalizzata).
+                        <br>Dell'applicazione è possibile modificare: palette di colori, carattere e dimensione del carattere. 
+                        <br>Della Configurazione Personalizzata è possibile modificare: colore di sfondo, tipo, colore e dimensione del carattere, interlinea (spaziatura fra le righe di testo), spaziatura parole e spaziatura lettere.
+                        <br>Tutti i colori e i caratteri utilizzati sono stati scelti per agevolare la lettura agli utenti dislessici.
+                        <br>In fondo alla sezione è presente il pulsante "Salva" che applicherà tutti i cambiamenti effettuati.<br>
+                        Nota: è necessario modificare TUTTI i parametri della Configurazione Personalizzata, altrimenti i cambiamenti non avranno luogo.
+                        
                     </p>
                 </div>       
             </div>
@@ -74,10 +83,11 @@
         <script type="text/javascript">
         document.addEventListener("deviceready", onDeviceReady, false);
         function onDeviceReady() {
-            set();
+            
             readBack()
             readFont();
             readSize();
+            set();
             
             function set(){
                 document.addEventListener("backbutton", function(event){
@@ -85,7 +95,7 @@
                 }, false);
             }
             
-// LETTURA IMPOSTAZIONI APP
+// LETTURA DA FILE E APPLICAZIONE IMPOSTAZIONI APPLICAZIONE
             function readBack(){
                 window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
                     fileSystem.root.getFile("backCSS.txt", null, setValue);
@@ -150,6 +160,7 @@
                 });
             }
         };
+//GIF CARICAMENTO PAGINA
         $(window).load(function() {
             // Animate loader off screen
             $(".se-pre-con").fadeOut("slow");;
