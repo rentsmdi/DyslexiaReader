@@ -72,7 +72,7 @@
             var c = null;
             var n = null;
             var CSScode = 'cssCode.txt';
-            var savedLinks = 'test13.html';
+            var savedLinks = 'test14.html';
             var i = 0;
             
             readBack()
@@ -83,7 +83,7 @@
             set();
             
             function set(){
-                document.getElementById("submit").addEventListener("click", saveLink);
+                document.getElementById("submit").addEventListener("touchend", saveLink, false);
                 document.getElementById("conf").addEventListener("change", function(event){
                     event.preventDefault();
                     if(event.target.value=='Configurazione Crema-Nero')

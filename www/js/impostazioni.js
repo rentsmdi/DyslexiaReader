@@ -24,10 +24,11 @@
         readURL();
         set();
     };
+
     function set(){
-        document.getElementById("palette").addEventListener("change", paletteApp, false);
-        document.getElementById("testo").addEventListener("change", textApp, false);
-        document.getElementById("fontsize").addEventListener("change", sizeApp, false);
+        document.getElementById("palette").addEventListener("change", list, false);
+        document.getElementById("testo").addEventListener("change", textapp, false);
+        document.getElementById("fontsize").addEventListener("change", size, false);
         document.getElementById("palettenav").addEventListener("change", background, false);
         document.getElementById("fontsizenav").addEventListener("change", fontsize, false); 
         document.getElementById("fontfamilynav").addEventListener("change", ffamily, false); 
@@ -35,19 +36,19 @@
         document.getElementById("interlinea").addEventListener("change", inter, false);
         document.getElementById("wspace").addEventListener("change", wspacing, false);
         document.getElementById("lspace").addEventListener("change", lspacing, false);
-        document.getElementById("save").addEventListener("touchend", saveAll, false);
+        document.getElementById("save").addEventListener("touchend", saveConfiguration, false);
         document.addEventListener("backbutton", function(event){
             window.location="index.html";
         }, false);
     }
 
 // IMPOSTAZIONI APPLICAZIONE
-    function paletteApp(event){
+    function list(event){
         event.preventDefault();
         selValue = event.target.value;
         setcolor();
     }
-    function textApp(event){
+    function textapp(event){
         event.preventDefault();
         textValue = event.target.value;
         if (textValue == 'Standard')
@@ -66,7 +67,7 @@
             textValue = "'Ubuntu', sans-serif";
         setfont();
     }
-    function sizeApp(event){
+    function size(event){
         event.preventDefault();
         sizeValue = event.target.value;
         if (sizeValue == 'Piccolo')
@@ -268,7 +269,7 @@
         document.getElementById("testsettings").style.letterSpacing = lspc;
     }
 // BOTTONE SALVA
-    function saveAll(event){
+    function saveConfiguration(event){
         event.preventDefault();
         if (text!=null && back!=null && font!=null && fontCSS!=null && intlinea!= null && wspc!=null && lspc!=null){
             filecss = "@import url(http://fonts.googleapis.com/css?family=Chelsea+Market);  @import url(https://fonts.googleapis.com/css?family=Slackey); @import url(https://fonts.googleapis.com/css?family=Open+Sans); @import url(https://fonts.googleapis.com/css?family=Exo); @import url(https://fonts.googleapis.com/css?family=Ubuntu); @import url(http://canvasweb.altervista.org/fonts/opendyslexic-regular-webfont.ttf); @font-face{font-family: 'OpenDyslexic'; !important; src: url('http://canvasweb.altervista.org/fonts/opendyslexic-regular-webfont.eot'); src: url('http://canvasweb.altervista.org/fonts/opendyslexic-regular-webfont.eot') format('embedded-opentype'), url('http://canvasweb.altervista.org/fonts/opendyslexic-regular-webfont.woff') format('woff'), url('http://canvasweb.altervista.org/fonts/opendyslexic-regular-webfont.ttf') format('truetype');}          @font-face {font-family: "+fontCSS+" !important; } html, body, div, p, h1, h2, h3, h4, h5, li, ul, ol, table, td, tr, a, list {color: "+text+" !important; text-transform: lowercase !important; text-decoration: none !important; font-family: "+fontCSS+" !important; } html, body, div, p, h1, h2, h3, h4, h5, li, ul, ol, br, table, td, tr, a, list, article, section {background-color: "+back+" !important; } h1, h2, h3, h4, h5 { font-family: "+fontCSS+" !important; } h1{ font-weight: bold !important; font-size: 24px !important; letter-spacing:"+lspc+" !important; word-spacing:"+wspc+" !important;} body {margin: 0px !important; padding: 0px !important;} div, p, article, section { font-family: "+fontCSS+" !important; border: 0px !important; font-size: "+font+"  !important; } p, li { line-height:"+intlinea+" !important;  letter-spacing:"+lspc+" !important; word-spacing:"+wspc+" !important; text-align: left !important; } input, textarea, select{ font-family: "+fontCSS+" !important; background: white !important; border: 1px solid black !important; } form, fieldset {  background: none !important; }";
