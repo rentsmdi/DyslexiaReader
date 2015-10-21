@@ -71,7 +71,7 @@
             var filecss = null;
             var c = null;
             var n = null;
-            var CSScode = 'cssCode.txt';
+            var CSScode = 'cssCode1.txt';
             var savedLinks = 'test14.html';
             var i = 0;
             
@@ -102,7 +102,7 @@
 //LETTURA DA FILE E INSERIMENTO NEL MODULO PER LO SCARICAMENTO DELL'ULTIMO LINK VISITATO  
             function init(){
                 window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
-                    fileSystem.root.getFile('url01.txt', null, function(fileEntry){
+                    fileSystem.root.getFile('url02.txt', null, function(fileEntry){
                         fileEntry.file(function(file) {
                         var reader = new FileReader();
                         reader.onloadend = function(e) {

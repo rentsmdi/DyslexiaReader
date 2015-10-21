@@ -1,6 +1,6 @@
     var filecss = null;
 
-    var fileConn = "conn05.txt";
+    var fileConn = "conn06.txt";
 
     var selValue = null;
     var textValue = null;
@@ -14,7 +14,7 @@
     var wspc = null;
     var lspc = null;
 
-    var CSScode = 'cssCode.txt';
+    var CSScode = 'cssCode1.txt';
 
 // FUNZIONI
     function onDeviceReady() {

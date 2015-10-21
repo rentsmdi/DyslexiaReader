@@ -65,8 +65,8 @@
                 var filecss = null;
                 var ref = null;
                 var URLconn = null;
-                var CSScode = 'cssCode.txt';
-                var fileConn = "conn05.txt";
+                var CSScode = 'cssCode1.txt';
+                var fileConn = "conn06.txt";
                 
                 readBack();
                 readFont();
@@ -97,7 +97,7 @@
                         ref = window.open('http://'+URLconn, '_blank','location=yes', 'hardwareback=yes');
                         ref.addEventListener('loadstop', function(event) {
                             window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
-                                fileSystem.root.getFile("url01.txt", {create: true, exclusive: false}, function(fileEntry){
+                                fileSystem.root.getFile("url02.txt", {create: true, exclusive: false}, function(fileEntry){
                                     fileEntry.createWriter(function(writer){
                                         writer.write(event.url);
                                     });
