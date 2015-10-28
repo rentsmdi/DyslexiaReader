@@ -36,7 +36,7 @@
         document.getElementById("interlinea").addEventListener("change", inter, false);
         document.getElementById("wspace").addEventListener("change", wspacing, false);
         document.getElementById("lspace").addEventListener("change", lspacing, false);
-        document.getElementById("save").addEventListener("touchend", saveConfiguration, false);
+        document.getElementById("save").addEventListener("click", saveConfiguration, false);
         document.addEventListener("backbutton", function(event){
             window.location="index.html";
         }, false);

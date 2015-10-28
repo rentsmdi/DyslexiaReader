@@ -83,7 +83,7 @@
             set();
             
             function set(){
-                document.getElementById("submit").addEventListener("touchend", saveLink, false);
+                document.getElementById("submit").addEventListener("click", saveLink, false);
                 document.getElementById("conf").addEventListener("change", function(event){
                     event.preventDefault();
                     if(event.target.value=='Configurazione Crema-Nero')
