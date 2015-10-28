@@ -1,6 +1,6 @@
 <widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" id="com.phonegap.helloworld" version="1.0.0">
   <name>Dislessia - Web Reader</name>
-  <description>Hello World sample application that responds to the deviceready event.</description>
+  <description>Web Browser per la navigazione online e Offline Reader per la lettura offline di pagine web con configurazioni studiate per migliorare l'accessibilità agli utenti dislessici.</description>
   <author href="http://phonegap.com" email="support@phonegap.com">CanvasWeb</author>
   <content src="index.html"/>
   <preference name="permissions" value="none"/>
@@ -98,5 +98,6 @@
   <gap:splash src="www/res/screen/ios/screen-ipad-portrait.png" gap:platform="ios" width="768" height="1024"/>
   <gap:splash src="www/res/screen/ios/screen-ipad-landscape.png" gap:platform="ios" width="1024" height="768"/>
   <gap:splash src="www/res/screen/windows-phone/screen-portrait.jpg" gap:platform="winphone"/>
-  <access origin="*"/>
+  <access origin="http://*"/>
+  <access origin="https://*"/>
 </widget>

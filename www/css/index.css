@@ -55,6 +55,33 @@ h3{
     font-family: "OpenDyslexic";
     src: url(OpenDyslexic-Regular.otf);
 }
+
+@font-face {
+  font-family: 'Open Sans';
+  src: url(OpenSans-Regular.ttf);
+}
+
+@font-face {
+  font-family: 'Exo';
+  src: url(Exo-Regular.ttf);
+}
+
+@font-face {
+  font-family: 'Ubuntu';
+  src: url(Ubuntu-Regular.ttf);
+}
+
+@font-face {
+  font-family: 'Chelsea Market';
+  src: url(ChelseaMarket-Regular.ttf);
+}
+
+@font-face {
+  font-family: 'Slackey';
+  src: url(Slackey.ttf);
+}
+
+
 body {
     background-color: white;
     -webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
@@ -473,7 +500,7 @@ input:focus, .enjoy-input:focus {
 
 #testsettings {
     padding-left: -5vw;
-    padding-right: 5vw;
+    margin-right: 10vw;
     text-align: left;
 /*    width: 40vw;*/
 }
