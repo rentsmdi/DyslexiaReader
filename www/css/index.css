@@ -45,7 +45,11 @@ h1{
     margin-top: 0px;
     padding-top: 0px;
     text-align: center;
-    
+    font-size: 1.6em;
+}
+
+h2{
+    font-size: 1.25em;
 }
 
 h3{
@@ -454,7 +458,7 @@ input:focus, .enjoy-input:focus {
 @media (min-width:480px){
 
     body{
-        font-size: 80%;
+        font-size: 90%;
     }
     .button, .buttonLink, .enjoy-input{
         min-height: 21px;
@@ -466,7 +470,7 @@ input:focus, .enjoy-input:focus {
 @media (min-width:600px){
 
     body{
-        font-size: 100%;
+        font-size: 110%;
     }
     .button, .buttonLink, .enjoy-input{
         min-height: 27px;
@@ -477,7 +481,7 @@ input:focus, .enjoy-input:focus {
 @media (min-width:768px){
 
     body{
-        font-size: 110%;
+        font-size: 120%;
     }
     .button, .buttonLink, .enjoy-input{
         min-height: 27px;
@@ -488,7 +492,7 @@ input:focus, .enjoy-input:focus {
 @media (min-width:1024px){
 
     body{
-        font-size: 130%;
+        font-size: 140%;
     }
     .button, .buttonLink, .enjoy-input{
         min-height: 35px;

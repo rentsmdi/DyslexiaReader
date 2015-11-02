@@ -37,7 +37,7 @@
                          <li><a href="index.html">Home</a></li>
                          <li><a>Offline Reader</a></li>
                     </ul>
-                    <h1>Offline Reader<br><p style="font-size: 40%;">Consulta le pagine sul tuo dispositivo in modalità offline</p></h1>
+                    <h1>Offline Reader<br><p style="font-size: 50%;">Consulta le pagine sul tuo dispositivo in modalità offline</p></h1>
                 </div>
             </div>
 
@@ -208,7 +208,7 @@
                         c = event.target.id+'.html';
                         window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
                             fileSystem.root.getFile(c, null, function(fileEntry){
-                                ref = window.open(fileEntry.toURL(), '_blank','location=no');
+                                ref = window.open(fileEntry.toURL(), '_blank','location=yes', 'hardwareback=yes');
                                         ref.addEventListener('loadstop', function() {
                                     ref.insertCSS({code: filecss});
                                 });
