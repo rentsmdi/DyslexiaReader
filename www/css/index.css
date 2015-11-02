@@ -477,7 +477,7 @@ input:focus, .enjoy-input:focus {
 @media (min-width:768px){
 
     body{
-        font-size: 120%;
+        font-size: 110%;
     }
     .button, .buttonLink, .enjoy-input{
         min-height: 27px;
@@ -488,7 +488,7 @@ input:focus, .enjoy-input:focus {
 @media (min-width:1024px){
 
     body{
-        font-size: 140%;
+        font-size: 130%;
     }
     .button, .buttonLink, .enjoy-input{
         min-height: 35px;
