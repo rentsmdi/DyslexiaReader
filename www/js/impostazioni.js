@@ -177,7 +177,7 @@
         fileEntry.file(function(file) {
             var reader = new FileReader();
             reader.onloadend = function(e) {
-                    document.body.style.fontFamily = this.result;
+                document.body.style.fontFamily = this.result;
             }
             reader.readAsText(file);
         });
@@ -186,7 +186,7 @@
         fileEntry.file(function(file) {
             var reader = new FileReader();
             reader.onloadend = function(e) {
-                    document.body.style.fontSize = this.result;
+                document.body.style.fontSize = this.result;
             }
             reader.readAsText(file);
         });

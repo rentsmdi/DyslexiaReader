@@ -208,8 +208,8 @@
                         c = event.target.id+'.html';
                         window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
                             fileSystem.root.getFile(c, null, function(fileEntry){
-                                ref = window.open(fileEntry.toURL(), '_blank','location=yes', 'hardwareback=yes');
-                                        ref.addEventListener('loadstop', function() {
+                                ref = window.open(fileEntry.toURL(), '_blank', 'location=no');
+                                ref.addEventListener('loadstop', function() {
                                     ref.insertCSS({code: filecss});
                                 });
                             })
