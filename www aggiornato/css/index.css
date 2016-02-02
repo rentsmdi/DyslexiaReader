@@ -1,0 +1,507 @@
+/*
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
+/*
+@font-face {
+    font-family: 'Chelsea Market', cursive !important;
+}
+*/
+
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+@import url(https://fonts.googleapis.com/css?family=Exo);
+@import url(https://fonts.googleapis.com/css?family=Ubuntu);
+@import url(http://fonts.googleapis.com/css?family=Chelsea+Market);
+@import url(https://fonts.googleapis.com/css?family=Slackey);
+@import url(https://fonts.googleapis.com/css?family=Roboto);
+
+* {
+    -webkit-tap-highlight-color: rgba(0,0,0,0); /* make transparent link selection, adjust last value opacity 0 to 1.0 */
+}
+
+h1{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        -webkit-transform: translate(-50%, -50%);
+        -moz-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+    margin-top: 0px;
+    padding-top: 0px;
+    text-align: center;
+    font-size: 1.6em;
+}
+
+h2{
+    font-size: 1.25em;
+}
+
+h3{
+    text-align:center;
+}
+@font-face {
+    font-family: "OpenDyslexic";
+    src: url(OpenDyslexic-Regular.otf);
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  src: url(OpenSans-Regular.ttf);
+}
+
+@font-face {
+  font-family: 'Exo';
+  src: url(Exo-Regular.ttf);
+}
+
+@font-face {
+  font-family: 'Ubuntu';
+  src: url(Ubuntu-Regular.ttf);
+}
+
+@font-face {
+  font-family: 'Chelsea Market';
+  src: url(ChelseaMarket-Regular.ttf);
+}
+
+@font-face {
+  font-family: 'Slackey';
+  src: url(Slackey.ttf);
+}
+
+
+body {
+    background-color: white;
+    -webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
+    -webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
+    -webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
+    font-family: "OpenDyslexic";
+    height:100vh;
+    margin:0px;
+    padding:0px;
+    width:100vw;
+    overflow: hidden;
+}
+
+/* (default) */
+
+.container {
+    height: 100vh;
+    text-align: center;
+}
+
+.row{
+    margin-bottom: 0px;
+    margin-top: 0px;
+}
+
+.col-2 {
+    width: 100vw;
+    height: 34vh;
+    position: relative;
+    
+}
+.abcol-2 {
+    width: 100vw;
+    overflow: auto;
+    text-align: left;
+}
+
+.paddingLeftRight{
+    margin-left: 5vw;
+    margin-right: 5vw;
+}
+
+
+    
+
+.col-1-left {
+    width: 50vw;
+    height: 33vh;
+    float: left;
+    position: relative;
+}
+
+.col-1-right {
+    width: 50vw;
+    height: 33vh;
+    float: right;
+    position: relative;
+}
+.col-1-left, .col-1-right{
+    opacity: 1;
+    transition: opacity .15s ease-in-out;
+    -moz-transition: opacity .15s ease-in-out;
+    -webkit-transition: opacity .15s ease-in-out;
+}
+.col-1-left:hover, .col-1-right:hover{
+  opacity: 0.5;
+}
+
+.media{
+    height: 25vh;
+}
+
+.mediax2{
+    height: 75vh;
+}
+
+/*backgrounds*/
+.bg1{
+    background-color:#fffff9;
+}
+.bg2{
+    background-color:#fffa8f;
+}
+.bg3{
+    background-color:#8cffc7;
+}
+.bg4{
+    background-color:#ffdeb0;
+}
+.bg5{
+    background-color:#c9f5ff;
+}
+/*end backgrounds*/
+
+.vh10{
+    height: 10vh;
+}
+
+.vh30{
+    height: 30vh;
+}
+
+.scorre{
+    height: 100% !important;
+}
+
+
+/*bottone android*/
+.button, .buttonLink {
+    height: 3vh;
+    font-size: 100%;
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    display: inline-block;
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+    position: relative;
+    cursor: pointer;
+    border: none;
+    font-family: inherit;
+    color: darkblue;
+    text-transform: capitalize;
+    -o-text-overflow: clip;
+    text-overflow: clip;
+    background: rgb(105,192,223);
+    -webkit-box-shadow: 0 5px 0 0 rgb(87,151,180) ;
+    box-shadow: 0 5px 0 0 rgb(87,151,180) ;
+    text-shadow: 0 1px 1px rgba(87,151,180,0.36) ;
+    -webkit-transition: top 50ms cubic-bezier(0.42, 0, 0.58, 1);
+    -moz-transition: top 50ms cubic-bezier(0.42, 0, 0.58, 1);
+    -o-transition: top 50ms cubic-bezier(0.42, 0, 0.58, 1);
+    transition: top 50ms cubic-bezier(0.42, 0, 0.58, 1);
+}
+
+.button:hover, .buttonLink:hover {
+  background: rgba(78,182,216,1);
+  -webkit-box-shadow: 0 5px 0 0 rgba(78,136,160,1) ;
+  box-shadow: 0 5px 0 0 rgba(78,136,160,1) ;
+  -webkit-transition: none;
+  -moz-transition: none;
+  -o-transition: none;
+  transition: none;
+}
+
+.button:active, .buttonLink:active {
+  top: 2px;
+  background: rgb(105,192,223)	;
+  -webkit-box-shadow: 0 3px 0 0 rgba(78,136,160,1) ;
+  box-shadow: 0 3px 0 0 rgba(78,136,160,1) ;
+  -webkit-transform-origin: 50% 100% 0;
+  transform-origin: 50% 100% 0;
+}
+
+.button::before, .buttonLink::before {
+  display: inline-block;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  position: absolute;
+  content: "";
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  border: 0 solid #018dc4;
+  border-right: 1px solid rgba(255,255,255,0.2);
+  color: rgba(0,0,0,0.9);
+  -o-text-overflow: clip;
+  text-overflow: clip;
+  text-shadow: -1px -1px 0 rgba(15,73,168,0.66) ;
+  -webkit-transition: all 300ms cubic-bezier(0.42, 0, 0.58, 1);
+  -moz-transition: all 300ms cubic-bezier(0.42, 0, 0.58, 1);
+  -o-transition: all 300ms cubic-bezier(0.42, 0, 0.58, 1);
+  transition: all 300ms cubic-bezier(0.42, 0, 0.58, 1);
+}
+
+.button:focus, .buttonLink:focus {outline:0 !important;}
+
+/*input android*/
+
+input, .enjoy-input {
+    height: 3vh;
+    padding: 5px;
+    font-size: 100%;
+    display: inline-block;
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+    border: 1px solid #b7b7b7;
+    font-family: inherit;
+    color: darkblue;
+    -o-text-overflow: clip;
+    text-overflow: clip;
+    background: rgba(252,252,252,1);
+    text-shadow: 1px 1px 0 rgba(255,255,255,0.66) ;
+    -webkit-transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);
+    -moz-transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);
+    -o-transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);
+    transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);
+}
+
+/*
+    -webkit-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+*/
+
+input:hover, .enjoy-input:hover {
+  border: 1px solid #a3a3a3;
+  background: rgba(255,255,255,1);
+  -webkit-transition: all 100ms cubic-bezier(0.42, 0, 0.58, 1);
+  -moz-transition: all 100ms cubic-bezier(0.42, 0, 0.58, 1);
+  -o-transition: all 100ms cubic-bezier(0.42, 0, 0.58, 1);
+  transition: all 100ms cubic-bezier(0.42, 0, 0.58, 1);
+}
+
+input:focus, .enjoy-input:focus {
+  border: 1px solid #018dc4;
+  -webkit-transition: all 50ms cubic-bezier(0.42, 0, 0.58, 1);
+  -moz-transition: all 50ms cubic-bezier(0.42, 0, 0.58, 1);
+  -o-transition: all 50ms cubic-bezier(0.42, 0, 0.58, 1);
+  transition: all 50ms cubic-bezier(0.42, 0, 0.58, 1);
+  outline:0 !important;
+}
+
+.button, .buttonLink, .enjoy-input{
+    min-height: 35px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+}
+
+/*jquery gif loading */
+
+.no-js #loader { display: none;  }
+.js #loader { display: block; position: absolute; left: 100px; top: 0; }
+.se-pre-con {
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	z-index: 9999;
+	background: url(../img/Preloader_11.gif) center no-repeat #fff;
+}
+
+/*end jquery gif loading*/
+
+.imgicon{
+    margin-left: auto;
+    margin-right: auto;
+    height: 10vh;
+}
+.imgicon2{
+    margin-left: auto;
+    margin-right: auto;
+    height: 3vh;
+}
+
+#results {
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
+    text-align: left;
+    white-space: nowrap;
+}
+
+/* breadcrumbs*/
+
+		.breadcrumb { 
+			list-style: none; 
+			overflow: hidden; 
+			font-size: 100%;
+            margin-top:0px;
+            margin-bottom:0px;
+            padding-left:0px;
+            width: 100vw;
+		}
+		.breadcrumb li { 
+			float: left; 
+		}
+		.breadcrumb li a {
+			color: white;
+			text-decoration: none; 
+			padding: 3px 0 3px 50px;
+			background: brown;                   /* fallback color */
+			background: hsla(182,85%,35%,1); 
+			position: relative; 
+			display: block;
+			float: left;
+		}
+		.breadcrumb li a:after { 
+			content: " "; 
+			display: block; 
+			width: 0; 
+			height: 0;
+			border-top: 50px solid transparent;           /* Go big on the size, and let overflow hide */
+			border-bottom: 50px solid transparent;
+			border-left: 30px solid hsla(182,85%,35%,1);
+			position: absolute;
+			top: 50%;
+			margin-top: -50px; 
+			left: 100%;
+			z-index: 2; 
+		}	
+		.breadcrumb li a:before { 
+			content: " "; 
+			display: block; 
+			width: 0; 
+			height: 0;
+			border-top: 50px solid transparent;           /* Go big on the size, and let overflow hide */
+			border-bottom: 50px solid transparent;
+			border-left: 30px solid white;
+			position: absolute;
+			top: 50%;
+			margin-top: -50px; 
+			margin-left: 0px;
+			left: 100%;
+			z-index: 1; 
+		}	
+		.breadcrumb li:first-child a {
+			padding-left: 10px;
+		}
+		.breadcrumb li:nth-child(2) a       { background:        hsla(182,85%,45%,1); }
+		.breadcrumb li:nth-child(2) a:after { border-left-color: hsla(182,85%,45%,1); }
+		.breadcrumb li:nth-child(3) a       { background:        hsla(182,85%,55%,1); }
+		.breadcrumb li:nth-child(3) a:after { border-left-color: hsla(182,85%,55%,1); }
+		.breadcrumb li:nth-child(4) a       { background:        hsla(182,85%,65%,1); }
+		.breadcrumb li:nth-child(4) a:after { border-left-color: hsla(182,85%,65%,1); }
+		.breadcrumb li:nth-child(5) a       { background:        hsla(182,85%,75%,1); }
+		.breadcrumb li:nth-child(5) a:after { border-left-color: hsla(182,85%,75%,1); }
+		.breadcrumb li:last-child a {
+			background: hsla(182,85%,85%,1) !important;
+            padding-right: 10px;
+			color: black;
+			pointer-events: none;
+ 			cursor: default;
+		}
+		.breadcrumb li:last-child a:after { border: 0; }
+		.breadcrumb li:last-child a:before { border-left-color: hsla(182,85%,85%,1) !important; }
+		.breadcrumb li a:hover { background: hsla(182,85%,25%,1); }
+		.breadcrumb li a:hover:after { border-left-color: hsla(182,85%,25%,1) !important; }
+
+/* end breadcrumbs*/
+
+/* so small you shouldn't even exist */
+@media (max-width:319px){
+
+    body{
+        font-size: 80%;
+    }
+    .button, .buttonLink, .enjoy-input{
+    min-height: 21px;
+    }
+}
+
+/* small screen portrait */
+@media (min-width:320px){
+
+    body{
+        font-size: 80%;
+    }
+    .button, .buttonLink, .enjoy-input{
+    min-height: 21px;
+    }
+}
+
+/* small screen landscape */
+@media (min-width:480px){
+
+    body{
+        font-size: 90%;
+    }
+    .button, .buttonLink, .enjoy-input{
+        min-height: 21px;
+    }
+}
+    
+
+/* small tablet portrait */
+@media (min-width:600px){
+
+    body{
+        font-size: 110%;
+    }
+    .button, .buttonLink, .enjoy-input{
+        min-height: 27px;
+    }
+}
+
+/* tablet portrait*/
+@media (min-width:768px){
+
+    body{
+        font-size: 120%;
+    }
+    .button, .buttonLink, .enjoy-input{
+        min-height: 27px;
+    }
+}
+
+/* tablet landscape */
+@media (min-width:1024px){
+
+    body{
+        font-size: 140%;
+    }
+    .button, .buttonLink, .enjoy-input{
+        min-height: 35px;
+    }
+}
+
+#testsettings {
+    padding-left: -5vw;
+    margin-right: 10vw;
+    text-align: left;
+/*    width: 40vw;*/
+}

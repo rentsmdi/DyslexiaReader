@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<!--
+    Copyright (c) 2012-2014 Adobe Systems Incorporated. All rights reserved.
+
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="msapplication-tap-highlight" content="no" />
+        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=medium-dpi" />
+        <link rel="stylesheet" type="text/css" href="css/index.css" />
+        <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+        <title>Dyslexia</title>
+    </head>
+    <body>
+    <div class="se-pre-con"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-2 vh30 bg1">
+                     <ul class="breadcrumb">
+                         <li><a href="index.html">Home</a></li>
+                         <li><a>Impostazioni</a></li>
+                    </ul>
+                    <h1>Impostazioni<br><p style="font-size: 50%;">Formato Applicazione e Navigazione</p></h1>
+                </div>
+            </div>
+                <div class="col-2 mediax2 bg2" style="padding-left: 10vw; text-align:left; width: 90vw; height: auto; min-height: 70vh;">
+                    <h2 style="margin-top: 0vh;">Impostazioni Applicazione:</h2>
+                    <form>
+                        <div class="vh10">Pagina Iniziale:
+                            <input class="enjoy-input" type="text" id="initpage" placeholder="es.: www.google.it">
+                        </div>
+                        
+                        <div class="vh10">Configura Palette Colori:
+                            <select  class="enjoy-input" id="palette">
+                                <option>Seleziona</option>
+                                <option>Standard</option>
+                                <option>Greyscale</option>
+                                <option>Lavender</option>
+                            </select>
+                        </div>
+                    
+                       <div class="vh10">Configura Font:
+                            <select class="enjoy-input" id="testo">
+                                <option>Seleziona</option>
+                                <option>Standard</option>
+                                <option>Open Dyslexic</option>
+                                <option>Chelsea Market</option>
+                                <option>Slackey</option>
+                                <option>Open Sans</option>
+                                <option>Exo</option>
+                                <option>Ubuntu</option>
+                            </select>
+                        </div>
+                       
+                        <div class="vh10">Configura Dimensione Font:
+                            <select class="enjoy-input" id="fontsize">
+                                <option>Seleziona</option>
+                                <option>Piccolo</option>
+                                <option>Normale</option>
+                                <option>Grande</option>
+                            </select>
+                        </div>
+                    </form>
+                    <h2>Impostazioni Visualizzazione Contenuti Web</h2>
+                    <form>
+                        <div class="vh10">Colore di Sfondo:
+                            <select  class="enjoy-input" id="palettenav">
+                                <option>Seleziona</option>
+                                <option>Bianco</option>
+                                <option>Crema</option>
+                                <option>Giallo</option>
+                                <option>Blu</option>
+                            </select>
+                        </div>
+                        <div class="vh10">Carattere:
+                            <select class="enjoy-input" id="fontfamilynav">
+                                <option>Seleziona</option>
+                                <option>Standard</option>
+                                <option>Open Dyslexic</option>
+                                <option>Chelsea Market</option>
+                                <option>Slackey</option>
+                                <option>Open Sans</option>
+                                <option>Exo</option>
+                                <option>Ubuntu</option>
+                            </select>
+                        </div>
+                        
+                        <div class="vh10">Colore Carattere:
+                            <select class="enjoy-input" id="colornav">
+                                <option>Seleziona</option>
+                                <option>Nero</option>
+                                <option>Blu</option>
+                                <option>Marrone</option>
+                                <option>Bianco</option>
+                            </select>
+                        </div>
+                       
+                        <div class="vh10">Dimensione Carattere:
+                            <select class="enjoy-input" id="fontsizenav">
+                                <option>Seleziona</option>
+                                <option>Piccolo</option>
+                                <option>Normale</option>
+                                <option>Grande</option>
+                            </select>
+                        </div>
+                        <div class="vh10">Interlinea:
+                            <select class="enjoy-input" id="interlinea">
+                                <option>Seleziona</option>
+                                <option>1.0</option>
+                                <option>1.5</option>
+                                <option>2.0</option>
+                                <option>2.5</option>
+                            </select>
+                        </div>
+                        <div class="vh10">Spaziatura Parole:
+                            <select class="enjoy-input" id="wspace">
+                                <option>Seleziona</option>
+                                <option>Nessuna</option>
+                                <option>3px</option>
+                                <option>6px</option>
+                                <option>9px</option>
+                                <option>12px</option>
+                            </select>
+                        </div>
+                        <div class="vh10">Spaziatura Lettere:
+                            <select class="enjoy-input" id="lspace">
+                                <option>Seleziona</option>
+                                <option>Nessuna</option>
+                                <option>1px</option>
+                                <option>2px</option>
+                                <option>3px</option>
+                                <option>4px</option>
+                            </select>
+                        </div>
+                        <div id="testsettings"><p>Pariatur ubi sunt sed ita et duis nescius. Non illum fidelissimae. Commodo ut 
+                            lorem, incididunt eram hic eiusmod sempiternum, velit incurreret philosophari, 
+                            doctrina quorum an incurreret philosophari eu officia si labore incurreret ab 
+                            ita cillum o cillum te duis eiusmod do tractavissent aut duis officia ne fugiat 
+                            eram. </p></div>
+                        <button class="button" id="save" style="margin-bottom:20px;">Salva</button>
+                    </form>
+                </div>
+            </div>
+    
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="js/impostazioni.js"></script>
+        <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+        <script type="text/javascript">
+            // GIF DI CARICAMENTO PAGINA
+            $(window).load(function() {
+                // Animate loader off screen
+                $(".se-pre-con").fadeOut("slow");;
+            });
+            document.addEventListener("deviceready", onDeviceReady, false);
+        </script>
+    </body>
+</html>

@@ -1,0 +1,71 @@
+@import url(http://fonts.googleapis.com/css?family=Chelsea+Market);
+
+@font-face {
+    font-family: 'Chelsea Market', cursive;
+}
+body{
+    margin-left: 9vh;
+    margin-right: 9vh;
+    padding: 2vh;    
+}
+html, body, div, p, h1, h2, h3, h4, h5, li, ul, ol, br, table, td, tr, a, li, article, section{
+    background-color: #00007D;
+    font-family: 'Chelsea Market', cursive;
+    text-decoration: none;
+    color: white;
+    text-transform: lowercase;
+   -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    pointer-events: none;
+}
+html, body, div, p, article, section, li, ul, ol, table, td, tr, a{
+    border: 0px;
+    line-height: 2.2;
+    letter-spacing: 2px;
+    word-spacing: 3px;
+    
+}
+a {
+    color: lightgray;
+    position:relative;
+}
+a:after
+{
+    content: '';
+    position: absolute;
+    left:0;
+    right:0;
+    top:0;
+    bottom:0;
+    z-index:1;
+    background: transparent;
+}
+}
+p { 
+    text-align: left;
+    font-size: small;
+}
+h1, h2, h3, h4, h5 {
+    font-weight: bold;
+    letter-spacing: 2px;
+    word-spacing: 3px;
+    margin-left: 8vh;
+    margin-right: 8vh;
+    text-align: center;
+    padding-bottom: 2vh;
+    font-size: x-large;
+}
+
+input, textarea, select{
+    font-family: 'Chelsea Market', cursive;
+    background: white;
+    border: 1px solid;
+}
+
+img, navbar, .navbar, nav, form, fieldset, footer, #footer, .footer, #navbar, #navigation{
+    display: none;
+}

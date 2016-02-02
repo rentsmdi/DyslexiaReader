@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<!--
+    Copyright (c) 2012-2014 Adobe Systems Incorporated. All rights reserved.
+
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="msapplication-tap-highlight" content="no" />
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=medium-dpi" />
+        <link rel="stylesheet" type="text/css" href="css/index.css" />
+        <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+        <title>Dyslexia</title>
+    </head>
+    <body class="bg2">  
+        <div class="se-pre-con"></div>
+        <div class="container">
+            <div class="row">
+                <div id="btnhome" class="col-2 vh30 bg1">
+                    <ul class="breadcrumb">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a>Web Reader</a></li>
+                    </ul>
+                    <h1>Web Reader<br><p style="font-size: 50%;">Naviga Online</p></h1>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="vh10"><h3>Scegli la configurazione per la navigazione:</h3>
+                    <select id="conf" class="enjoy-input">
+                        <option>Configurazione Crema-Nero</option>
+                        <option>Configurazione Blu-Bianco</option>
+                        <option>Configurazione Personalizzata</option>
+                    </select>
+                </div>
+                </br></br>
+                <button id="btngo" class="button" style="font-size: 120%; height: auto;">Inizia La Navigazione</button>
+                <br>
+            </div>
+        </div>
+          
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+        <script type="text/javascript">
+            document.addEventListener("deviceready", onDeviceReady, false);
+            function onDeviceReady() {
+                
+                var filecss = null;
+                var ref = null;
+                var URLconn = null;
+                var CSScode = 'cssCode2.txt';
+                var fileConn = "conn07.txt";
+                
+                readBack();
+                readFont();
+                readSize();
+                initConn();
+                set();
+
+                function set(){
+                    document.getElementById("btngo").addEventListener("click", startNavigation, false);
+                    document.getElementById("conf").addEventListener("change", function(event){
+                        event.preventDefault();
+                        if(event.target.value=='Configurazione Crema-Nero')
+                            requestCSS('css/config1.css'); 
+                        if(event.target.value=='Configurazione Blu-Bianco')
+                            requestCSS('css/config2.css');
+                        if(event.target.value=='Configurazione Personalizzata')
+                        readCSS();
+                    }, false);
+                    document.addEventListener("backbutton", function(event){
+                        window.location="index.html";
+                    }, false);
+                    //di default viene caricato questo file CSS nel caso l'utente non scelga una configurazione
+                    requestCSS('css/config1.css');
+                }
+//INIZIO NAVIGAZIONE E SALVATAGGIO ULTIMO LINK VISITATO
+                function startNavigation(){
+                        event.preventDefault();
+                        ref = window.open('http://'+URLconn, '_blank','location=yes', 'hardwareback=yes');
+                        ref.addEventListener('loadstop', function(event) {
+                            window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
+                                fileSystem.root.getFile("url02.txt", {create: true, exclusive: false}, function(fileEntry){
+                                    fileEntry.createWriter(function(writer){
+                                        writer.write(event.url);
+                                    });
+                                });
+                            });
+                            ref.insertCSS({code: filecss});
+                        }); 
+                    }
+                
+//LETTURA E SALVATAGGIO IN VARIABILE DEL CODICE DI UN FILE CSS
+                function requestCSS(css){
+                    $.get(css, function(responseText) {
+                        filecss = responseText;
+                    }); 
+                }
+//LETTURA DA FILE DELL'URL PAGINA INIZIALE (SALVATO IN "IMPOSTAZIONI")
+                function initConn(){
+                    window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
+                        fileSystem.root.getFile(fileConn, null, function(fileEntry){
+                            fileEntry.file(function(file) {
+                                var reader = new FileReader();
+                                reader.onloadend = function(e) {
+                                    URLconn = this.result;
+                                }
+                                reader.readAsText(file);
+                            });
+                        },function(e){
+                            //se non è stato salvato alcun link allora viene usato il seguente
+                            URLconn = 'www.google.it'
+                        });
+                    });
+                };
+//LETTURA DA FILE DEL CODICE CSS PER LA NAVIGAZIONE PERSONALIZZATA
+                function readCSS(){
+                    window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
+                        fileSystem.root.getFile(CSScode, null, function(fileEntry){
+                            fileEntry.file(function(file) {
+                            var reader = new FileReader();
+                            reader.onloadend = function(e) {
+                                filecss = this.result;
+                            }
+                            reader.readAsText(file);
+                            });
+                        }, function(e){ 
+                            //se non è stata impostata si viene riderizionati alle impostazioni
+                            alert('Non è presente una configurazione personalizzata.');   
+                                    window.location="impostazioni.html";
+                        });
+                    });    
+                }
+// LETTURA DA FILE E APPLICAZIONE DELLE IMPOSTAZIONI APPPLICAZIONE
+                function readBack(){
+                    window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
+                        fileSystem.root.getFile("backCSS1.txt", null, setValue);
+                    });    
+                }
+                function readFont(){
+                    window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
+                        fileSystem.root.getFile("fontCSS1.txt", null, setFF);
+                    });    
+                }
+                function readSize(){
+                    window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
+                        fileSystem.root.getFile("fontsizeCSS1.txt", null, setFontSize);
+                    });    
+                }
+                function setFF(fileEntry) {
+                    fileEntry.file(function(file) {
+                        var reader = new FileReader();
+                        reader.onloadend = function(e) {
+                            var str = this.result;
+                                document.body.style.fontFamily = str;
+                        }
+                        reader.readAsText(file);
+                    });
+                } 
+                function setValue(fileEntry) {
+                    fileEntry.file(function(file) {
+                        var reader = new FileReader();
+                        reader.onloadend = function(e) {
+                           if(this.result=='Standard'){
+                                document.getElementsByClassName("bg1")[0].style.backgroundColor = '#fffff9';  
+                                document.getElementsByClassName("bg2")[0].style.backgroundColor = '#fffa8f'; 
+                                document.getElementsByClassName("bg2")[1].style.backgroundColor = '#fffa8f'; 
+                            }
+                            else if(this.result=='Greyscale'){
+                                document.getElementsByClassName("bg1")[0].style.backgroundColor = '#ffffff';
+                                document.getElementsByClassName("bg2")[0].style.backgroundColor = '#f2f2f2'; 
+                                document.getElementsByClassName("bg2")[1].style.backgroundColor = '#f2f2f2'; 
+                            }
+                            else if(this.result=='Lavender'){
+                                document.getElementsByClassName("bg1")[0].style.backgroundColor = '#d8ffe8';
+                                document.getElementsByClassName("bg2")[0].style.backgroundColor = '#ebd6ff';
+                                document.getElementsByClassName("bg2")[1].style.backgroundColor = '#ebd6ff';
+                            }
+                        }
+                        reader.readAsText(file);
+                    });
+                }
+                function setFontSize(fileEntry) {
+                    fileEntry.file(function(file) {
+                        var reader = new FileReader();
+                        reader.onloadend = function(e) {
+                                document.body.style.fontSize = this.result;
+                        }
+                        reader.readAsText(file);
+                    });
+                }
+            };
+//GIF DI CARICAMENTO PAGINA
+            $(window).load(function() {
+                $(".se-pre-con").fadeOut("slow");;
+            });
+        </script>
+    </body>
+</html>

@@ -1,0 +1,47 @@
+@font-face{ 
+	font-family: 'OpenDyslexic'; !important;
+	src: url('http://canvasweb.altervista.org/fonts/opendyslexic-regular-webfont.eot');
+	src: url('http://canvasweb.altervista.org/fonts/opendyslexic-regular-webfont.eot') format('embedded-opentype'),
+	     url('http://canvasweb.altervista.org/fonts/opendyslexic-regular-webfont.woff') format('woff'),
+	     url('http://canvasweb.altervista.org/fonts/opendyslexic-regular-webfont.ttf') format('truetype');
+}
+
+body{
+    margin: 0px !important;
+    padding: 0px !important;    
+}
+html, body, div, p, h1, h2, h3, h4, h5, li, ul, ol, br, table, td, tr, a, li, article, section, .navbar {
+    background-color: #FFFFCC !important;
+    font-family: 'OpenDyslexic'; !important;
+    text-decoration: none !important;
+    color: black !important;
+    text-transform: lowercase  !important;
+}
+html, body, div, p, article, section, li, ul, ol, table, td, tr, a, .navbar {
+    border: 0px !important;
+    line-height: 1.5  !important;
+    letter-spacing: 2px !important;
+    word-spacing: 3px !important;
+    
+}
+a {
+    color: blue !important;
+}
+p { 
+    text-align: left !important;
+}
+h1 {
+    font-weight: bold !important;
+    font-size: 24px  !important;
+    letter-spacing: 2px !important;
+    word-spacing: 3px !important;
+    
+}
+input, textarea, select{
+    font-family: 'OpenDyslexic'; !important;
+    background: white !important;
+    border: 1px solid black !important;
+}
+form, fieldset {
+    background: none !important;
+}

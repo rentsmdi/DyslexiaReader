@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<!--
+    Copyright (c) 2012-2014 Adobe Systems Incorporated. All rights reserved.
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+    http://www.apache.org/licenses/LICENSE-2.0
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="msapplication-tap-highlight" content="no" />
+        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=medium-dpi" />
+        <meta http-equiv="Content-Security-Policy" content="default-src *; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval'">
+        <link rel="stylesheet" type="text/css" href="css/index.css" />
+        <link href='http://fonts.googleapis.com/css?family=Chelsea+Market' rel='stylesheet' type='text/css'>
+        <title>Dyslexia</title>
+    </head>
+    <body class="bg2">
+    <div class="se-pre-con"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-2 vh30 bg1">
+                     <ul class="breadcrumb">
+                         <li><a href="index.html">Home</a></li>
+                         <li><a>Offline Reader</a></li>
+                    </ul>
+                    <h1>Offline Reader<br><p style="font-size: 50%;">Consulta le pagine sul tuo dispositivo in modalità offline</p></h1>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-2 mediax2 bg2">
+                    <div id="btnhome"><h3>Inserisci l'URL</h3><p>Utilizza l'ultima pagina visualizzata con il Web Reader, oppure digita l'indirizzo di una pagina web che vuoi salvare</p></div>
+                    <input type="text" id="link" class="enjoy-input" placeholder="Indirizzo" style="width: 55vw;">
+                    <button id="submit" class="button" style="font-size: 90%; height: auto; min-width: auto;">Salva pagina sul dispositivo</button>
+                    <h3>Scegli la configurazione per la lettura:</h3>
+                    <select class="enjoy-input" id="conf">
+                        <option>Configurazione Crema-Nero</option>
+                        <option>Configurazione Blu-Bianco</option>
+                        <option>Configurazione Personalizzata</option>
+                    </select>
+                    <br>
+                    <br>
+                    <table id="results"></table>
+                </div>
+            </div>       
+        </div>
+    
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+        <script type="text/javascript">
+        document.addEventListener("deviceready", onDeviceReady, false);
+        function onDeviceReady() {
+            
+            var ref = null;
+            var url = null;
+            var urlConn = null;
+            var conn = null; 
+            var filecss = null;
+            var c = null;
+            var n = null;
+            var CSScode = 'cssCode2.txt';
+            var savedLinks = 'test14.html';
+            var i = 0;
+            
+            readBack()
+            readFont();
+            readSize();
+            init();
+            readAllLinks();
+            set();
+            
+            function set(){
+                document.getElementById("submit").addEventListener("click", saveLink, false);
+                document.getElementById("conf").addEventListener("change", function(event){
+                    event.preventDefault();
+                    if(event.target.value=='Configurazione Crema-Nero')
+                        requestCSS('css/configOffline1.css');
+                    if(event.target.value=='Configurazione Blu-Bianco')
+                        requestCSS('css/configOffline2.css');
+                    if(event.target.value=='Configurazione Personalizzata')
+                        readCSS();
+                }, false);
+                document.addEventListener("backbutton", function(event){
+                    window.location="index.html";
+                }, false);
+                //di default viene caricato questo file CSS nel caso l'utente non scelga una configurazione
+                requestCSS('css/configOffline1.css');
+            }
+//LETTURA DA FILE E INSERIMENTO NEL MODULO PER LO SCARICAMENTO DELL'ULTIMO LINK VISITATO  
+            function init(){
+                window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
+                    fileSystem.root.getFile('url02.txt', null, function(fileEntry){
+                        fileEntry.file(function(file) {
+                        var reader = new FileReader();
+                        reader.onloadend = function(e) {
+                            //il link viene adattato per il download
+                            document.getElementById("link").value = this.result.slice(this.result.indexOf("/")+2,this.result.length);
+                        };
+                        reader.readAsText(file);
+                        });
+                    });
+                }); 
+            }
+//LETTURA E SALVATAGGIO IN VARIABILE DEL CODICE DI UN FILE CSS
+            function requestCSS(css){  
+                $.get(css, function(responseText) {
+                    filecss = responseText;
+                });  
+            }
+//LETTURA DA FILE DEL CODICE CSS PER LA NAVIGAZIONE PERSONALIZZATA
+            function readCSS(){
+                window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
+                    fileSystem.root.getFile(CSScode, null, function(fileEntry){
+                        fileEntry.file(function(file) {
+                        var reader = new FileReader();
+                        reader.onloadend = function(e) {
+                            filecss = this.result;
+                        }
+                        reader.readAsText(file);
+                        });
+                    }, function(e){ 
+                        //se non è stata impostata si viene riderizionati alle impostazioni
+                        alert('Non è presente una configurazione personalizzata!');   
+                        window.location="impostazioni.html";
+                    });
+                });    
+            }
+//SCARICAMENTO DELLA PAGINA WEB, SALVATAGGIO DEL CONTENUTO IN UN FILE DI TESTO E AGGIUNTA DELL'URL NELLA PAGINA
+            function saveLink(){
+                url = document.getElementById("link").value;
+                urlConn = 'http://'+url;
+                conn = "link"+i+".html";             
+                window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
+                    fileSystem.root.getFile(conn, {create: true, exclusive: false}, function(fileEntry){
+                        fileEntry.createWriter(function(writer){
+                            writer.onwriteend = function(evt) {
+                                document.getElementById("results").innerHTML += "<tr id='"+i+"'><td>"+url+"</td><td><button class='buttonLink' id='link"+i+"'>Apri</button></td><td><button class='button' id='rmv"+i+"'>Rimuovi</button></td></tr>";
+                                i++;
+                                saveAllLinks();
+                            };
+                            $.get(urlConn, function(responseText, status) {
+                                    alert("File scaricato con successo!");
+                                    writer.write(responseText);
+                            }); 
+                        });
+                    });
+                });      
+            }
+//SALVATAGGIO DI TUTTI I LINK IN UN FILE DI TESTO
+            function saveAllLinks(){
+                window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
+                    fileSystem.root.getFile(savedLinks, {create: true, exclusive: false}, function(fileEntry){
+                        fileEntry.createWriter(function(writer){
+                            writer.onwriteend = function(evt) {
+                                window.location="offlineReader.html";
+                            };
+                            writer.write(document.getElementById("results").innerHTML);
+                        });
+                    });
+                });
+            }
+//LETTURA DI TUTTI I LINK DA UN FILE DI TESTO E INSERIMENTO NELLA SEZIONE
+//la variabile "i" serve per associare i link scaricati ai rispettivi file
+            function readAllLinks(){
+                window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
+                    fileSystem.root.getFile(savedLinks, null, function(fileEntry){
+                        fileEntry.file(function(file) {
+                        var reader = new FileReader();
+                        reader.onloadend = function(e) {
+                            document.getElementById("results").innerHTML = this.result;
+                            i = $('.buttonLink').last().attr('id');
+                            if (i==undefined){
+                                i=0;
+                            }
+                            else {
+                                i = i.slice(4,i.length);
+                                i++;
+                            }
+                            knowButton();
+                        }
+                        reader.readAsText(file);
+                        });
+                    }, function(e){ 
+                        i = 0;
+                    });
+                });    
+            }
+//RICONOSCIMENTO DEL BOTTONE PREMUTO E ATTIVAZIONE DELLE RISPETTIVE FUNZIONI
+            function knowButton(){
+                $("#results").click(function(event) {
+                    c = event.target.id;
+                    //se viene premuto un bottone con id che comincia per 'l' vuol dire che è stato premuto "Apri" e di cosneguenza viene letto e aperto in InAppBrowser il contenuto de file
+                    if (c[0]=='l'){
+                        c = event.target.id+'.html';
+                        window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
+                            fileSystem.root.getFile(c, null, function(fileEntry){
+                                ref = window.open(fileEntry.toURL(), '_blank', 'location=yes');
+                                ref.addEventListener('loadstop', function() {
+                                    ref.insertCSS({code: filecss});
+                                });
+                            })
+                        });
+                    }
+                    //se viene premuto un bottone con id che comincia per 'r' vuol dire che è stato premuto "Rimuovi" e di conseguenza viene eliminato il file di testo dal dispositivo 
+                    else if (c[0]=='r'){
+                        n = c.slice(3,c.length);
+                        c = 'link'+n+'.html';
+                        window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
+                            fileSystem.root.getFile(c, null, function(fileEntry){
+                                fileEntry.remove(success, fail);
+                            })
+                        });
+                    }
+                });    
+            }
+            //se il file viene rimosso con successo allora viene rimosso anche il link dalla lista di quelli salvati ed aggiornato il contenuto della pagina
+            function success(entry) {
+                alert("File rimosso con successo!");
+                $( "#"+n ).remove();
+                saveAllLinks();
+            }
+
+            function fail(error) {
+                alert('Errore nella rimozione del file: ' + error.code);
+            }
+            
+// LETTURA DA FILE E APPLICAZIONE DELLE IMPOSTAZIONI APPLICAZIONE
+            function readBack(){
+                window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
+                    fileSystem.root.getFile("backCSS1.txt", null, setValue);
+                });    
+            }
+            function readFont(){
+                window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
+                    fileSystem.root.getFile("fontCSS1.txt", null, setFF);
+                });    
+            }
+            function readSize(){
+                window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
+                    fileSystem.root.getFile("fontsizeCSS1.txt", null, setFontSize);
+                });    
+            }
+            function setValue(fileEntry) {
+                fileEntry.file(function(file) {
+                var reader = new FileReader();
+                reader.onloadend = function(e) {
+                    if(this.result=='Standard'){
+                        document.getElementsByClassName("bg1")[0].style.backgroundColor = '#fffff9';  
+                        document.getElementsByClassName("bg2")[0].style.backgroundColor = '#fffa8f'; 
+                        document.getElementsByClassName("bg2")[1].style.backgroundColor = '#fffa8f'; 
+                    }
+                    else if(this.result=='Greyscale'){
+                        document.getElementsByClassName("bg1")[0].style.backgroundColor = '#ffffff';
+                        document.getElementsByClassName("bg2")[0].style.backgroundColor = '#f2f2f2'; 
+                        document.getElementsByClassName("bg2")[1].style.backgroundColor = '#f2f2f2'; 
+                    }
+                    else if(this.result=='Lavender'){
+                        document.getElementsByClassName("bg1")[0].style.backgroundColor = '#d8ffe8';
+                        document.getElementsByClassName("bg2")[0].style.backgroundColor = '#ebd6ff';
+                        document.getElementsByClassName("bg2")[1].style.backgroundColor = '#ebd6ff';
+                    }
+                }
+                reader.readAsText(file);
+                });
+            }
+            function setFF(fileEntry) {
+                fileEntry.file(function(file) {
+                    var reader = new FileReader();
+                    reader.onloadend = function(e) {
+                        var str = this.result;
+                        document.body.style.fontFamily = str;
+                    }
+                    reader.readAsText(file);
+                });
+            } 
+            function setFontSize(fileEntry) {
+                fileEntry.file(function(file) {
+                    var reader = new FileReader();
+                    reader.onloadend = function(e) {
+                            document.body.style.fontSize = this.result;
+                    }
+                    reader.readAsText(file);
+                });
+            }
+        };
+// GIF DI CARICAMENTO PAGINA
+        $(window).load(function() {
+            // Animate loader off screen
+            $(".se-pre-con").fadeOut("slow");;
+        });
+        </script>
+    </body>
+</html>
