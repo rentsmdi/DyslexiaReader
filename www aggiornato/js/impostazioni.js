@@ -1,4 +1,5 @@
 var filecss = null;
+var variables = null;
 
 var fileConn = "conn07.txt";
 
@@ -23,6 +24,7 @@ function onDeviceReady() {
     readSize();
     readURL();
     set();
+    loadCSS();
 };
 
 function set() {
@@ -40,6 +42,34 @@ function set() {
     document.addEventListener("backbutton", function(event){
         window.location="index.html";
     }, false);
+}
+// LETTURA CSS PER DIV
+function loadCSS(){
+    window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
+        fileSystem.root.getFile("variables.txt", null, function(fileEntry){
+            fileEntry.file(function(file) {
+            var reader = new FileReader();
+            reader.onloadend = function(e) {
+                setCSS(this.result);
+            }
+            reader.readAsText(file);
+            });
+        }, function(e){ 
+            //se non è stata impostata si viene riderizionati alle impostazioni
+            alert('Non è presente una configurazione personalizzata!');
+        });
+    });
+}
+function setCSS(css){
+//    alert(css);
+    var first = css.indexOf("0@");
+    var last = css.indexOf("1@");
+    var c = css.slice(first+2, last);
+    document.getElementById("palettenav").value = c;
+//    alert(c);
+//    if (c!='O')
+        
+    
 }
 
 // IMPOSTAZIONI APPLICAZIONE
@@ -219,14 +249,15 @@ function setFontSize(fileEntry) {
 function background(event){
     event.preventDefault();
     back = event.target.value;
-    if (back == 'Bianco')
-        back = '#f7f7f7';
-    if (back == 'Crema')
-        back = '#FAFAC8';
-    if (back == 'Giallo')
-        back = '#FFFF00';
-    if (back == 'Blu')
-        back = '#0000FF';
+    alert(back);
+//    if (back == 'Bianco')
+//        back = '#f7f7f7';
+//    if (back == 'Crema')
+//        back = '#FAFAC8';
+//    if (back == 'Giallo')
+//        back = '#FFFF00';
+//    if (back == 'Blu')
+//        back = '#0000FF';
     document.getElementById("testsettings").style.backgroundColor = back;
 };
 function textcolor(event){
@@ -295,6 +326,14 @@ function lspacing(event){
 function saveConfiguration(event){
     event.preventDefault();
     if (text!=null && back!=null && font!=null && fontCSS!=null && intlinea!= null && wspc!=null && lspc!=null){
+        variables =  "0@"+back+"1@"+fontCSS+"2@"+text+"3@"+font+"4@"+intlinea+"5@"+wspc+"6@"+lspc+"7@";
+        window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
+            fileSystem.root.getFile("variables.txt", {create: true, exclusive: false}, function(fileEntry){
+                fileEntry.createWriter(function(writer){
+                    writer.write(variables);
+                });
+            });
+        });
         filecss = "@import url(http://fonts.googleapis.com/css?family=Chelsea+Market);  @import url(https://fonts.googleapis.com/css?family=Slackey); @import url(https://fonts.googleapis.com/css?family=Open+Sans); @import url(https://fonts.googleapis.com/css?family=Exo); @import url(https://fonts.googleapis.com/css?family=Ubuntu); @import url(http://canvasweb.altervista.org/fonts/opendyslexic-regular-webfont.ttf); @font-face{font-family: 'OpenDyslexic'; !important; src: url('http://canvasweb.altervista.org/fonts/opendyslexic-regular-webfont.eot'); src: url('http://canvasweb.altervista.org/fonts/opendyslexic-regular-webfont.eot') format('embedded-opentype'), url('http://canvasweb.altervista.org/fonts/opendyslexic-regular-webfont.woff') format('woff'), url('http://canvasweb.altervista.org/fonts/opendyslexic-regular-webfont.ttf') format('truetype');}          @font-face {font-family: "+fontCSS+" !important; } html, body, div, p, h1, h2, h3, h4, h5, li, ul, ol, table, td, tr, a, list {color: "+text+" !important; text-transform: lowercase !important; text-decoration: none !important; font-family: "+fontCSS+" !important; } html, body, div, p, h1, h2, h3, h4, h5, li, ul, ol, br, table, td, tr, a, list, article, section {background-color: "+back+" !important; } h1, h2, h3, h4, h5 { font-family: "+fontCSS+" !important; } h1{ font-weight: bold !important; font-size: 24px !important; letter-spacing:"+lspc+" !important; word-spacing:"+wspc+" !important;} body {margin: 0px !important; padding: 0px !important;} div, p, article, section { font-family: "+fontCSS+" !important; border: 0px !important; font-size: "+font+"  !important; } p, li { line-height:"+intlinea+" !important;  letter-spacing:"+lspc+" !important; word-spacing:"+wspc+" !important; text-align: left !important; } input, textarea, select{ font-family: "+fontCSS+" !important; background: white !important; border: 1px solid black !important; } form, fieldset {  background: none !important; }";
         window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
             fileSystem.root.getFile(CSScode, {create: true, exclusive: false}, function(fileEntry){
