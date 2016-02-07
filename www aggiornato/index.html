@@ -105,17 +105,17 @@
 // LETTURA IMPOSTAZIONI APP
                 function readBack(){
                     window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
-                        fileSystem.root.getFile("backCSS1.txt", null, setValue);
+                        fileSystem.root.getFile("backCSS2.txt", null, setValue);
                     });    
                 }
                 function readFont(){
                     window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
-                        fileSystem.root.getFile("fontCSS1.txt", null, setFF);
+                        fileSystem.root.getFile("fontCSS2.txt", null, setFF);
                     });    
                 }
                 function readSize(){
                     window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
-                        fileSystem.root.getFile("fontsizeCSS1.txt", null, setFontSize);
+                        fileSystem.root.getFile("fontsizeCSS2.txt", null, setFontSize);
                     });    
                 }
                 function setFF(fileEntry) {

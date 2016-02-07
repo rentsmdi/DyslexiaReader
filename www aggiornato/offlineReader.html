@@ -72,8 +72,8 @@
             var filecss = null;
             var c = null;
             var n = null;
-            var CSScode = 'cssCode2.txt';
-            var savedLinks = 'test14.html';
+            var CSScode = 'cssCode3.txt';
+            var savedLinks = 'test15.html';
             var i = 0;
             
             readBack()
@@ -103,7 +103,7 @@
 //LETTURA DA FILE E INSERIMENTO NEL MODULO PER LO SCARICAMENTO DELL'ULTIMO LINK VISITATO  
             function init(){
                 window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
-                    fileSystem.root.getFile('url02.txt', null, function(fileEntry){
+                    fileSystem.root.getFile('url03.txt', null, function(fileEntry){
                         fileEntry.file(function(file) {
                         var reader = new FileReader();
                         reader.onloadend = function(e) {
@@ -241,17 +241,17 @@
 // LETTURA DA FILE E APPLICAZIONE DELLE IMPOSTAZIONI APPLICAZIONE
             function readBack(){
                 window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
-                    fileSystem.root.getFile("backCSS1.txt", null, setValue);
+                    fileSystem.root.getFile("backCSS2.txt", null, setValue);
                 });    
             }
             function readFont(){
                 window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
-                    fileSystem.root.getFile("fontCSS1.txt", null, setFF);
+                    fileSystem.root.getFile("fontCSS2.txt", null, setFF);
                 });    
             }
             function readSize(){
                 window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
-                    fileSystem.root.getFile("fontsizeCSS1.txt", null, setFontSize);
+                    fileSystem.root.getFile("fontsizeCSS2.txt", null, setFontSize);
                 });    
             }
             function setValue(fileEntry) {

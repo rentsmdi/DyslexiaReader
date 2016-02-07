@@ -65,8 +65,8 @@
                 var filecss = null;
                 var ref = null;
                 var URLconn = null;
-                var CSScode = 'cssCode2.txt';
-                var fileConn = "conn07.txt";
+                var CSScode = 'cssCode3.txt';
+                var fileConn = "conn08.txt";
                 
                 readBack();
                 readFont();
@@ -97,7 +97,7 @@
                         ref = window.open('http://'+URLconn, '_blank','location=yes', 'hardwareback=yes');
                         ref.addEventListener('loadstop', function(event) {
                             window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
-                                fileSystem.root.getFile("url02.txt", {create: true, exclusive: false}, function(fileEntry){
+                                fileSystem.root.getFile("url03.txt", {create: true, exclusive: false}, function(fileEntry){
                                     fileEntry.createWriter(function(writer){
                                         writer.write(event.url);
                                     });
@@ -144,24 +144,24 @@
                         }, function(e){ 
                             //se non è stata impostata si viene riderizionati alle impostazioni
                             alert('Non è presente una configurazione personalizzata.');   
-                                    window.location="impostazioni.html";
+                            window.location="impostazioni.html";
                         });
                     });    
                 }
 // LETTURA DA FILE E APPLICAZIONE DELLE IMPOSTAZIONI APPPLICAZIONE
                 function readBack(){
                     window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
-                        fileSystem.root.getFile("backCSS1.txt", null, setValue);
+                        fileSystem.root.getFile("backCSS2.txt", null, setValue);
                     });    
                 }
                 function readFont(){
                     window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
-                        fileSystem.root.getFile("fontCSS1.txt", null, setFF);
+                        fileSystem.root.getFile("fontCSS2.txt", null, setFF);
                     });    
                 }
                 function readSize(){
                     window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
-                        fileSystem.root.getFile("fontsizeCSS1.txt", null, setFontSize);
+                        fileSystem.root.getFile("fontsizeCSS2.txt", null, setFontSize);
                     });    
                 }
                 function setFF(fileEntry) {
