@@ -3,14 +3,16 @@ var variables = null;
 
 var fileConn = "conn07.txt";
 
+var c = null;
+
 var selValue = null;
 var textValue = null;
 var sizeValue = null;
 
 var back = null;
-var font = null;
 var fontCSS = null;
 var text = null;
+var font = null;
 var intlinea = null;
 var wspc = null;
 var lspc = null;
@@ -31,10 +33,10 @@ function set() {
     document.getElementById("palette").addEventListener("change", list, false);
     document.getElementById("testo").addEventListener("change", textapp, false);
     document.getElementById("fontsize").addEventListener("change", size, false);
-    document.getElementById("palettenav").addEventListener("change", background, false);
-    document.getElementById("fontsizenav").addEventListener("change", fontsize, false);
-    document.getElementById("fontfamilynav").addEventListener("change", ffamily, false);
+    document.getElementById("palettenav").addEventListener("change", background, false);    
+    document.getElementById("fontfamilynav").addEventListener("change", ffamily, false);    
     document.getElementById("colornav").addEventListener("change", textcolor, false);
+    document.getElementById("fontsizenav").addEventListener("change", fontsize, false);
     document.getElementById("interlinea").addEventListener("change", inter, false);
     document.getElementById("wspace").addEventListener("change", wspacing, false);
     document.getElementById("lspace").addEventListener("change", lspacing, false);
@@ -61,15 +63,60 @@ function loadCSS(){
     });
 }
 function setCSS(css){
-//    alert(css);
     var first = css.indexOf("0@");
     var last = css.indexOf("1@");
-    var c = css.slice(first+2, last);
-    document.getElementById("palettenav").value = c;
-//    alert(c);
-//    if (c!='O')
-        
+    back = css.slice(first+2, last);
+    document.getElementById("palettenav").value = back;
+    document.getElementById("testsettings").style.backgroundColor = back;
     
+    first = css.indexOf("1@");
+    last = css.indexOf("2@");
+    fontCSS = css.slice(first+2, last);                 
+    if (fontCSS == "'Roboto', sans-serif")
+        document.getElementById("fontfamilynav").value = "0";
+    if (fontCSS == "'OpenDyslexic'")
+        document.getElementById("fontfamilynav").value = "1";
+    if (fontCSS == "'Chelsea Market', cursive")
+        document.getElementById("fontfamilynav").value = "2";
+    if (fontCSS == "'Slackey', cursive")
+        document.getElementById("fontfamilynav").value = "3";
+    if (fontCSS == "'Open Sans', sans-serif")
+        document.getElementById("fontfamilynav").value = "4";
+    if (fontCSS == "'Exo', sans-serif")
+        document.getElementById("fontfamilynav").value = "5";
+    if (fontCSS == "'Ubuntu', sans-serif")
+        document.getElementById("fontfamilynav").value = "6";
+    document.getElementById("testsettings").style.fontFamily = fontCSS;
+    
+    first = css.indexOf("2@");
+    last = css.indexOf("3@");
+    text = css.slice(first+2, last);
+    document.getElementById("colornav").value = text;
+    document.getElementById("testsettings").style.color = text;
+    
+    first = css.indexOf("3@");
+    last = css.indexOf("4@");
+    font = css.slice(first+2, last);
+    document.getElementById("fontsizenav").value = font;
+    document.getElementById("testsettings").style.fontSize = font;
+    
+    first = css.indexOf("4@");
+    last = css.indexOf("5@");
+    intlinea = css.slice(first+2, last);
+    document.getElementById("interlinea").value = intlinea;
+    document.getElementById("testsettings").style.lineHeight = intlinea;
+    
+    first = css.indexOf("5@");
+    last = css.indexOf("6@");
+    wspc = css.slice(first+2, last);
+    document.getElementById("wspace").value = wspc;
+    document.getElementById("testsettings").style.wordSpacing = wspc;
+    
+    first = css.indexOf("6@");
+    last = css.indexOf("7@");
+    lspc = css.slice(first+2, last);
+    document.getElementById("lspace").value = lspc;
+    document.getElementById("testsettings").style.letterSpacing = lspc;
 }
 
 // IMPOSTAZIONI APPLICAZIONE
@@ -148,8 +195,9 @@ function writeURL(){
                     window.location = "impostazioni.html";
                 };
                 if ((document.getElementById("initpage").value.length)<= 0){
-                    alert("Errore nell'impostazione della Pagina Iniziale.\nPer favore, inserire un link non vuoto.");
-                    window.location = "impostazioni.html";
+//                    alert("Errore nell'impostazione della Pagina Iniziale.\nPer favore, inserire un link non vuoto.");
+//                    window.location = "impostazioni.html";
+                    writer.write("www.google.it");
                 }
                 else 
                     writer.write(document.getElementById("initpage").value);
@@ -249,7 +297,6 @@ function setFontSize(fileEntry) {
 function background(event){
     event.preventDefault();
     back = event.target.value;
-    alert(back);
 //    if (back == 'Bianco')
 //        back = '#f7f7f7';
 //    if (back == 'Crema')
@@ -260,47 +307,48 @@ function background(event){
 //        back = '#0000FF';
     document.getElementById("testsettings").style.backgroundColor = back;
 };
-function textcolor(event){
-    event.preventDefault();
-    text = event.target.value;
-    if (text == 'Bianco')
-        text = '#f7f7f7';
-    if (text == 'Nero')
-        text = '#000000';
-    if (text == 'Marrone')
-        text = '#964B00';
-    if (text == 'Blu')
-        text = '#0000FF';
-    document.getElementById("testsettings").style.color = text;
-};
+
 function ffamily(event){
     event.preventDefault();
     fontCSS = event.target.value;
-    if (fontCSS == 'Standard')
+    if (fontCSS == '0')
         fontCSS = 'Arial, Helvetica, sans-serif';
-    if (fontCSS == 'Open Dyslexic')
+    if (fontCSS == '1')
         fontCSS = '"OpenDyslexic"';
-    if (fontCSS == 'Chelsea Market')
+    if (fontCSS == '2')
         fontCSS = "'Chelsea Market', cursive";
-    if (fontCSS == 'Open Sans')
-        fontCSS = "'Open Sans', sans-serif";
-    if (fontCSS == 'Exo')
-        fontCSS = "'Exo', sans-serif";
-    if (fontCSS == 'Ubuntu')
-        fontCSS = "'Ubuntu', sans-serif";
-    if (fontCSS == 'Slackey')
+    if (fontCSS == '3')
         fontCSS = "'Slackey', cursive";
+    if (fontCSS == '4')
+        fontCSS = "'Open Sans', sans-serif";
+    if (fontCSS == '5')
+        fontCSS = "'Exo', sans-serif";
+    if (fontCSS == '6')
+        fontCSS =  "'Ubuntu', sans-serif";
     document.getElementById("testsettings").style.fontFamily = fontCSS;
 }
+function textcolor(event){
+    event.preventDefault();
+    text = event.target.value;
+//    if (text == 'Bianco')
+//        text = '#f7f7f7';
+//    if (text == 'Nero')
+//        text = '#000000';
+//    if (text == 'Marrone')
+//        text = '#964B00';
+//    if (text == 'Blu')
+//        text = '#0000FF';
+    document.getElementById("testsettings").style.color = text;
+};
 function fontsize(event){
     event.preventDefault();
     font = event.target.value;
-    if (font == 'Piccolo')
-        font = "small";
-    if (font == 'Normale')
-        font = "medium";
-    if (font == 'Grande')
-        font = "x-large";
+//    if (font == 'Piccolo')
+//        font = "small";
+//    if (font == 'Normale')
+//        font = "medium";
+//    if (font == 'Grande')
+//        font = "x-large";
     document.getElementById("testsettings").style.fontSize = font;
 };
 function inter(event){
@@ -311,15 +359,15 @@ function inter(event){
 function wspacing(event){
     event.preventDefault();
     wspc = event.target.value;
-    if (wspc == 'Nessuna')
-        wspc = "0px";
+//    if (wspc == 'Nessuna')
+//        wspc = "0px";
     document.getElementById("testsettings").style.wordSpacing = wspc;
 }
 function lspacing(event){
     event.preventDefault();
     lspc = event.target.value;
-    if (lspc == 'Nessuna')
-        lspc = "0px";
+//    if (lspc == 'Nessuna')
+//        lspc = "0px";
     document.getElementById("testsettings").style.letterSpacing = lspc;
 }
 // BOTTONE SALVA
